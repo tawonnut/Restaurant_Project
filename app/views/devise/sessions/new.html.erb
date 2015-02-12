@@ -1,4 +1,4 @@
-<h2>Log in</h2>
+<h2>Log eieiin</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -21,6 +21,9 @@
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
+
+<button onClick = “history.go(-1)”> BACK </button>
+
 <% end %>
 
 <%= render "devise/shared/links" %>
