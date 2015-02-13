@@ -34,6 +34,23 @@ class User
   field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   field :locked_at,       type: Time
 
+
+  field :name,           type: String 
+  field :surname,        type: String
+  field :tel,            type: String
+
+  validates :name, presence: true
+  validates :surname, presence: true
+  validates :tel,     presence: true, numericality: true
+
+
+  field :fullname, type: String
+  field :nickname, type: String
+  field :idnumber, type: String
+  field :phone_number, type: String
+  field :address, type: String
+  field :super_user, type: Boolean, default: false
+
   def to_key
     id.to_s
   end
