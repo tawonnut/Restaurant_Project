@@ -3,14 +3,15 @@
 
 
   <hr>
-    <div class="panel panel-default bigmshoadow" >
-      <div class="panel-heading gradient"><h3> ลืมรหัสผ่าน</h3>  
+    <div class="panel panel-primary bigmshoadow" >
+      <div class="panel-heading gradient"><h3> Forget Password</h3>  
       </div>
         <div class="panel-body ">
      
+
           <div class="form-horizontal">
             <div class="form-group">
-		  			<%= f.label :email, "อีเมล :",class: "col-sm-2 control-label"%>
+		  			<%= f.label :email, "Email :",class: "col-sm-2 control-label"%>
               	<div class="col-sm-4">
 		  				<%= f.email_field :email, autofocus: true ,class: "form-control"%>
 		  			</div>
@@ -18,9 +19,13 @@
 	    
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <%= f.submit "ยืนยัน", class: "btn btn-success" %>
+                <%= f.submit "Submit", class: "btn btn-success" %> 
+
+                <%= link_to "Back", new_user_session_path, class: "btn btn-danger" %>
+
               </div>
             </div>
+
 
          </div>
       </div>
