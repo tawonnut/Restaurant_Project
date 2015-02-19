@@ -1,0 +1,46 @@
+<h2>  Show Relate  </h2><hr>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Relate table</h3>
+      </div>
+        <div class="panel-body">
+			<table class="table table-striped table-hover table-condensed">
+			    <thead>
+			      <tr>
+			        
+			        <th>Name</th>
+			        <th>Surname</th>
+			        <th>email</th>
+			        <th>Tel</th>
+		        			     
+			      </tr>
+			    </thead>
+
+			    <tbody>
+			      <% @users.each_with_index do |f| %>
+				      <tr>
+				        <%if f.super_user %>	 		 
+			              		
+						        <td><%= f.name %></td>
+						        <td><%= f.surname %></td>
+						        <td><%= f.email %></td>
+						        <td><%= f.tel %></td>
+						      
+						        <td><center><font color =red>Administrator</font></center></td>
+						        <td></td>
+
+					        <% else%>
+						        
+						        <td><%= f.name %></td>
+						        <td><%= f.surname %></td>
+						        <td><%= f.email %></td>
+						        <td><%= f.tel %></td>
+					       <td><%= link_to "Edit" , edit_user_registration_path%></td>
+					        
+			          <%end%>
+
+				      </tr>
+				   <%end%>
+			  </tbody>
+			</table>
+  </div>

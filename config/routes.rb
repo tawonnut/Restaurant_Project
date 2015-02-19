@@ -5,6 +5,12 @@ Rails.application.routes.draw do
 root to:"tests#index"
 
  resources :test
+ resources :showusers do
+
+ collection do
+        get 'showusers'
+      end
+    end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
