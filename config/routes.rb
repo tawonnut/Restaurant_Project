@@ -3,14 +3,21 @@ Rails.application.routes.draw do
  devise_for :users
 
 root to:"tests#index"
-
+  
+ resources :tables
  resources :test
- resources :showusers do
+ resources :showusers do 
+ # resources :tables 
 
  collection do
         get 'showusers'
-      end
     end
+  end
+
+  # collection do
+  #       get 'tables'
+  #   end
+  # end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
