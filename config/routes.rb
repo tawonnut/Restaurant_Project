@@ -2,10 +2,15 @@ Rails.application.routes.draw do
 
  devise_for :users
 
-root to:"tests#index"
+root to:"tables#index"
   
  resources :tables
- resources :test
+ resources :menu_lists do
+   collection do
+        get 'drinking'
+         end
+      end
+  
  resources :showusers do 
  # resources :tables 
 
