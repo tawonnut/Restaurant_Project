@@ -48,5 +48,8 @@ gem 'will_paginate_mongoid'
 
 group :test do
 gem 'capybara'
+gem 'selenium-webdriver'
+gem 'shoulda-matchers'
+
 end 
 

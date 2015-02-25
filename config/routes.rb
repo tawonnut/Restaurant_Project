@@ -8,6 +8,7 @@ root to:"tables#index"
  resources :menu_lists do
    collection do
         get 'drinking'
+        get 'dessert'
          end
       end
   
