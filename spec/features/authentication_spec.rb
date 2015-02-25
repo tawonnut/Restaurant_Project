@@ -1,10 +1,9 @@
-require 'feature_spec_helper'
+require 'spec_helper'
 
 describe "Authentication, Register", js: true do
  
  before do
     @new_path   = new_user_session_path
-    @root_path  = root_path
   end
 
     it "Register and log-in" do
