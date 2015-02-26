@@ -4,91 +4,104 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       
-    <title>SwiftletPOS</title>
+    <title>Restuarant.terebinth</title>
     <%= stylesheet_link_tag    "application" %>
-    <%#= javascript_include_tag "application" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
  </head>
 
     <body>
      
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-<!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-<a class="navbar-brand" href="#">Restaurant-Terebinth</a>
-</div>
-<!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse" id="">
-    <ul class="nav navbar-nav">
-        <li>
-            <%=link_to "Meatdish",menu_lists_path%>
-        </li>
-        <li>
-        
-        <%=link_to "Drinking", drinking_menu_lists_path%>
-        </li>
-        <li>
-            <%=link_to "Dessert",dessert_menu_lists_path%>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-   <% if user_signed_in? %>
- <li class="dropdown">
-       <a href="#" class="dropdown-toggle border-listingright" data-toggle="dropdown" role="button" aria-expanded="false">  <%= current_user.email%></a>
 
-        </li>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Restaurant-Terebinth</a>
+    </div>
 
-    <li><%= link_to  destroy_user_session_path, :method => :delete do %><span class="glyphicon glyphicon-log-in"></span>&nbsp; Logout
-                          <%end%></li>
-        <%if current_user.super_user?%> 
-        <li><%= link_to "Show all User",showusers_showusers_path%></li>
-        <%end%>                 
-
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><%=link_to "Meatdish",menu_lists_path%></li>
+         <li> <%=link_to "Drinking", drinking_menu_lists_path%></li>
+        <li><%=link_to "Dessert",dessert_menu_lists_path%></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+          <!--Check login ? -->
+        <% if user_signed_in? %>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle border-listingright" data-toggle="dropdown" role="button" aria-expanded="false">  <%#= current_user.email%></a>
+        </li>
+
+         <li><%= link_to  destroy_user_session_path, :method => :delete do %>
+          <span class="glyphicon glyphicon-log-in"></span>&nbsp; Logout
+          <%end%>
+          </li>
+            <!--Check Superuser ? -->
+        <%if current_user.super_user?%> 
+          <li><%= link_to "Show all User",showusers_showusers_path%></li>
         <%end%>
-</div>
-<!-- /.navbar-collapse -->
-</div>
-<!-- /.container -->
+
+      
+          </li>
+
+             
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <%= current_user.email%></a>
+          </li>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <%end%>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
+
      <div class="container main-body">
-        <div id="system-flashes">
-          <%- [:notice, :info, :warning, :error, :alert].each do |kind| -%>
-            <%- next if flash[kind].blank? -%>
-            <%
-              alert_type = case kind
-                when :notice
-                  'success'
-                when :error
-                  'danger'
-                when :info
-                  'info'
-                when :warning
-                  'warning'
-                when :alert
-                  'warning'
-                end
-            %>
-            <div class="alert alert-dismissable alert-<%= alert_type %> notice fade in">
-              <button class="close" data-dismiss="alert" type="button"><span class="fa fa-times"></span></button>
-              <% [flash[kind]].flatten.each do |line| %>
-                <div><%= line.html_safe %></div>
-              <% end %>
-            </div>
-          <%- end -%>
+    <div id="system-flashes">
+      <%- [:notice, :info, :warning, :error, :alert].each do |kind| -%>
+        <%- next if flash[kind].blank? -%>
+        <%
+          alert_type = case kind
+            when :notice
+              'success'
+            when :error
+              'danger'
+            when :info
+              'info'
+            when :warning
+              'warning'
+            when :alert
+              'warning'
+            end
+        %>
+        <div class="alert alert-dismissable alert-<%= alert_type %> notice fade in">
+          <button class="close" data-dismiss="alert" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+          <% [flash[kind]].flatten.each do |line| %>
+            <div><%= line.html_safe %></div>
+          <% end %>
         </div>
+      <%- end -%>
+    </div>
+
 
         <%= yield %>
       </div>
+
 </body>
 </html>
-
-

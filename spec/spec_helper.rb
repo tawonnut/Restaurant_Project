@@ -83,8 +83,11 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-require 'capybara/rails' 
+
  # Capybara
+ require 'rails/all'
+require 'capybara/rspec'
+require 'capybara/rails'
   config.include Capybara::DSL 
 
   config.before(:each) do

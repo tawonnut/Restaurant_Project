@@ -45,12 +45,21 @@ group :development, :test do
   gem 'spring'
 end
 gem 'will_paginate_mongoid'
+gem 'puma'
 
 group :test do
 gem 'capybara'
 gem 'selenium-webdriver'
 gem 'shoulda-matchers'
 gem 'database_cleaner'
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'rvm-capistrano'
+end
 
 end 
 

@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
- devise_for :users
+ devise_for :user
+
 
 root to:"tables#index"
+
+
+resource :users, only: [:edit, :update]
   
  resources :tables
  resources :menu_lists do

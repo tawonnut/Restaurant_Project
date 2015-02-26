@@ -51,7 +51,5 @@ class User
   field :address, type: String
   field :super_user, type: Boolean, default: false
 
-  def to_key
-    id.to_s
-  end
+  
 end

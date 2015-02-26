@@ -58,7 +58,7 @@ development:
 test:
   sessions:
     default:
-      database: swiftletpos_test
+      database: restaurant_terebinth_test
       hosts:
         - localhost:27017
       options:
@@ -67,3 +67,11 @@ test:
         # low amounts for fast failures.
         max_retries: 2
         retry_interval: 1
+
+        production:
+          sessions:
+            default:
+              database: restaurant_terebinth_production
+              hosts:
+                - localhost:27017
+
