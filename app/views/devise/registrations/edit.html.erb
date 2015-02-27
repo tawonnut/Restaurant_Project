@@ -7,7 +7,7 @@
   <%= devise_error_messages! %>
 <hr>
     <div class="panel panel-primary bigmshoadow" >
-      <div class="panel-heading gradient"><h3><i class="glyphicon glyphicon-user"></i> Change Password </h3>  
+      <div class="panel-heading gradient"><h3><i class="glyphicon glyphicon-user"></i> เปลี่ยนรหัสผ่าน</h3>  
       </div>
         <div class="panel-body ">
          <div class="form-horizontal">
@@ -19,32 +19,34 @@
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
 
-            <div class="form-group">
-              <%= f.label :password,"New Password :" ,class: "col-sm-3 control-label"%>
-                <div class="col-sm-4">
-                  <%= f.password_field :password, autocomplete: "off", autofocus: true , class: "form-control" %>
-                 </div>  
-            </div>
 
             <div class="form-group">
-              <%= f.label :password_confirmation,"Re Password :",class: "col-sm-3 control-label"%>
-                <div class="col-sm-4">
-                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-                </div> 
-              </div>
-
-            <div class="form-group">
-              <%= f.label :current_password ,"Current Password :",class: "col-sm-3 control-label"%>
+              <%= f.label :current_password ,"กรอกรหัสผ่านเดิม :",class: "col-sm-3 control-label"%>
                 <div class="col-sm-4">
                   <%= f.password_field :current_password, autocomplete: "off",class: "form-control"  %>
                 </div>
             </div>
 
             <div class="form-group">
+              <%= f.label :password,"กรอกรหัสผ่านใหม่ :" ,class: "col-sm-3 control-label"%>
+                <div class="col-sm-4">
+                  <%= f.password_field :password, autocomplete: "off", autofocus: true , class: "form-control" %>
+                 </div>  
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation,"ยืนยันรหัสผ่านใหม่ :",class: "col-sm-3 control-label"%>
+                <div class="col-sm-4">
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                </div> 
+              </div>
+
+
+            <div class="form-group">
               <div class="col-sm-offset-3 col-sm-10">
                 <div class="actions">
-                  <%= f.submit("Submit", class: "btn btn-success") %>
-                  <%= link_to "Back", new_user_session_path, class: "btn btn-danger" %>
+                  <%= f.submit("ยืนยัน", class: "btn btn-success") %>
+                  <%= link_to "กลับ", new_user_session_path, class: "btn btn-danger" %>
                 </div>
               </div>
             </div>

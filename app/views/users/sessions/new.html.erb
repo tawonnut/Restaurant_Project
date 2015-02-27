@@ -1,8 +1,6 @@
-
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <br>
 <br>
-
     <hr>
       <div class="panel panel-primary bigmshoadow" >
         <div class="panel-heading gradient"><h3><i class="glyphicon glyphicon-user"></i> Log in</h3>  
@@ -11,7 +9,7 @@
  
           <div class="form-horizontal">
             <div class="form-group">
-                <%= f.label :email ,"Email :",class: "col-sm-2 control-label"%>
+                <%= f.label :email ,"อีเมล์ :",class: "col-sm-2 control-label"%>
               <div class="col-sm-3">
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></div>
@@ -20,7 +18,7 @@
               </div>
             </div>
               <div class="form-group">
-                <%= f.label :password ,"Password :",class: "col-sm-2 control-label"%>
+                <%= f.label :password ,"รหัสผ่าน :",class: "col-sm-2 control-label"%>
                   <div class="col-sm-3">
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></div>
@@ -39,7 +37,7 @@
                
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <%= f.submit "Submit", class: "btn btn-success" %>
+                <%= f.submit "ยืนยัน", class: "btn btn-success" %>
               </div>
             </div>
 

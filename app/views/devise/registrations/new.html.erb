@@ -6,48 +6,48 @@
   
 <hr>
     <div class="panel panel-primary bigmshoadow" >
-      <div class="panel-heading gradient"><h3><i class="glyphicon glyphicon-user"></i> Register</h3>  
+      <div class="panel-heading gradient"><h3><i class="glyphicon glyphicon-user"></i> สมัครสมาชิก </h3>  
       </div>
         <div class="panel-body ">
          <div class="form-horizontal">
       
            <div class="form-group">
-              <%= f.label :name ,"Name :",class: "col-sm-2 control-label"%>
+              <%= f.label :name ,"ชื่อ :",class: "col-sm-2 control-label"%>
                   <div class="col-sm-4">
                 <%= f.text_field :name, class: "form-horizontal" %>
                </div>
            </div>
 
            <div class="form-group">
-            <%= f.label :surname ,"Surname :",class: "col-sm-2 control-label"%>
+            <%= f.label :surname ,"นามสกุล :",class: "col-sm-2 control-label"%>
                     <div class="col-sm-4">
                 <%= f.text_field :surname, class: "form-horizontal" %>
               </div>
           </div>
 
            <div class="form-group">
-            <%= f.label :tel ,"Tel :",class: "col-sm-2 control-label"%>
+            <%= f.label :tel ,"เบอร์โทรศัพท์ :",class: "col-sm-2 control-label"%>
                   <div class="col-sm-4">
                 <%= f.text_field :tel , class: "form-horizontal" %>
               </div>            
            </div>
 
            <div class="form-group">
-            <%= f.label :email ,"Email :" ,class: "col-sm-2 control-label"%>
+            <%= f.label :email ,"อีเมล์ :" ,class: "col-sm-2 control-label"%>
                   <div class="col-sm-4">
                 <%= f.text_field :email, autofocus: true, class: "form-horizontal" %>
               </div>
            </div>
 
            <div class="form-group">
-            <%= f.label :password,"password :" ,class: "col-sm-2 control-label"%>
+            <%= f.label :password,"รหัสผ่าน :" ,class: "col-sm-2 control-label"%>
                   <div class="col-sm-4">
                 <%= f.password_field :password, autocomplete: "off", class: "form-horizontal" %>
               </div>
            </div>
 
            <div class="form-group">
-            <%= f.label :password_confirmation,"Confirm Password : ",class: "col-sm-2 control-label"%>
+            <%= f.label :password_confirmation,"ยืนยันรหัสผ่าน : ",class: "col-sm-2 control-label"%>
                   <div class="col-sm-4">
                 <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-horizontal" %>
               </div>
@@ -55,8 +55,8 @@
 
            <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <%= f.submit "Submit",class: "btn btn-success" %>
-                <%= link_to "Back", new_user_session_path, class: "btn btn-danger" %>
+                <%= f.submit "ยืนยัน",class: "btn btn-success" %>
+                <%= link_to "กลับ", new_user_session_path, class: "btn btn-danger" %>
             </div>
           </div>
       </div>    
