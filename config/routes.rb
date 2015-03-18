@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'profiles/index'
+
+  get 'profile/index'
+
  devise_for :user
 
 
@@ -17,10 +21,14 @@ resource :users, only: [:edit, :update]
       end
   
  resources :showusers do 
- # resources :tables 
-
  collection do
         get 'showusers'
+    end
+  end
+
+  resources :profiles do 
+ collection do
+        get 'profiles'
     end
   end
 

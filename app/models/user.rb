@@ -49,6 +49,7 @@ class User
   field :idnumber, type: String
   field :phone_number, type: String
   field :address, type: String
+  field :account_name, type: String
   field :super_user, type: Boolean, default: false
 
   
