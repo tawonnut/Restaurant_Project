@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  belongs_to :account
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -49,7 +50,6 @@ class User
   field :idnumber, type: String
   field :phone_number, type: String
   field :address, type: String
-  field :account_name, type: String
   field :super_user, type: Boolean, default: false
 
   

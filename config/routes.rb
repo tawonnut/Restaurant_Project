@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcomes/index'
+
   get 'profiles/index'
 
   get 'profile/index'
