@@ -23,4 +23,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:surname,:tel)
   end
 
+  
+
 end

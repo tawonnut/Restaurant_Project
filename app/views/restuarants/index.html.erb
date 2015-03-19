@@ -5,6 +5,7 @@
 	<% @restuarants.each do |a| %>
 	<%=a.restuarant_name%>
 	<%= link_to "Go", restuarant_path(a)%>
+	<%= link_to 'Delete', restuarant_path(a), method: :delete, data: { confirm: 'Are you sure?' } %>
   
 </div>
 	<%end%>

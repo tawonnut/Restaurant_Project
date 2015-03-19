@@ -24,6 +24,14 @@ def create
     end
   end
 
+def destroy
+    @des= Restuarant.find(params[:id])
+    @des.destroy
+    flash[:notice] = "ลบเรียบร้อยแล้ว"
+    redirect_to restuarants_path
+
+end
+
 def restuarant_params
     params.require(:restuarant).permit(:restuarant_name)
   end

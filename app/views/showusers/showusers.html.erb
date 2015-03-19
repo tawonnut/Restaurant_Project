@@ -35,7 +35,9 @@
 						        <td><%= f.surname %></td>
 						        <td><%= f.email %></td>
 						        <td><%= f.tel %></td>
+						        <td><%= link_to 'Delete', showuser_path(f), method: :delete, data: { confirm: 'Are you sure?' } %><td>
 						        <td><center><font color =green> พนักงาน </font></center></td>
+						        
 					       
 
 					        
@@ -49,7 +51,8 @@
   </div>
   		<div class="form-group">
      		<div class="col-sm-offset-2 col-sm-10">
-     			<%= link_to "เพิ่มหนักงาน", restuarants_path, class: "btn btn-success" %>
-     			<%= link_to "ลบพนักงาน", new_restuarant_path, class: "btn btn-danger" %>
+     			<%= link_to "เพิ่มพนักงาน",  new_user_registration_path, class: "btn btn-success" %>
+    
+
      		</div>
      	</div>
