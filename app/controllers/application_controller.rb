@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
 	  session[:user_id] = user.try(:id).try(:to_s)
     end
 
+    
+    def after_sign_in_path_for(resource)
+      res_manages_res_manages_path
+    end
+
   protected
   def configure_permitted_parameters
     	devise_parameter_sanitizer.for(:sign_up) << :name

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,6 +34,7 @@
         <li><%=link_to "อาหารคาว",menu_lists_path%></li>
          <li> <%=link_to "เครื่องดื่ม", drinking_menu_lists_path%></li>
         <li><%=link_to "อาหารหวาน",dessert_menu_lists_path%></li>
+        
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -47,8 +49,6 @@
         <%if current_user.super_user?%> 
           <li><%= link_to "แสดงพนักงานทั้งหมด",showusers_showusers_path%></li>
           <li><%= link_to "โปรไฟล์ร้าน",profiles_profiles_path%></li>
-
-          
         <%end%>
 
          <li><%= link_to destroy_user_session_path do %><i class="glyphicon glyphicon-log-in"></i> &nbsp; ออกจากระบบ

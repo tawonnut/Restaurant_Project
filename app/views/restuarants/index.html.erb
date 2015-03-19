@@ -1,0 +1,11 @@
+<h1>ร้านของคุณ</h1>
+
+<body>
+<div>
+	<% @restuarants.each do |a| %>
+	<%=a.restuarant_name%>
+	<%= link_to "Go", restuarant_path(a)%>
+  
+</div>
+	<%end%>
+</body>

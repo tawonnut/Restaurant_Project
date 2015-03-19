@@ -9,8 +9,10 @@ Rails.application.routes.draw do
  devise_for :user
 
 
-root to:"tables#index"
 
+root to:"welcomes#welcomes"
+
+resources :restuarants
 
 resource :users, only: [:edit, :update]
   
@@ -31,6 +33,18 @@ resource :users, only: [:edit, :update]
   resources :profiles do 
  collection do
         get 'profiles'
+    end
+  end
+
+  resources :welcomes do 
+ collection do
+        get 'welcomes'
+    end
+  end
+
+   resources :res_manages do 
+ collection do
+        get 'res_manages'
     end
   end
 
