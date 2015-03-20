@@ -4,9 +4,8 @@
 <div>
 	<% @restuarants.each do |a| %>
 	<%=a.restuarant_name%>
-	<%= link_to "Go", restuarant_path(a)%>
-	<%= link_to 'Delete', restuarant_path(a), method: :delete, data: { confirm: 'Are you sure?' } %>
-  
+	<%= link_to "เข้าสู่ร้าน", restuarant_path(a), class: "btn btn-primary" %>
+	<%= link_to 'Delete', restuarant_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'Are you sure?' }  %>
 </div>
 	<%end%>
 </body>

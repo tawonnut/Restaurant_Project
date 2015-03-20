@@ -1,0 +1,16 @@
+
+
+
+<%= form_for(@user, url: registers_url, method: :post) do |f| %>
+<div class="col-lg-6 col-md-6 col-sm-6">
+  <div class="form-group">
+    <%= f.label "User Email", class: 'control-label' %>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit("Create New register", class: "btn btn-primary") %>
+  </div>
+
+</div>
+<% end %>

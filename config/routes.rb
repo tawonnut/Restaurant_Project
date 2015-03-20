@@ -14,6 +14,8 @@ root to:"welcomes#welcomes"
 
 resources :restuarants
 
+resources :registers
+
 resource :users, only: [:edit, :update]
   
  resources :tables

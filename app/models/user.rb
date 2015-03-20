@@ -42,7 +42,7 @@ class User
 
   validates :name, presence: true
   validates :surname, presence: true
-  validates :tel,     presence: true, numericality: true
+  validates :tel,     presence: true
 
 
   field :fullname, type: String
