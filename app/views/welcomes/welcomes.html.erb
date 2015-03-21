@@ -1,12 +1,44 @@
 
-<h2>welcome to Swiftlet POS </h2>
-please Login or Register!!
-
 <body>
-<div class="form-group">
-     <div class="col-sm-offset-2 col-sm-10">
-     <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
-     <%= link_to "Register", new_user_registration_path, class: "btn btn-success" %>
-     </div>
+<div class="row">
+     <div class="container">
+     <div class="panel panel-default">
+  <div class="panel-heading">เข้าสู่ระบบ</div>
+  <div class="panel-body">
+    <form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">อีเมล</label>
+    <div class="col-sm-3">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="อีเมล">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">รหัสผ่าน</label>
+    <div class="col-sm-3">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="รหัสผ่าน">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> จำรหัสผ่าน
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= link_to "เข้าสู่ระบบ", new_user_session_path, class: "btn btn-primary" %>
+      <%= link_to "สมัครสมาชิก", new_user_registration_path, class: "btn btn-success" %>
+    </div>
+  </div>
+</form>
+  </div>
+</div>
+  
+
+        
+      </div>
 </div>
 </body>
