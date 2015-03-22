@@ -1,11 +1,45 @@
 <h1>ร้านของคุณ</h1>
 
 <body>
-<div>
-	<% @restuarants.each do |a| %>
-	<%=a.restuarant_name%>
-	<%= link_to "เข้าสู่ร้าน", restuarant_path(a), class: "btn btn-primary" %>
-	<%= link_to 'Delete', restuarant_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'Are you sure?' }  %>
-</div>
-	<%end%>
+        <div class="container">
+                <div class="panel bg-body">
+                    <div class="panel-heading bg-header">
+                        ร้านค้า
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>ร้านค้า</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <% @restuarants.each do |a| %>
+                                <td>1</td>
+                                <td><%=a.restuarant_name%></td>
+                                <td>
+                                  
+                                  
+                                  
+                                    <%= link_to "เข้าสู่ร้าน", restuarant_path(a), class: "btn btn-success" %>
+                                    <%= link_to "จัดการร้านค้า", restuarant_path(a), class: "btn btn-primary" %>
+                                    <%= link_to 'ลบร้านค้า', restuarant_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบ?' }  %>
+                                    <%end%>
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
 </body>
