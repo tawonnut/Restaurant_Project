@@ -50,6 +50,12 @@ resource :users, only: [:edit, :update]
     end
   end
 
+   resources :orders do 
+ collection do
+        get 'orders'
+    end
+  end
+
   # collection do
   #       get 'tables'
   #   end

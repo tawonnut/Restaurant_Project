@@ -16,15 +16,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <% @restuarants.each do |a| %>
+                                <% @restuarants.each do |a, i| %>
                                 <td>1</td>
                                 <td><%=a.restuarant_name%></td>
                                 <td>
-                                  
-                                  
-                                  
                                     <%= link_to "เข้าสู่ร้าน", restuarant_path(a), class: "btn btn-success" %>
-                                    <%= link_to "จัดการร้านค้า", restuarant_path(a), class: "btn btn-primary" %>
+                                    <%= link_to "จัดการร้านค้า", edit_restuarant_path(a), class: "btn btn-primary" %>
                                     <%= link_to 'ลบร้านค้า', restuarant_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบ?' }  %>
                                     <%end%>
                                 </td>
