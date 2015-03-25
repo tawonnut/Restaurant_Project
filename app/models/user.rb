@@ -50,7 +50,7 @@ class User
   field :idnumber, type: String
   field :phone_number, type: String
   field :address, type: String
-  field :super_user, type: Boolean, default: true
+  field :super_user, type: Boolean, default: false
 
   
 end
