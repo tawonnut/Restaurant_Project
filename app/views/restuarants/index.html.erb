@@ -15,9 +15,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                                <% @restuarants.each_with_index do |a, i| %>
                             <tr>
-                                <% @restuarants.each do |a, i| %>
-                                <td>1</td>
+                                <td><%= i + 1 %></td>
                                 <td><%=a.restuarant_name%></td>
                                 <td>
                                     <%= link_to "เข้าสู่ร้าน", restuarant_path(a), class: "btn btn-success" %>
@@ -34,9 +34,9 @@
                 </div>
             </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        
     </body>
 </html>
 </body>
+
+ <%= link_to "showuser", registers_path%>

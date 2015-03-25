@@ -7,7 +7,9 @@
       </div>
     </div>
 
-    	<div>
+    	<%= f.hidden_field :user_id, :value => current_user.id %>
+
+
     	<%= submit_tag "Submit", class: "btn btn-success" %>
     	</div>
    <%end%>

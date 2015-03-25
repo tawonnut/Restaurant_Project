@@ -10,10 +10,11 @@ def new
 
   end
   def index
-  	@restuarants= Restuarant.all
+  	@restuarants= Restuarant.where(user_id: current_user.id).all
   end
 
 def create
+
     @restuarant = Restuarant.new(restuarant_params)
     if @restuarant.save
       flash[:notice] = "Create is successfully"
@@ -33,7 +34,7 @@ def destroy
 end
 
 def restuarant_params
-    params.require(:restuarant).permit(:restuarant_name)
+    params.require(:restuarant).permit(:restuarant_name , :user_id)
   end
 
 

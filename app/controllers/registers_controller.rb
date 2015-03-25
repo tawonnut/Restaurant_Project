@@ -15,11 +15,14 @@ class RegistersController < ApplicationController
     @user = User.new(create_user_params)
     random_password = Devise.friendly_token
 
+    id = params[:user][:restuarant_id]
+
     @user.password = random_password
     @user.password_confirmation = random_password
     @user.name = "N/A"
     @user.surname = "N/A"
     @user.tel = "N/A"
+    @user.restuarant_id = id
     
 
 
@@ -51,7 +54,7 @@ class RegistersController < ApplicationController
   end
 
 	def user_params
-		params.require(:user).permit(:name, :surname, :tel)
+		params.require(:user).permit(:name, :surname, :tel, :restuarant_id)
 	end
 
 end

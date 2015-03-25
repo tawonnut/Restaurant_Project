@@ -1,12 +1,12 @@
 class Restuarant
   include Mongoid::Document
 
-   has_many :user
+ belongs_to :user
    belongs_to :waiter
    belongs_to :cashier
 
    field :restuarant_name,    type: String
-   field :restuarant_id,      type: Integer
+   field :user_id,      type: String
    field :restuarant_owner,   type: String
    field :billing_id, 		  type: Integer
    field :restuarant_address, type: String

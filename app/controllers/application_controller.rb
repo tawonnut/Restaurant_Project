@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
     	devise_parameter_sanitizer.for(:sign_up) << :surname
     	devise_parameter_sanitizer.for(:sign_up) << :tel
       devise_parameter_sanitizer.for(:sign_up) << :super_user
+      devise_parameter_sanitizer.for(:sign_up) << :restuarant_id
   end
 
 end
