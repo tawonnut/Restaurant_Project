@@ -1,16 +1,51 @@
 <%= form_for(@restuarant, url: restuarants_path) do |f| %>
 
-   <div class="row">
-      <div class="large-4 columns">
-          <%= label_tag "restuarant" %><br>
-          <%= text_field_tag "restuarant[restuarant_name]"%>
+
+<div class="panel panel-primary bigmshoadow" >
+        <div class="panel-heading gradient"><h3><i class="glyphicon glyphicon-home"></i> แบบฟอร์มสร้างร้านใหม่ </h3>  
       </div>
-    </div>
+        <div class="panel-body ">
+          <div class="form-horizontal">
+      
+            <div class="form-group">
+                <%= f.label :restuarant_name,"ชื่อร้าน:",class: "col-sm-2 control-label"%>
+                <div class="col-sm-4">
+                  <%= f.text_field :restuarant_name, class: "form-control"%>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                 </div>
+            </div>
 
-    	<%= f.hidden_field :user_id, :value => current_user.id %>
+             <div class="form-group">
+                <%= f.label :legal_person ,"ชื่อนิติบุคคล:",class: "col-sm-2 control-label"%>
+                <div class="col-sm-4">
+                  <%= f.text_field :legal_person, class: "form-control"%>
+                 </div>
+            </div>
 
+              <div class="form-group">
+                <%= f.label :restuarant_tel ,"เบอร์โทรศัพท์:",class: "col-sm-2 control-label"%>
+                <div class="col-sm-4">
+                  <%= f.text_field :restuarant_tel,  class: "form-control"%>
+                </div>
+              </div>
 
-    	<%= submit_tag "Submit", class: "btn btn-success" %>
-    	</div>
+                <div class="form-group">
+                <%= f.label :tax_id ,"เลขประจำตัวผู้เสียภาษี:",class: "col-sm-2 control-label"%>
+                <div class="col-sm-4">
+                  <%= f.text_field :tax_id,  class: "form-control"%>
+                </div>
+              </div>
+
+                 <div class="form-group">
+                <%= f.label :restuarant_address ,"ที่อยู่ร้าน:",class: "col-sm-2 control-label"%>
+                <div class="col-sm-4">
+                  <%= f.text_field :restuarant_address,  class: "form-control"%>
+                </div>
+              </div>
+          </div>  
+
+        </div>    
+   </div>
+            <%= submit_tag "ตกลง", class: "btn btn-success" %>   
    <%end%>
    

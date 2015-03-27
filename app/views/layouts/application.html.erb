@@ -50,7 +50,7 @@ and open the template in the editor.
                                <!-- Check Super User-->
                             <%if current_user.super_user?%>
                                 <li><%= link_to "แสดงพนักงานทั้งหมด" ,showusers_showusers_path%> </li>
-                                <li><%= link_to "โปรไฟล์ร้าน" ,profiles_profiles_path%> </li>
+                                <li><%= link_to "โปรไฟล์ร้าน" ,restuarants_path%> </li>
                             <%end%>
 
                             <li><%= link_to destroy_user_session_path do %><i class= "  glyphicon glyphicon-log-in"> </i> &nbsp; ออกจากระบบ

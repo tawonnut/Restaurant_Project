@@ -12,6 +12,8 @@ class Restuarant
    field :restuarant_address, type: String
    field :restuarant_tel,    type: String
    field :restuarant_email,    type: String
+   field :legal_person   ,type: String
+   field :tax_id, type: String
 
 
    validates :restuarant_name, presence: true

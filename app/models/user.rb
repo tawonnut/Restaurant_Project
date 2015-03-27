@@ -53,6 +53,8 @@ field :restuarant_id,           type: String
   field :phone_number, type: String
   field :address, type: String
   field :super_user, type: Boolean, default: false
+  field :tax_id, type: String
+
 
   
 end
