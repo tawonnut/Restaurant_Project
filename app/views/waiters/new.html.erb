@@ -1,0 +1,30 @@
+<h2>New waiter</h2>
+
+<%= form_for(@waiter, url: waiters_path) do |f| %>
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <div class="form-group">
+      <%= f.label "ชื่อ:", class: 'control-label' %>
+      <%= f.text_field :waiter_name, class: 'form-control', autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "นามสกุล" %><br>
+      <%= f.text_field :waiter_surname, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "เบอร์โทรศัพท์" %><br>
+      <%= f.text_field :waiter_tel, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "ที่อยู่-ที่ติดต่อได้" %><br>
+      <%= f.text_field :waiter_address, class: 'form-control' %>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit("ตกลง", class: "btn btn-primary") %>
+    </div>
+  </div>
+<% end %>

@@ -1,6 +1,5 @@
 class User
   include Mongoid::Document
-  belongs_to :account
 
    has_many :restuarants
   # Include default devise modules. Others available are:

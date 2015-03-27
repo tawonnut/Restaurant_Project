@@ -1,8 +1,9 @@
 class Waiter
   include Mongoid::Document
-  has_one :account
 
-  field :waiter_id,        type: Integer
+  belongs_to :restuarant
+
+  field :waiter_id,        type: String
   field :waiter_name,      type: String
   field :waiter_surname,   type: String
   field :waiter_email,     type: String

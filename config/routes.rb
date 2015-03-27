@@ -16,6 +16,9 @@ resources :restuarants
 
 resources :registers
 
+resources :waiters
+
+
 resource :users, only: [:edit, :update]
   
  resources :tables
