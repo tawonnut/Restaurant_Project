@@ -1,7 +1,7 @@
 class Restuarant
   include Mongoid::Document
 
- belongs_to :user
+   belongs_to :user
    belongs_to :waiter
    belongs_to :cashier
 
@@ -12,7 +12,7 @@ class Restuarant
    field :restuarant_address, type: String
    field :restuarant_tel,    type: String
    field :restuarant_email,    type: String
-   field :legal_person   ,type: String
+   field :legal_person,type: String
    field :tax_id, type: String
 
 
