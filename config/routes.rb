@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 
 
-root to:"welcomes#welcomes"
+root to:"restuarants#show"
 
 resources :restuarants
 

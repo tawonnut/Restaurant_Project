@@ -17,10 +17,10 @@ def create
 
     @restuarant = Restuarant.new(restuarant_params)
     if @restuarant.save
-      flash[:notice] = "Create is successfully"
+      flash[:notice] = "สร้างร้านใหม่เรียบร้อยแล้ว"
       redirect_to restuarants_path
     else
-      flash[:error] = "Error please fill in all field"
+      flash[:error] = "กรุณาระบุข้อมูลให้ครบถ้วน"
       redirect_to new_restuarant_path
     end
   end

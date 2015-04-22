@@ -1,13 +1,9 @@
 
-<div><%= @restuarant.restuarant_name %> </div>
-
-<h2> Layout Table </h2>
-
+<div><h2><%= @restuarant.restuarant_name %></h2> </div>
 
 <body>
-
- <div class="container">
-            <div class="col-md-2" ><%= link_to "Order",orders_orders_path%><div class="bg-info" style="height: 130px">A1</div></a></div>
+            <div class="container">
+            <div class="col-md-2" ><div class="bg-info" style="height: 130px">A1</div></a></div>
             <div class="col-md-2" ><div class="bg-info" style="height: 130px">A2</div></div>
             <div class="col-md-2" ><div class="bg-info" style="height: 130px">A3</div></div>
             <div class="col-md-2" ><div class="bg-info" style="height: 130px">A4</div></div>
@@ -48,6 +44,8 @@
  <%= link_to "Edit", edit_users_path%>
 
  <%= link_to "Welcome", welcomes_welcomes_path%> 
+
+ <%= link_to "Order",orders_orders_path%>
 
  
 
