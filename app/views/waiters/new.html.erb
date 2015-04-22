@@ -1,30 +1,63 @@
-<h2>New waiter</h2>
-
 <%= form_for(@waiter, url: waiters_path) do |f| %>
-  <div class="col-lg-6 col-md-6 col-sm-6">
-    <div class="form-group">
-      <%= f.label "ชื่อ:", class: 'control-label' %>
-      <%= f.text_field :waiter_name, class: 'form-control', autofocus: true %>
-    </div>
+<hr>
+    <div class="panel panel-primary bigmshoadow" >
+      <div class="panel-heading gradient"><h3><i class="glyphicon glyphicon-user"></i> เพิ่มพนักงานในร้าน </h3>  
+      </div>
+        <div class="panel-body ">
+         <div class="form-horizontal">
+      
+           <div class="form-group">
+              <%= f.label :waiter_name ,"ชื่อ:",class: "col-sm-2 control-label"%>
+                  <div class="col-sm-4">
+                <%= f.text_field :waiter_name, class: "form-horizontal" %>
+               </div>
+           </div>
 
-    <div class="form-group">
-      <%= f.label "นามสกุล" %><br>
-      <%= f.text_field :waiter_surname, class: 'form-control' %>
-    </div>
+           <div class="form-group">
+            <%= f.label :waiter_surname ,"นามสกุล :",class: "col-sm-2 control-label"%>
+                    <div class="col-sm-4">
+                <%= f.text_field :waiter_surname, class: "form-horizontal" %>
+              </div>
+          </div>
 
-    <div class="form-group">
-      <%= f.label "เบอร์โทรศัพท์" %><br>
-      <%= f.text_field :waiter_tel, class: 'form-control' %>
-    </div>
+           <div class="form-group">
+            <%= f.label :waiter_tel ,"เบอร์โทรศัพท์ :",class: "col-sm-2 control-label"%>
+                  <div class="col-sm-4">
+                <%= f.text_field :waiter_tel , class: "form-horizontal" %>
+              </div>            
+           </div>
 
-    <div class="form-group">
-      <%= f.label "ที่อยู่-ที่ติดต่อได้" %><br>
-      <%= f.text_field :waiter_address, class: 'form-control' %>
-    </div>
+           <div class="form-group">
+            <%= f.label :waiter_address ,"ที่อยู่ :" ,class: "col-sm-2 control-label"%>
+                  <div class="col-sm-4">
+                <%= f.text_field :waiter_address, class: "form-horizontal" %>
+              </div>
+           </div>
+
+           
+           <div class="form-group">
+            <%= f.label :waiter_email ,"อีเมล์:" ,class: "col-sm-2 control-label"%>
+                  <div class="col-sm-4">
+                <%= f.text_field :waiter_email, class: "form-horizontal" %>
+              </div>
+           </div>
+
+           <div class="form-group">
+            <%= f.label :waiter_password,"รหัสผ่านเข้าใช้งาน :" ,class: "col-sm-2 control-label"%>
+                  <div class="col-sm-4">
+                <%= f.password_field :waiter_password, autocomplete: "off", class: "form-horizontal" %>
+              </div>
+           </div>
 
 
-    <div class="actions">
-      <%= f.submit("ตกลง", class: "btn btn-primary") %>
-    </div>
-  </div>
+           <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <%= f.submit "ยืนยัน",class: "btn btn-success" %>
+                <%= link_to "กลับ", new_user_session_path, class: "btn btn-danger" %>
+            </div>
+          </div>
+      </div>    
+    </div> 
+  </div>   
+
 <% end %>

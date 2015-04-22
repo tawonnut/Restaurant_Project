@@ -1,12 +1,9 @@
 class UsersController < ApplicationController
+before_action :set_user, only: [:edit, :update]
 
-	before_action :set_user, only: [:edit, :update]
 
   def edit
-  end 
-
-  
-
+  end
 
   def update
     if @user.update(user_params)
@@ -25,6 +22,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:surname,:tel)
   end
 
-  
-
 end
+

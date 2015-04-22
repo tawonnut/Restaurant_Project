@@ -1,12 +1,5 @@
- <% if @user.errors.any?%>
-    <ul>
-      <% @user.errors.each do |key,value|%>
-        <li class="text-danger"><%=value%></li>
-      <%end%>
-    </ul>
-  <%end%>
-<br>
-<br>
+
+
 <%= form_for(@user, url: users_url, method: :patch) do |f| %>
 
 <hr>

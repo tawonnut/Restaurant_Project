@@ -19,14 +19,14 @@ class RegistersController < ApplicationController
 
     @user.password = random_password
     @user.password_confirmation = random_password
-    @user.name = "N/A"
-    @user.surname = "N/A"
-    @user.tel = "N/A"
-    @user.restuarant_id = id
+    # @user.name = "N/A"
+    # @user.surname = "N/A"
+    # @user.tel = "N/A"
+    # @user.restuarant_id = id
     
 
 
-    if @user.save
+    if @user.save(user_params)
       @user.send_reset_password_instructions
       flash[:notice] = "Create new user successfully."
       redirect_to registers_path(current_user)
@@ -54,7 +54,7 @@ class RegistersController < ApplicationController
   end
 
 	def user_params
-		params.require(:user).permit(:name, :surname, :tel, :restuarant_id)
+		params.require(:user).permit(:name, :surname, :nickname, :tel, :restuarant_id)
 	end
 
 end

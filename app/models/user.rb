@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
 
    has_many :restuarants
+   has_many :memberships
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -36,15 +37,12 @@ class User
   field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   field :locked_at,       type: Time
 
-field :restuarant_id,           type: String 
+  field :restuarant_id,           type: String 
   field :name,           type: String 
   field :surname,        type: String
   field :tel,            type: String
 
-  validates :name, presence: true
-  validates :surname, presence: true
-  validates :tel,     presence: true
-
+  
 
   field :fullname, type: String
   field :nickname, type: String

@@ -9,4 +9,5 @@ class Waiter
   field :waiter_email,     type: String
   field :waiter_address,   type: String
   field :waiter_tel,       type: String
+  field :waiter_password,  type: String
 end

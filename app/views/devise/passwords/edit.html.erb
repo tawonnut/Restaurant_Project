@@ -1,24 +1,62 @@
-<h2>เปลี่ยนรหัสผ่าน</h2>
-
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+  <%= f.hidden_field :reset_password_token %> 
+<hr>
+    <div class="panel panel-primary bigmshoadow" >
+      <div class="panel-heading gradient"><h3><i class="glyphicon glyphicon-user"></i> แก้ไขข้อมูลส่วนตัว</h3>  
+      </div>
+        <div class="panel-body ">
+         <div class="form-horizontal">
 
-  <div class="field">
-    <%= f.label :password, "รหัสผ่านใหม่" %><br />
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "ยืนยันรหัสผ่านใหม่" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+         <div class="form-group">
+            <%= f.label :name ,"ชื่อพนักงาน :",class: "col-sm-2 control-label"%>
+              <div class="col-sm-4">
+                <%= f.text_field :name ,class: "form-control" %>
+              </div>
+          </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
+          <div class="form-group">
+            <%= f.label :surname ,"นามสกุล :",class: "col-sm-2 control-label"%>
+              <div class="col-sm-4">
+                <%= f.text_field :surname ,class: "form-control" %>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :nickname ,"ชื่อเล่น :",class: "col-sm-2 control-label"%>
+              <div class="col-sm-4">
+                <%= f.text_field :nickname ,class: "form-control" %>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :tel ,"เบอร์โทรศัพท์ :",class: "col-sm-2 control-label"%>
+              <div class="col-sm-4">
+                <%= f.text_field :tel ,class: "form-control" %>
+              </div>
+          </div>
+      
+           <div class="form-group">
+            <%= f.label :password ,"รหัสผ่านใหม่ :",class: "col-sm-2 control-label"%>
+              <div class="col-sm-4">
+                <%= f.password_field :password, autocomplete: "off",class: "form-control" %>
+              </div>
+          </div>
+
+          <div class="form-group">
+    <%= f.label :password_confirmation ,"ยืนยันรหัสผ่านใหม่ :",class: "col-sm-2 control-label"%>
+      <div class="col-sm-4">
+        <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control" %>
+      </div>
+</div>
+           <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <%= f.submit "ยืนยัน",class: "btn btn-success" %>
+            </div>
+          </div>
+      </div>    
+    </div> 
+  </div>   
 <% end %>
-
-<%= render "users/shared/links" %>
-
 
