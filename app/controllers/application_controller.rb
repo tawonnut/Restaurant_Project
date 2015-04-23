@@ -13,8 +13,14 @@ class ApplicationController < ActionController::Base
 
     
     def after_sign_in_path_for(resource)
-      res_manages_res_manages_path
+      if current_user.super_user?
+        res_manages_res_manages_path
+      else
+        restuarant_path(current_user.restuarant_id)
+      end
     end
+
+  
 
   protected
   def configure_permitted_parameters
