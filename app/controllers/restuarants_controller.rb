@@ -3,12 +3,21 @@ class RestuarantsController < ApplicationController
 def new
     
     @restuarant= Restuarant.new
+
   end
 
   def show
-     @restuarant= Restuarant.find(params[:id])
-
+      @restuarant= Restuarant.find(params[:id])
+     @user = User.where(restuarant_id: @restuarant.id)
+     
   end
+
+  def staff
+    @restuarant= Restuarant.find(params[:id])
+    @users = User.where(restuarant_id: @restuarant.id)
+  end
+
+
   def index
   	@restuarants= Restuarant.where(user_id: current_user.id).all
   end
@@ -33,10 +42,10 @@ def destroy
 
 end
 
+
 def restuarant_params
     params.require(:restuarant).permit(:restuarant_name , :user_id)
   end
-
 
 end
 

@@ -23,10 +23,13 @@
                                 <td><%= i + 1 %></td>
                                 <td><%=a.restuarant_name%></td>
                                 <td>
+                                    
                                     <%= link_to "เข้าสู่ร้าน", restuarant_path(a), class: "btn btn-success" %>
                                     <%= link_to "จัดการร้านค้า", edit_restuarant_path(a), class: "btn btn-primary" %>
                                     <%= link_to 'ลบร้านค้า', restuarant_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบ?' }  %>
+                                    <%= link_to "รายชื่อพนักงาน", staff_restuarant_path(a), class: "btn btn-warning" %>
                                     <%end%>
+
                                 </td>
                             </tr>
                             <tr>

@@ -20,16 +20,16 @@ class RegistersController < ApplicationController
 
     @user.password = random_password
     @user.password_confirmation = random_password
-    # @user.name = "N/A"
-    # @user.surname = "N/A"
-    # @user.tel = "N/A"
-    # @user.restuarant_id = id
+    @user.name = "N/A"
+    @user.surname = "N/A"
+    @user.tel = "N/A"
+    @user.restuarant_id = id
     
 
 
     if @user.save(user_params)
       @user.send_reset_password_instructions
-      flash[:notice] = "Create new user successfully."
+      flash[:notice] = "สร้างยูสเซอร์สำเร็จแล้ว"
       redirect_to registers_path(current_user)
     else
       flash.now[:error] ||= []
@@ -40,15 +40,15 @@ class RegistersController < ApplicationController
 
 	def update
 		if @user.update(user_params)
-			redirect_to timesheet_path, notice: 'User was successfully updated.'
+			redirect_to timesheet_path, notice: 'อัพเดตเรียบร้อย'
 		else
 			flash[:error] = @user.errors.full_messages
 			render action: 'edit'
 		end
 	end
 
-	private
 
+	private
 
 	def create_user_params
     params.require(:user).permit(:email)

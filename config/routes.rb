@@ -12,14 +12,18 @@ Rails.application.routes.draw do
 
 root to:"restuarants#show"
 
-resources :restuarants
+resources :restuarants do 
+  member do 
+      get 'staff'
+    end
+end
 
 resources :registers
 
 resources :waiters
 
 
-resource :users, only: [:edit, :update]
+resource :users, only: [:edit, :update, :new]
   
  resources :tables
  resources :menu_lists do

@@ -2,6 +2,15 @@ class UsersController < ApplicationController
 before_action :set_user, only: [:edit, :update]
 
 
+def new
+    unless current_user.super_user?
+      flash[:error] = "You don't have permisson to access the requested page."
+      redirect_to restuarant_path(current_user)
+    else
+       @user = User.new
+    end
+  end
+
   def edit
   end
 
