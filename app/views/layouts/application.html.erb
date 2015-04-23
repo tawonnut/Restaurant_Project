@@ -50,7 +50,7 @@ and open the template in the editor.
                                <!-- Check Super User-->
                             <%if current_user.super_user?%>
                                 <li><%= link_to "โปรไฟล์ร้าน" ,restuarants_path%> </li>
-                                <li><%= link_to "เพิ่มพนักงาน" , new_register_path%> </li>
+                                <li><%= link_to "เพิ่มพนักงาน" ,new_register_path%> </li>
                                 <li><%= link_to "แสดงพนักงานทั้งหมด" ,showusers_showusers_path%> </li>
                             <%end%>
 
