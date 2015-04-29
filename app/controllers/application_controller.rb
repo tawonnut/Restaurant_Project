@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
 	  session[:user_id] = user.try(:id).try(:to_s)
     end
 
+    def current_restuarant
+      @restuarant= Restuarant.find(params[:id])
+      @user = User.where(restuarant_id: @restuarant.id)  
+    end
+
     
     def after_sign_in_path_for(resource)
       if current_user.super_user?
@@ -19,6 +24,9 @@ class ApplicationController < ActionController::Base
         restuarant_path(current_user.restuarant_id)
       end
     end
+
+    helper_method :current_restuarant
+
 
   
 

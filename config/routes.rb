@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
  devise_for :user
 
+ devise_for :restuarant
+
 
 
 root to:"restuarants#show"
