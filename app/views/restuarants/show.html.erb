@@ -1,7 +1,7 @@
 
 <div><h2><%= @restuarant.restuarant_name %></h2> </div>
-<%=     current_user.restuarant_id%>
-<%= current_restuarant%>
+
+<%= link_to "Add menu",add_menu_restuarant_path%>
 
 <body>
             <div class="container">
@@ -48,6 +48,7 @@
  <%= link_to "Welcome", welcomes_welcomes_path%> 
 
  <%= link_to "Order",orders_orders_path%>
+
 
  
 
