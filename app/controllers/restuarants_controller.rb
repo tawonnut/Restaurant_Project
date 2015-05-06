@@ -47,7 +47,7 @@ def add_staff
    @user = User.where(restuarant_id: @restuarant.id)
 end
 
-  def add_menu
+  def add_drinking
     @drinking= Restuarant.find(params[:id])
   end
 

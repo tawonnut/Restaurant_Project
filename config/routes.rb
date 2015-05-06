@@ -18,7 +18,7 @@ resources :restuarants do
   member do 
       get 'staff'
       get 'add_staff'
-      get 'add_menu'
+      get 'add_drinking'
     end
 end
 

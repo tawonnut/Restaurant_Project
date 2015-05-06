@@ -1,0 +1,36 @@
+<hr>
+<%= link_to "Add drinking",add_drinking_restuarant_path%>
+    <div class="panel panel-primary bigmshoadow" >
+        <div class="panel-heading gradient"><h3><i class="fa fa-coffee">&nbsp;</i> เครื่องดื่มทั้งหมด</h3>  
+      </div>
+        <div class="panel-body ">
+          <div class="form-horizontal">
+      </div>
+        <div class="panel-body">
+			<table class="table table-striped table-hover table-condensed">
+			    <thead>
+			      <tr>
+			        <th>ลำดับ</th>
+			        <th>ชื่อ</th>
+			        <th>ราคา/บาท</th>
+		        			     
+			      </tr>
+			    </thead>
+
+			    <tbody>
+			      <% @drinking.each_with_index do |f, i| %>
+				      <tr>
+				        	 		 
+			              		<td><%= i + 1 %></td>
+						        <td><%= f.drinking_name %></td>
+						        <td><%= f.drinking_price %></td>
+						        <td><%= link_to 'ลบเมนู',  drinking_path(f), method: :delete, data: { confirm: 'ต้องการจะลบ?' } %><td>   
+					        
+			          <%end%>
+				      </tr>
+			  </tbody>
+			</table>
+  </div>
+     	</div>
+     	</div>
+
