@@ -4,6 +4,7 @@ class MenuListsController < ApplicationController
   end 
   
   def drinking
+  
   end 
 
 end

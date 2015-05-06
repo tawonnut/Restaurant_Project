@@ -1,3 +1,4 @@
+
 <h1>ร้านของคุณ</h1>
 
 <body>
@@ -6,9 +7,11 @@
 
                     <div class="panel-heading bg-header">
                         <div class="text-right"> 
-                        <%= link_to  new_restuarant_path, class: "btn btn-warning" do %><i class="fa fa-search-plus"></i> เปิดร้านใหม่
-                        <%end%>
+                       <%= link_to new_restuarant_path, class: "btn btn-warning" do %> <i class="fa fa-search-plus"></i> เปิดร้านใหม่
+                       <%end%>
+
                     </div>
+
 
                     <table class="table table-striped">
                         <thead>
@@ -32,6 +35,8 @@
                                     <%= link_to 'ลบร้านค้า', restuarant_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบ?' }  %>
                                     <i class="fa fa-ellipsis-v"></i>
                                     <%= link_to "รายชื่อพนักงาน", staff_restuarant_path(a), class: "btn btn-warning" %>
+
+                                    <%= link_to "เพิ่มพนักงาน",  add_staff_restuarant_path(a), class: "btn btn-info" %>
                                      
                                     <%end%>
 
@@ -49,4 +54,6 @@
     </body>
 </html>
 </body>
+
+
 

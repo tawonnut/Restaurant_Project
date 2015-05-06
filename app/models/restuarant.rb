@@ -4,6 +4,7 @@ class Restuarant
    belongs_to :user
    belongs_to :waiter
    belongs_to :cashier
+   has_many :drinkings
 
    field :restuarant_name,    type: String
    field :user_id,      type: String

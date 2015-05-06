@@ -34,13 +34,12 @@ and open the template in the editor.
                     
 
                     <ul class="nav navbar-nav navbar-right">
-
                         <% if user_signed_in? %>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ส่วนของเจ้าของร้าน<span class="caret"></span></a></a>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ส่วนของเจ้าของร้าน<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                               <li> <a href="/menu_lists"> <i class="fa fa-cutlery">&nbsp;</i> อาหารคาว</a></li>
-                              <li> <a href="/menu_lists"> <i class="fa fa-coffee">&nbsp;</i>เครื่องดื่ม</a></li>
-                               <li> <a href="/menu_lists"> <i class="fa fa-birthday-cake">&nbsp;</i>อาหารหวาน</a></li> 
+                              <li> <a href="/menu_lists/drinking"> <i class="fa fa-coffee">&nbsp;</i>เครื่องดื่ม</a></li>
+                               <li> <a href="/menu_lists/dessert"> <i class="fa fa-birthday-cake">&nbsp;</i>อาหารหวาน</a></li> 
                             </ul>
                         </li>
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">current.restuarant</a></li>

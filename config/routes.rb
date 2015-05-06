@@ -17,12 +17,15 @@ root to:"restuarants#show"
 resources :restuarants do 
   member do 
       get 'staff'
+      get 'add_staff'
     end
 end
 
 resources :registers
 
 resources :waiters
+
+resources :drinkings
 
 
 resource :users, only: [:edit, :update, :new]
