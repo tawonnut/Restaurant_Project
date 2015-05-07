@@ -1,7 +1,7 @@
 <hr>
 <%= link_to "Add Dish",add_dish_restuarant_path%>
     <div class="panel panel-primary bigmshoadow" >
-        <div class="panel-heading gradient"><h3><i class="fa fa-coffee">&nbsp;</i> อาหารคาวทั้งหมด</h3>  
+        <div class="panel-heading gradient"><h3><i class="fa fa-cutlery">&nbsp;</i> อาหารคาวทั้งหมด</h3>  
       </div>
         <div class="panel-body ">
           <div class="form-horizontal">
@@ -24,8 +24,8 @@
 			              		<td><%= i + 1 %></td>
 						        <td><%= f.dish_name %></td>
 						        <td><%= f.dish_price %></td>
-						        <td><%= link_to 'ลบเมนู',  dish_path(f), class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td> 
-						        <td><%= link_to "แก้ไข",  edit_dish_path(f), class: "btn btn-warning" %></td> 
+						        <td><%= link_to "แก้ไข",  edit_dish_path(f), class: "btn btn-success" %></td> 
+						        <td><%= link_to 'ลบ',  dish_path(f), class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td> 
 					        
 			          <%end%>
 				      </tr>

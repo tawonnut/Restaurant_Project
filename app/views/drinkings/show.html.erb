@@ -24,8 +24,8 @@
 			              		<td><%= i + 1 %></td>
 						        <td><%= f.drinking_name %></td>
 						        <td><%= f.drinking_price %></td>
-						        <td><%= link_to 'ลบเมนู',  drinking_path(f), class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>
-						        <td><%= link_to "แก้ไข",  edit_drinking_path(f), class: "btn btn-warning" %></td>   
+						        <td><%= link_to "แก้ไข",  edit_drinking_path(f), class: "btn btn-success" %></td> 
+						        <td><%= link_to 'ลบ',  drinking_path(f), class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>
 			      				<%end%>
 				      </tr>
 			  </tbody>
