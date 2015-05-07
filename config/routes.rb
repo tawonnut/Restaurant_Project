@@ -30,11 +30,15 @@ resources :waiters
 
 resources :drinkings do
   member do
-    patch 'update_drinking'
+    patch 'update_drinking' 
   end
 end
 
-resources :desserts
+resources :desserts do
+  member do
+patch 'update_dessert'
+  end
+end
 
 resources :dishs
 
