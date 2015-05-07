@@ -40,7 +40,11 @@ patch 'update_dessert'
   end
 end
 
-resources :dishs
+resources :dishs do
+ member do
+patch 'update_dish'
+  end
+end
 
 
 

@@ -9,6 +9,10 @@ class DishsController < ApplicationController
     @dish = Dish.where(restuarant_id: @restuarant.id)
   end
 
+  def edit
+    @dish= Dish.find(params[:id])
+  end
+
 	def update
     @restuarant= Restuarant.find(params[:id])
     @dish = Dish.new(dish_name: params[:dish_name],dish_price: params[:dish_price],restuarant_id: @restuarant.id)
@@ -18,6 +22,18 @@ class DishsController < ApplicationController
     else
       flash[:error] = "กรุณาระบุข้อมูลให้ครบถ้วน"
       redirect_to add_dish_restuarant_path
+    end
+  end
+
+  def update_dish
+      @dish= Dish.find(params[:id])
+      @restuarant= Restuarant.where(_id: @dish.restuarant_id)
+    if @dish.update(dish_name: params[:dish][:dish_name],dish_price: params[:dish][:dish_price])
+      flash[:notice] = "แก้ไขเมนูเรียบร้อยแล้ว"
+      redirect_to  dish_path(@restuarant[0].id)
+    else
+      flash[:error] = "กรุณาระบุข้อมูลให้ครบถ้วน"
+       redirect_to dish_path
     end
   end
 

@@ -24,7 +24,8 @@
 			              		<td><%= i + 1 %></td>
 						        <td><%= f.dish_name %></td>
 						        <td><%= f.dish_price %></td>
-						        <td><%= link_to 'ลบเมนู',  dish_path(f), class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>  
+						        <td><%= link_to 'ลบเมนู',  dish_path(f), class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td> 
+						        <td><%= link_to "แก้ไข",  edit_dish_path(f), class: "btn btn-warning" %></td> 
 					        
 			          <%end%>
 				      </tr>
