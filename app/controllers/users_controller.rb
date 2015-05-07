@@ -8,7 +8,6 @@ def new
       redirect_to restuarant_path(current_user)
     else
        @user = User.new
-       redirect_to edit_register_path(current_user)
     end
   end
 

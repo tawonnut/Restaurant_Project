@@ -42,7 +42,6 @@ def destroy
 end
 
 def add_staff
-  
    @restuarant= Restuarant.find(params[:id])
    @user = User.where(restuarant_id: @restuarant.id)
 end
@@ -52,6 +51,7 @@ end
   end
 
   def add_dessert
+    @dessert = Restuarant.find(params[:id])
   end
 
   def add_dish
@@ -63,8 +63,13 @@ end
     params.require(:restuarant).permit(:restuarant_name , :user_id)
   end
 
+  
   def drinking_params
     params.require(:drinking).permit(:drinking_name, :restuarant_id)
+  end
+
+  def dessert_params
+    params.require(:dessert).permit(:dessert_name, :restuarant_id)
   end
 
 end

@@ -50,7 +50,6 @@ end
   gem 'puma'
 
 group :test do
-  gem 'rspec-rails'
   gem 'capybara'
   gem 'selenium-webdriver', '>=2.45.0.dev3'
   gem 'factory_girl_rails'

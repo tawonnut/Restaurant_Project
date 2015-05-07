@@ -17,7 +17,7 @@ class DrinkingsController < ApplicationController
       redirect_to  drinking_path
     else
       flash[:error] = "กรุณาระบุข้อมูลให้ครบถ้วน"
-      redirect_to add_menu_restuarant_path
+      redirect_to add_drinking_restuarant_path
     end
   end
 

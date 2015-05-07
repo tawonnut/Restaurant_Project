@@ -19,6 +19,7 @@ resources :restuarants do
       get 'staff'
       get 'add_staff'
       get 'add_drinking'
+      get 'add_dessert'
     end
 end
 
@@ -27,6 +28,8 @@ resources :registers
 resources :waiters
 
 resources :drinkings
+
+resources :desserts
 
 
 

@@ -1,7 +1,7 @@
-<%= form_for(@drinking, url: drinking_url, method: :patch) do |f| %>
+<%= form_for(@dessert, url: dessert_url, method: :patch) do |f| %>
 <hr>
     <div class="panel panel-primary bigmshoadow" >
-      <div class="panel-heading gradient"><h3><i class="fa fa-user-plus"></i>เพิ่มเมนูเครื่องดื่ม</h3>  
+      <div class="panel-heading gradient"><h3><i class="fa fa-birthday-cake"></i> เพิ่มเมนูของหวาน</h3>  
       </div>
         <div class="panel-body ">
          <div class="form-horizontal">
@@ -9,14 +9,14 @@
            <div class="form-group">
             <%= f.label "ชื่อเมนู: ", class: "col-sm-2 control-label"%>
           <div class="col-sm-4">
-          <input type="text" name= "drinking_name">
+          <input type="text" name= "dessert_name">
         </div>
       </div>
 
        <div class="form-group">
             <%= f.label "ราคา", class: "col-sm-2 control-label"%>
           <div class="col-sm-4">
-          <input type="text" name= "drinking_price">
+          <input type="text" name= "dessert_price">
         </div>
       </div>
 

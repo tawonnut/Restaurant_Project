@@ -1,7 +1,7 @@
 <hr>
-<%= link_to "Add Drinking",add_drinking_restuarant_path%>
+<%= link_to "Add Dessert",add_dessert_restuarant_path%>
     <div class="panel panel-primary bigmshoadow" >
-        <div class="panel-heading gradient"><h3><i class="fa fa-coffee">&nbsp;</i> เครื่องดื่มทั้งหมด</h3>  
+        <div class="panel-heading gradient"><h3><i class="fa fa-birthday-cake">&nbsp;</i> ของหวานทั้งหมด</h3>  
       </div>
         <div class="panel-body ">
           <div class="form-horizontal">
@@ -18,13 +18,13 @@
 			    </thead>
 
 			    <tbody>
-			      <% @drinking.each_with_index do |f, i| %>
+			      <% @dessert.each_with_index do |f, i| %>
 				      <tr>
 				        	 		 
 			              		<td><%= i + 1 %></td>
-						        <td><%= f.drinking_name %></td>
-						        <td><%= f.drinking_price %></td>
-						        <td><%= link_to 'ลบเมนู',  drinking_path(f), method: :delete, data: { confirm: 'ต้องการจะลบ?' } %><td>   
+						        <td><%= f.dessert_name %></td>
+						        <td><%= f.dessert_price %></td>
+						        <td><%= link_to 'ลบเมนู',  dessert_path(f), method: :delete, data: { confirm: 'ต้องการจะลบ?' } %><td>   
 					        
 			          <%end%>
 				      </tr>

@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'rails_helper'
+require 'feature_spec_helper'
 describe "Authentication, Register", js: true do
  
  before do
@@ -19,7 +20,6 @@ describe "Authentication, Register", js: true do
         expect(page).to have_content 'ร้านของคุณ'
         all('.dropdown-toggle')[1].click
         click_on 'ออกจากระบบ'
-
         visit @new_path
         click_on "ลืมรหัสผ่านเดิม?"
         fill_in 'user[email]', with: 'test@gmail.com'
