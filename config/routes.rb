@@ -20,6 +20,7 @@ resources :restuarants do
       get 'add_staff'
       get 'add_drinking'
       get 'add_dessert'
+      get 'add_dish'
     end
 end
 
@@ -27,9 +28,15 @@ resources :registers
 
 resources :waiters
 
-resources :drinkings
+resources :drinkings do
+  member do
+    patch 'update_drinking'
+  end
+end
 
 resources :desserts
+
+resources :dishs
 
 
 

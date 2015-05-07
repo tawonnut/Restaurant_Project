@@ -24,13 +24,12 @@
 			              		<td><%= i + 1 %></td>
 						        <td><%= f.drinking_name %></td>
 						        <td><%= f.drinking_price %></td>
-						        <td><%= link_to 'ลบเมนู',  drinking_path(f), method: :delete, data: { confirm: 'ต้องการจะลบ?' } %><td>   
-					        
-			          <%end%>
+						        <td><%= link_to 'ลบเมนู',  drinking_path(f), class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>
+						        <td><%= link_to "แก้ไข",  edit_drinking_path(f), class: "btn btn-warning" %></td>   
+			      				<%end%>
 				      </tr>
 			  </tbody>
 			</table>
-  </div>
-     	</div>
-     	</div>
-
+  		</div>
+     </div>
+ </div>

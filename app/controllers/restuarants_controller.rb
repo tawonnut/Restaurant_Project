@@ -55,6 +55,7 @@ end
   end
 
   def add_dish
+    @dish = Restuarant.find(params[:id])
   end
 
 
@@ -71,6 +72,11 @@ end
   def dessert_params
     params.require(:dessert).permit(:dessert_name, :restuarant_id)
   end
+
+  def dish_params
+    params.require(:dish).permit(:dish_name, :restuarant_id)
+  end
+
 
 end
 

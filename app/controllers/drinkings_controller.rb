@@ -9,6 +9,10 @@ class DrinkingsController < ApplicationController
     @drinking = Drinking.where(restuarant_id: @restuarant.id)
   end
 
+  def edit
+    @drinking= Drinking.find(params[:id])
+  end
+
 	def update
     @restuarant= Restuarant.find(params[:id])
     @drinking = Drinking.new(drinking_name: params[:drinking_name],drinking_price: params[:drinking_price],restuarant_id: @restuarant.id)
@@ -18,6 +22,18 @@ class DrinkingsController < ApplicationController
     else
       flash[:error] = "กรุณาระบุข้อมูลให้ครบถ้วน"
       redirect_to add_drinking_restuarant_path
+    end
+  end
+
+  def update_drinking
+        @drinking= Drinking.find(params[:id])
+      @restuarant= Restuarant.where(_id: @drinking.restuarant_id)
+    if @drinking.update(drinking_name: params[:drinking][:drinking_name],drinking_price: params[:drinking][:drinking_price])
+      flash[:notice] = "แก้ไขเมนูเรียบร้อยแล้ว"
+      redirect_to  drinking_path(@restuarant[0].id)
+    else
+      flash[:error] = "กรุณาระบุข้อมูลให้ครบถ้วน"
+       redirect_to drinking_path
     end
   end
 

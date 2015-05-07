@@ -9,7 +9,7 @@ class RegistersController < ApplicationController
 	end
 
 	def edit
-    @user
+    
 	end
 
 	def create
