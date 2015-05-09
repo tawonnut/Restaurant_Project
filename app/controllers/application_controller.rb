@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
     if current_user.super_user?
       restuarants_path
     else
-      restuarant_path(current_user.restuarant_id)
+      @restuarant = Membership.where(user_id: current_user.id)
+      restuarant_path(@restuarant[0].restuarant_id)
     end
   end
 
