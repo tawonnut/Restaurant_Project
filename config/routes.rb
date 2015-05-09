@@ -22,8 +22,12 @@ resources :restuarants do
       get 'add_drinking'
       get 'add_dessert'
       get 'add_dish'
+<<<<<<< HEAD
       post 'add_staff'
       get "show_staff"
+=======
+      get 'add_staff'
+>>>>>>> 824d8ba545c1dd7f331155672a0cbebd74db9b25
     end
 end
 

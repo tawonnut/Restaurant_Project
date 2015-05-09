@@ -16,7 +16,7 @@ def new
 
   def update
     if @user.update(user_params)
-      redirect_to edit_users_path, notice: 'Update Success!!'
+      redirect_to edit_users_path, notice: 'แก้ไขเรียบร้อยแล้ว!!'
     else
       flash[:error] = "can't save ;("
       render action: 'edit'
