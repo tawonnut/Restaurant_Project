@@ -21,7 +21,6 @@ resources :restuarants do
       get 'add_dessert'
       get 'add_dish'
       get 'add_staff'
-      post 'add_staff'
     end
 end
 
