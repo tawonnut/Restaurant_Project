@@ -1,6 +1,7 @@
 class Restuarant
   include Mongoid::Document
 
+   has_many :memberships
    belongs_to :user
    belongs_to :waiter
    belongs_to :cashier
@@ -20,5 +21,15 @@ class Restuarant
 
 
    validates :restuarant_name, presence: true
+
+def create_owner(user,restuarant)
+   @owner = Membership.new(user_id: user, restuarant_id: restuarant,owner: true)
+   @owner.save
+end
+
+
+
+
+
 end
 

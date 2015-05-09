@@ -20,9 +20,9 @@ def new
   end
 
 def create
-
     @restuarant = Restuarant.new(restuarant_params)
     if @restuarant.save
+      @restuarant.create_owner(current_user.id,@restuarant.id)
       flash[:notice] = "สร้างร้านใหม่เรียบร้อยแล้ว"
       redirect_to restuarants_path
     else
