@@ -15,13 +15,15 @@ Rails.application.routes.draw do
 root to:"restuarants#show"
 
 resources :restuarants do
+  collection do
+  end  
   member do 
       get 'staff'
       get 'add_drinking'
       get 'add_dessert'
       get 'add_dish'
-      get 'add_staff'
       post 'add_staff'
+      get "show_staff"
     end
 end
 

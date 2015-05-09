@@ -6,7 +6,8 @@ def new
 
   def show
       @restuarant= Restuarant.find(params[:id])
-      @user = User.where(restuarant_id: @restuarant.id)  
+      # @user = User.where(restuarant_id: @restuarant.id) 
+      @user = User.new 
   end
 
   def staff
@@ -40,10 +41,34 @@ def destroy
 end
 
 def add_staff
-  @user = User.new
+    @restuarant= Restuarant.find(params[:id])
+    @user = User.new(email: params[:email],name: "N/A",surname: "N/A",tel: "N/A",
+      password: "", password_confirmation:"")
+    random_password = Devise.friendly_token
+
+    @user.password = random_password
+    @user.password_confirmation = random_password
+
+    if @user.save
+      @user.send_reset_password_instructions
+      @restuarant.create_staff(@user.id,@restuarant.id)
+      flash[:notice] = "สร้างยูสเซอร์สำเร็จแล้ว"
+      redirect_to restuarant_path(@restuarant.id)
+    else
+      flash.now[:error] ||= []
+      flash[:error] = "ll"
+      flash[:error] << @user.errors.full_messages.uniq.join(', ')
+      redirect_to restuarant_path(@restuarant.id)
+    end
 end
 
+  def show_staff
+     @restuarant= Restuarant.find(params[:id])
+     @membership= Membership.where(restuarant_id: @restuarant.id)
 
+
+  end  
+    
   def add_drinking
     @drinking= Restuarant.find(params[:id])
   end
@@ -73,6 +98,7 @@ end
   def dish_params
     params.require(:dish).permit(:dish_name, :restuarant_id)
   end
+
 
 end
 

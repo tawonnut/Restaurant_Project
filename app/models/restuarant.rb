@@ -28,6 +28,11 @@ def create_owner(user,restuarant)
 end
 
 
+def create_staff(user,restuarant)
+   @owner = Membership.new(user_id: user, restuarant_id: restuarant)
+   @owner.save
+end
+
 
 
 
