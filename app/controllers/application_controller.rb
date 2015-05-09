@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
     
   def after_sign_in_path_for(resource)
     if current_user.super_user?
-      restuarants_path
+      if current_user.current_restuarant == nil
+        restuarants_path
+      else    
+        restuarant_path(current_user.current_restuarant)
+      end
     else
       @restuarant = Membership.where(user_id: current_user.id)
       restuarant_path(@restuarant[0].restuarant_id)

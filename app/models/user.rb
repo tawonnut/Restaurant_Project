@@ -41,6 +41,7 @@ class User
   field :name,           type: String 
   field :surname,        type: String
   field :tel,            type: String
+  field :current_restuarant,  type: String
 
   
 

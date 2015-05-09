@@ -5,9 +5,10 @@ def new
   end
 
   def show
-      @restuarant= Restuarant.find(params[:id])
-       @user = User.where(restuarant_id: @restuarant.id) 
-       
+    @restuarant_show = Restuarant.find(params[:id])
+    @user = User.where(_id: current_user.id) 
+    @user.update(current_restuarant: @restuarant_show.id) 
+    @restuarant_user = Restuarant.where(user_id: current_user.id).all   
   end
 
   def staff
@@ -17,7 +18,9 @@ def new
 
 
   def index
-  	@restuarants= Restuarant.where(user_id: current_user.id).all
+    @user = User.where(_id: current_user.id) 
+    @user.update(current_restuarant: nil)  
+    @restuarants= Restuarant.where(user_id: current_user.id).all
   end
 
 def create
