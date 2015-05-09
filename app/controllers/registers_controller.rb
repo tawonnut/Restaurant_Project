@@ -34,7 +34,7 @@ class RegistersController < ApplicationController
     else
       flash.now[:error] ||= []
       flash[:error] << @user.errors.full_messages.uniq.join(', ')
-      render action: :new
+      redirect_to restuarants_path
     end
   end
 

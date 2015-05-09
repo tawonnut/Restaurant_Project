@@ -17,10 +17,11 @@ root to:"restuarants#show"
 resources :restuarants do
   member do 
       get 'staff'
-      get 'add_staff'
       get 'add_drinking'
       get 'add_dessert'
       get 'add_dish'
+      get 'add_staff'
+      post 'add_staff'
     end
 end
 

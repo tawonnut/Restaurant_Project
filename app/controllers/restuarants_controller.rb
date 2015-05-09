@@ -1,9 +1,7 @@
 class RestuarantsController < ApplicationController
 
 def new
-    
     @restuarant= Restuarant.new
-
   end
 
   def show
@@ -42,9 +40,9 @@ def destroy
 end
 
 def add_staff
-   @restuarant= Restuarant.find(params[:id])
-   @user = User.where(restuarant_id: @restuarant.id)
+  @user = User.new
 end
+
 
   def add_drinking
     @drinking= Restuarant.find(params[:id])
@@ -57,7 +55,6 @@ end
   def add_dish
     @dish = Restuarant.find(params[:id])
   end
-
 
 
   def restuarant_params
@@ -76,7 +73,6 @@ end
   def dish_params
     params.require(:dish).permit(:dish_name, :restuarant_id)
   end
-
 
 end
 

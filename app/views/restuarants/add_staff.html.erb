@@ -1,66 +1,31 @@
-<%= form_for(@restuarant, url: restuarants_path) do |f| %>
+<%= form_for(@user, url: registers_url,method: :post) do |f| %>
 add_staff
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  เพิ่มพนักงาน
+</button>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">เปิดร้านใหม่ @mdo</button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="			exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<form>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">ระบุรายละเอียดให้ครบถ้วน</h4>
+        <h4 class="modal-title" id="myModalLabel">ระบุอีเมลพนักงาน</h4>
       </div>
       <div class="modal-body">
-        <form>
-        <div class="form-horizontal">
-          <div class="form-group">
-            <%= f.label :restuarant_name,"ชื่อร้าน:",class: "col-sm-2 control-label"%>
-              <div class="col-sm-8">
-                  <%= f.text_field :restuarant_name, class: "form-control"%>
-                  <%= f.hidden_field :user_id, :value => current_user.id %>
-              </div>
-          </div>
-
-          <div class="form-group">
-                <%= f.label :legal_person ,"ชื่อนิติบุคคล:",class: "col-sm-2 control-label"%>
-                <div class="col-sm-8">
-                  <%= f.text_field :legal_person, class: "form-control"%>
-                </div>
-            </div>
-
-        <div class="form-group">
-                <%= f.label :restuarant_tel ,"เบอร์โทรศัพท์:",class: "col-sm-2 control-label"%>
-                <div class="col-sm-8">
-                  <%= f.text_field :restuarant_tel,  class: "form-control"%>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <%= f.label :tax_id ,"เลขประจำตัวผู้เสียภาษี:",class: "col-sm-2 control-label"%>
-                <div class="col-sm-8">
-                  <%= f.text_field :tax_id,  class: "form-control"%>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <%= f.label :restuarant_address ,"ที่อยู่ร้าน:",class: "col-sm-2 control-label"%>
-                <div class="col-sm-8">
-                  <%= f.text_area  :restuarant_address,  class: "form-control"%>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                    <p class="text-center">
-                      <%= submit_tag "ตกลง", class: "btn btn-success" %>
-                      <%= link_to "กลับ", restuarants_path, class: "btn btn-danger" %>
-                    </p>
-                  </div>
-              
-            </div>
-        </form>
-                  
+  <div class="form-group">
+    <label for="exampleInputEmail1">อีเมล :</label>
+    <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "สร้างบัญชีพนักงาน",class: "btn btn-success" %>
+      </div>
     </div>
+  </div>
 </div>
- </div>
-
+</form>
 <%end%>
