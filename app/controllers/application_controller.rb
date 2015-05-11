@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
-
+    
 
   def current_user=(user)
 	  @current_user = user
@@ -14,21 +14,11 @@ class ApplicationController < ActionController::Base
     
   def after_sign_in_path_for(resource)
     if current_user.super_user?
-      if current_user.current_restuarant == nil
-        restuarants_path
-      else    
-        restuarant_path(current_user.current_restuarant)
-      end
+      restuarants_path
     else
-      @restuarant = Membership.where(user_id: current_user.id)
-      restuarant_path(@restuarant[0].restuarant_id)
+      restuarant_path(restuarant_id)
     end
   end
-
-    helper_method :current_restuarant
-
-
-  
 
   protected
   def configure_permitted_parameters

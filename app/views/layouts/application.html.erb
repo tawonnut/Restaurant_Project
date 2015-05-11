@@ -26,7 +26,7 @@ and open the template in the editor.
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/restuarants">Terebinth-POS</a>
+                    <a class="navbar-brand" href="#"><i class="fa fa-location-arrow ">&nbsp;</i>Terebinth-POS</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,27 +35,30 @@ and open the template in the editor.
 
                     <ul class="nav navbar-nav navbar-right">
                         <% if user_signed_in? %>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ส่วนของเจ้าของร้าน</a>
+
+                          <% if @restuarant_show != nil %>
+                          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%=@restuarant_show.restuarant_name%><span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                <% @restuarant_user.each do |list|%>
+                                  <%if @restuarant_show.restuarant_name != list.restuarant_name%>
+                                    <li> <a href="<%= restuarant_path(list.id)%>"> <i class="fa fa-home">&nbsp;</i> <%= list.restuarant_name%></a></li>
+                                  <%end%>
+                                <%end%>
+                              </ul>
+                          </li>
+                           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ส่วนของเจ้าของร้าน <span class="caret"></a>
                            <ul class="dropdown-menu" role="menu">
-                              <li> <a href="/menu_lists"> <i class="fa fa-cutlery">&nbsp;</i> อาหารคาว</a></li>
+                              <li> <%= link_to dish_path(@restuarant_show.id) do %><i class= "fa fa-cutlery"> </i>&nbsp; อาหารคาว 
+                              <%end%>
                               <li class="divider"></li>
-                              <li> <a href="/menu_lists/drinking"> <i class="fa fa-coffee">&nbsp;</i>เครื่องดื่ม</a></li>
+                              <li> <%= link_to drinking_path(@restuarant_show.id) do %><i class= "fa fa-coffee"> </i>&nbsp; เครื่องดื่ม 
+                              <%end%>
                               <li class="divider"></li>
-                               <li> <a href="/menu_lists/dessert"> <i class="fa fa-birthday-cake">&nbsp;</i>อาหารหวาน</a></li> 
+                               <li> <%= link_to dessert_path(@restuarant_show.id) do %><i class= "fa fa-birthday-cake"> </i>&nbsp; อาหารหวาน 
+                              <%end%>
                             </ul> 
                         </li>
-
-                        <% if @restuarant_show != nil %>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%=@restuarant_show.restuarant_name%><span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                              <% @restuarant_user.each do |list|%>
-                                <%if @restuarant_show.restuarant_name != list.restuarant_name%>
-                                  <li> <a href="<%= restuarant_path(list.id)%>"> <i class="fa fa-cutlery">&nbsp;</i> <%= list.restuarant_name%></a></li>
-                                <%end%>
-                              <%end%>
-                            </ul>
-                        </li>
-                        <% end %>
+                          <% end %>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <%= current_user.email%> <span class="caret"></span></a>
@@ -63,13 +66,9 @@ and open the template in the editor.
 
                                <li> <a href="/users/edit"> <i class="fa fa-pencil-square-o">&nbsp;</i> แก้ไข </a></li>
                                <li class="divider"></li>
-
                                <!-- Check Super User-->
                             <%if current_user.super_user?%>
                                 <li> <a href="/restuarants"> <i class="fa fa-home">&nbsp;</i> โปรไฟล์ร้าน </a></li>
-                                <li class="divider"></li>
-                                <li> <a href="/registers/new"> <i class="fa fa-user-plus">&nbsp;</i> เพิ่มพนักงาน </a>
-                                </li>
                                 <li class="divider"></li>
                                 <li> <a href="/showusers/showusers"> <i class="fa fa-users">&nbsp;</i> แสดงพักงานทั้งหมด</a></li>
                                 <li class="divider"></li>
