@@ -7,6 +7,7 @@ class DishsController < ApplicationController
   def show
     @restuarant= Restuarant.find(params[:id])
     @dish = Dish.where(restuarant_id: @restuarant.id)
+    @dishs = Dish.new
   end
 
   def edit
@@ -43,6 +44,6 @@ class DishsController < ApplicationController
       @dish.destroy
       flash[:notice] = "ลบเมนูเรียบร้อยแล้ว"
       redirect_to dish_path(@restuarant[0].id)
-
   end
+
 end

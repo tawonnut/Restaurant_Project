@@ -7,6 +7,7 @@ class DessertsController < ApplicationController
   def show
     @restuarant= Restuarant.find(params[:id])
     @dessert = Dessert.where(restuarant_id: @restuarant.id)
+    @desserts = Dessert.new
   end
 
   def edit

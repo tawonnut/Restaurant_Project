@@ -1,8 +1,15 @@
 <hr>
-<%= link_to "Add Dessert",add_dessert_restuarant_path%>
     <div class="panel panel-primary bigmshoadow" >
-        <div class="panel-heading gradient"><h3><i class="fa fa-birthday-cake">&nbsp;</i> ของหวานทั้งหมด</h3>  
-      </div>
+        <div class="panel-heading gradient">
+        	<div class="col-md-6">
+			<h3 style=" margin-top: 2%;"><i class="fa fa-birthday-cake">&nbsp;</i> 
+        		เครื่องดื่มทั้งหมด
+        	</h3>
+        </div>
+        <div class="text-right">
+             	<button  type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">เพิ่มเมนู</button>
+            </div>
+        </div>
         <div class="panel-body ">
           <div class="form-horizontal">
       </div>
@@ -36,3 +43,38 @@
      	</div>
      	</div>
 
+<%= form_for(@desserts, url: dessert_url, method: :patch) do |f| %>
+
+<!-- Modal -->
+<form>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">เพิ่มเมนู</h4>
+      </div>
+      <div class="modal-body">
+  <div class="form-group">
+    <label>ชื่อเมนู</label>
+    <input type="text" class="form-control" name="dessert_name">
+  </div>
+  <div class="form-group">
+  	<div class="input-group">
+    	<label>ราคา.-</label>
+
+          <div class="input-group">
+          <input type="text" class = "form-control" name= "dessert_price">
+          <div class="input-group-addon">บาท.-</div>
+          </div>
+
+  </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "เพิ่มเมนู",class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<%end%>
