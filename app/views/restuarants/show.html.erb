@@ -1,10 +1,6 @@
 
 <div><h2><%= @restuarant_show.restuarant_name %></h2> </div>
 
-<%= link_to "Add Drinking",add_drinking_restuarant_path%>
-<%= link_to "Add Dessert",add_dessert_restuarant_path%>
-<%= link_to "Add Dish",add_dish_restuarant_path%>
-
 <%= link_to "Show Drinking",drinking_path%>
 <%= link_to "Show Dessert",dessert_path%>
 <%= link_to "Show Dish",dish_path%>
@@ -60,44 +56,3 @@
 
 
  
-<%= form_for(@restuarant_show, url: add_staff_restuarant_url,method: :post) do |f| %>
-add_staff
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  เพิ่มพนักงาน
-</button>
-
-<!-- Modal -->
-<form>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">ระบุอีเมลพนักงาน</h4>
-      </div>
-      <div class="modal-body">
-  <div class="form-group">
-    <label for="exampleInputEmail1">อีเมล :</label>
-    <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email">
-  </div>
-      </div>
-      <div class="modal-footer">
-        <%= f.submit "สร้างบัญชีพนักงาน",class: "btn btn-success" %>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-<%end%>
-
-<%#=@restuarant.id%>
-
-<%#= a.email%>
-
-<%#end%>
-
-
-
-

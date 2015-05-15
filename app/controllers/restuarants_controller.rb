@@ -14,8 +14,13 @@ def new
   def staff
     @restuarant= Restuarant.find(params[:id])
     @users = User.where(restuarant_id: @restuarant.id)
+    @restuarant_user = Restuarant.where(user_id: current_user.id).all 
   end
 
+  def edit
+    @restuarant_show = Restuarant.find(params[:id])
+    @restuarant_user = Restuarant.where(user_id: current_user.id).all 
+  end
 
   def index
     @user = User.where(_id: current_user.id) 
