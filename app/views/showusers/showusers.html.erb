@@ -37,10 +37,9 @@
 						        <td><%= f.surname %></td>
 						        <td><%= f.email %></td>
 						        <td><%= f.tel %></td>
+						        <td><%= link_to 'Delete', showuser_path(f), method: :delete, data: { confirm: 'Are you sure?' } %><td>
 						        <td><center><font color =green> พนักงาน </font></center></td>
-
-						        <td><%= link_to 'Delete', showuser_path(f),class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>
-						       						        
+						        
 					       
 
 					        

@@ -24,7 +24,9 @@ class RegistersController < ApplicationController
     @user.surname = "N/A"
     @user.tel = "N/A"
     @user.restuarant_id = id
-  
+    
+
+
     if @user.save(user_params)
       @user.send_reset_password_instructions
       flash[:notice] = "สร้างยูสเซอร์สำเร็จแล้ว"

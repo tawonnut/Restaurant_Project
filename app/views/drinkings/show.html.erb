@@ -1,12 +1,12 @@
 <hr>
     <div class="panel panel-primary bigmshoadow" >
-      <div class="panel-heading gradient">
-        <div class="col-md-6">
+        <div class="panel-heading gradient">
+       		<div class="col-md-6">
 			<h3 style=" margin-top: 2%;"><i class="fa fa-coffee">&nbsp;</i> 
-        		เครื่องดื่มทั้งหมด
+      		เครื่องดื่มทั้งหมด
         	</h3>
-        </div>
-        <div class="text-right">
+       </div>
+             <div class="text-right">
              	<button  type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">เพิ่มเมนู</button>
             </div>
         </div>
@@ -31,48 +31,59 @@
 			              		<td><%= i + 1 %></td>
 						        <td><%= f.drinking_name %></td>
 						        <td><%= f.drinking_price %></td>
-						        <td><%= link_to "แก้ไข",  edit_drinking_path(f), class: "btn btn-success" %></td> 
-						        <td><%= link_to 'ลบ',  drinking_path(f), class: "btn btn-danger"  ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>
-			      				<%end%>
+						        <td><%= link_to "แก้ไข",  edit_drinking_path(f), class: "btn btn-success" %></td>
+						        <td><%= link_to 'ลบ',  drinking_path(f), class: "btn btn-danger" ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>
+			          <%end%>
 				      </tr>
 			  </tbody>
 			</table>
-  		</div>
-     </div>
- </div>
+  </div>
+     	</div>
+     	</div>
 
 <%= form_for(@drinkings, url: drinking_url, method: :patch) do |f| %>
 
 <!-- Modal -->
 <form>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
         <h4 class="modal-title" id="myModalLabel">เพิ่มเมนู</h4>
-      </div>
+
+     </div>
       <div class="modal-body">
   <div class="form-group">
-    <label>ชื่อเมนู</label>
+   <label>ชื่อเมนู</label>
     <input type="text" class="form-control" name="drinking_name">
-  </div>
+ </div>
   <div class="form-group">
   	<div class="input-group">
-    	<label>ราคา.-</label>
-
+   	<label>ราคา.-</label>
           <div class="input-group">
-          <input type="text" class = "form-control" name= "drinking_price">
-          <div class="input-group-addon">บาท.-</div>
-          </div>
 
+         <input type="text" class = "form-control" name= "drinking_price">
+
+          <div class="input-group-addon">บาท.-</div>
+
+         </div>
   </div>
-      </div>
+
+     </div>
+
       <div class="modal-footer">
+
         <%= f.submit "เพิ่มเมนู",class: "btn btn-success" %>
-      </div>
-    </div>
+
+     </div>
+
+   </div>
+
   </div>
 </div>
+
 </form>
 <%end%>
