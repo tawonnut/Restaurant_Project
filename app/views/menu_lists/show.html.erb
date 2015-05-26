@@ -1,0 +1,80 @@
+    
+
+<div class="row">
+    <div class="col-sm-9">
+      <h1> Menulist </h1>
+
+    </div>
+
+    <div class="col-sm-3 text-right">
+        <button type="button" class="btn btn-warning form-control"  data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus"></i> สั่งอาหาร
+      </button>
+    </div>
+</div>
+<hr>
+<div class="panel panel-default listingshoadow">
+  <div role="tabpanel">
+    <ul class="nav nav-pills  nav-justified gradient border-listing " role="tablist">
+      <li role="presentation" class="active"><a href="#carousel" aria-controls="carousel" role="tab" data-toggle="tab">อาหารคาว</a></li>
+      <li role="presentation"><a href="#banner_search" aria-controls="banner_search" role="tab" data-toggle="tab">อาหารหวาน</a></li>
+      <li role="presentation"><a href="#banner_listing" aria-controls="banner_listing" role="tab" data-toggle="tab">เครื่องดื่ม</a></li>
+    </ul>
+
+    </br>
+    <div class="tab-content ">
+      <div role="tabpanel" class="tab-pane active" id="carousel">
+     
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="banner_search">
+      
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="banner_listing">
+        
+      </div>
+  
+    </div>
+  </div>  
+</div>
+
+
+<div ng-controller="createproperty">
+  <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">ข้อมูลโครงการ</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal">
+          <div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">...1</div>
+    <div role="tabpanel" class="tab-pane" id="profile">..2.</div>
+    <div role="tabpanel" class="tab-pane" id="messages">...3</div>
+    <div role="tabpanel" class="tab-pane" id="settings">...5</div>
+  </div>
+
+</div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="create_property()"data-dismiss="modal">ยืนยัน</button> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 

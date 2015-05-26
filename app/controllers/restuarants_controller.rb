@@ -1,6 +1,6 @@
 class RestuarantsController < ApplicationController
 
-def new
+  def new
     @restuarant= Restuarant.new
   end
 
@@ -8,7 +8,10 @@ def new
     @restuarant_show = Restuarant.find(params[:id])
     @user = User.where(_id: current_user.id) 
     @user.update(current_restuarant: @restuarant_show.id) 
-    @restuarant_user = Restuarant.where(user_id: current_user.id).all   
+    @restuarant_user = Restuarant.where(user_id: current_user.id)  
+    @restuarants= Restuarant.where(user_id: current_user.id).all
+    @table = Table.new
+    @table_show = Table.where(restuarant_id: @restuarant_show.id)
   end
 
   def staff
@@ -41,11 +44,10 @@ def create
   end
 
 def destroy
-    @des= Restuarant.find(params[:id])
-    @des.destroy
-    flash[:notice] = "ลบเรียบร้อยแล้ว"
-    redirect_to restuarants_path
-
+  @des= Restuarant.find(params[:id])
+  @des.destroy
+  flash[:notice] = "ลบเรียบร้อยแล้ว"
+  redirect_to restuarants_path
 end
 
 def add_staff

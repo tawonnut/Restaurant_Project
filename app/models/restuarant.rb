@@ -8,6 +8,7 @@ class Restuarant
    has_many :drinkings
    has_many :desserts
    has_many :dishs
+   has_many :tables
 
    field :restuarant_name,    type: String
    field :user_id,      type: String
