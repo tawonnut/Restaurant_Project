@@ -26,7 +26,7 @@ and open the template in the editor.
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/restuarants">Terebinth-POS</a>
+                    <a class="navbar-brand" href="/restuarants"><i class="fa fa-location-arrow"></i> Terebinth-POS</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,9 +67,6 @@ and open the template in the editor.
                                <!-- Check Super User-->
                             <%if current_user.super_user?%>
                                 <li> <a href="/restuarants"> <i class="fa fa-home">&nbsp;</i> โปรไฟล์ร้าน </a></li>
-                                <li class="divider"></li>
-                                <li> <a href="/registers/new"> <i class="fa fa-user-plus">&nbsp;</i> เพิ่มพนักงาน </a>
-                                </li>
                                 <li class="divider"></li>
                                 <li> <a href="/showusers/showusers"> <i class="fa fa-users">&nbsp;</i> แสดงพักงานทั้งหมด</a></li>
                                 <li class="divider"></li>

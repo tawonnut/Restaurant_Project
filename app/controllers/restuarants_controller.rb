@@ -73,8 +73,8 @@ end
   def show_staff
      @restuarant= Restuarant.find(params[:id])
      @membership= Membership.where(restuarant_id: @restuarant.id)
-
-
+     @restuarant_user = Restuarant.where(user_id: current_user.id).all 
+     @restuarant_show = Restuarant.find(params[:id])
   end  
     
   def add_drinking
