@@ -5,6 +5,8 @@ class DrinkingsController < ApplicationController
 	end
 
   def show
+    @restuarant_show = Restuarant.find(params[:id])
+    @restuarant_user = Restuarant.where(user_id: current_user.id)  
     @restuarant= Restuarant.find(params[:id])
     @drinking = Drinking.where(restuarant_id: @restuarant.id)
     @drinkings = Drinking.new
