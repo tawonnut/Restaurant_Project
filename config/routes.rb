@@ -58,6 +58,7 @@ resource :users, only: [:edit, :update, :new]
    collection do
         get 'drinking'
         get 'dessert'
+        get 'show'
          end
       end
   

@@ -7,7 +7,7 @@
     </div>
 
     <div class="col-sm-3 text-right">
-        <button type="button" class="btn btn-warning form-control"  data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus"></i> สั่งอาหาร
+        <button type="button" class="btn btn-warning form-control"  data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus"></i>  สั่งอาหาร
       </button>
     </div>
 </div>
@@ -45,7 +45,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">ข้อมูลโครงการ</h4>
+          <h4 class="modal-title" id="myModalLabel">รายการอาหาร</h4>
         </div>
         <div class="modal-body">
           <div class="form-horizontal">
@@ -53,18 +53,91 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">อาหารคาว</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">อาหารหวาน</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">เครื่องดื่ม</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">ชุดเมนู</a></li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">...1</div>
-    <div role="tabpanel" class="tab-pane" id="profile">..2.</div>
-    <div role="tabpanel" class="tab-pane" id="messages">...3</div>
-    <div role="tabpanel" class="tab-pane" id="settings">...5</div>
+  <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
+      </div>
+    <div role="tabpanel" class="tab-pane active" id="home">รายการอาหารคาว
+    <nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">รายการอาหารหวาน
+    <nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav></div>
+    <div role="tabpanel" class="tab-pane" id="messages">รายการเครื่องดื่ม
+    <nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav></div>
+    <div role="tabpanel" class="tab-pane" id="settings">ชุดเมนู
+    <nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav></div>
   </div>
 
 </div>
@@ -78,3 +151,7 @@
       </div>
     </div>
   </div> 
+<div>
+ <button type="button" class="btn btn-success form-control"><i class="fa fa-cloud-upload"></i>  ส่งเข้าครัว
+  </button>
+</div>
