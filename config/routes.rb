@@ -47,6 +47,9 @@ resources :dishs do
  member do
 patch 'update_dish'
   end
+  collection do
+    get  'dish_search'
+  end
 end
 
 

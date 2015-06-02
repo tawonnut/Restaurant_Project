@@ -1,5 +1,20 @@
-    
+ <div ng-controller="ListingController" >   
+  <div class="form-group"> 
+    <div role="tabpanel" class="tab-pane active" id="home">
+    <label class="col-sm-2 control-label" >ชื่อเมนู : </label>
+      <div class="col-sm-5" >
+        <ui-select ng-model="dish.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false"  >
+          <ui-select-match  placeholder="ชื่อเมนู..." >{{$select.selected.dish_name || "ชื่อเมนู" }}
 
+          </ui-select-match>
+          <ui-select-choices repeat="dish in dishs" refresh="refreshAddresses($select.search)" refresh-delay="0">
+            <div>{{dish.dish_name}}</div>
+          </ui-select-choices>
+        </ui-select> 
+      </div>
+      </div>
+  </div>
+ <div>     
 <div class="row">
     <div class="col-sm-9">
       <h1> Menulist </h1>
@@ -39,7 +54,7 @@
 </div>
 
 
-<div ng-controller="createproperty">
+<div >
   <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -61,29 +76,10 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
-  <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-        <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
-      </div>
-    <div role="tabpanel" class="tab-pane active" id="home">รายการอาหารคาว
-    <nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-    </div>
+  <div class="form-group"> 
+    <div role="tabpanel" class="tab-pane active" id="home">
+    
+  </div>    
     <div role="tabpanel" class="tab-pane" id="profile">รายการอาหารหวาน
     <nav>
   <ul class="pagination">
