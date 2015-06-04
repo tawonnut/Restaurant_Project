@@ -23,7 +23,8 @@ resources :restuarants do
       get 'add_dessert'
       get 'add_dish'
       post 'add_staff'
-      get "show_staff"
+      get 'show_staff'
+      get 'report'
     end
 end
 

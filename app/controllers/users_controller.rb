@@ -4,7 +4,7 @@ before_action :set_user, only: [:edit, :update]
 
 def new
     unless current_user.super_user?
-      flash[:error] = "You don't have permisson to access the requested page."
+      flash[:error] = "คุณไม่สามารถเข้าถึงหน้านี้ได้"
       redirect_to restuarant_path(current_user)
     else
        @user = User.new

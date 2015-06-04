@@ -21,7 +21,7 @@
               <div class="col-sm-offset-2 col-sm-10">
                 <div class="actions">
                   <%= f.submit("ยืนยัน", class: "btn btn-success") %>
-                  <%= link_to "กลับ", new_user_session_path, class: "btn btn-danger" %>
+                  <%= link_to "กลับ", restuarant_path, class: "btn btn-danger" %>
                 </div>
               </div>
             </div>
@@ -40,18 +40,11 @@
                 <div class="panel bg-body">
 
                     <div class="panel-heading bg-header">
-                        <div class="text-right"> 
-                       <%= link_to new_restuarant_path, class: "btn btn-warning" do %> <i class="fa fa-search-plus"></i> เปิดร้านใหม่
-                       <%end%>
-
-                    </div>
-
-
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>หมายเลขโต๊ะ</th>
-                                <th>ร้านค้า</th>
+                                <th>Table ID.</th>
                                 <th></th>
                             </tr>
                         </thead>

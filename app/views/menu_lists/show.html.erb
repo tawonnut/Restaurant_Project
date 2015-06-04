@@ -4,7 +4,7 @@
     <label class="col-sm-2 control-label" >ชื่อเมนู : </label>
       <div class="col-sm-5" >
         <ui-select ng-model="dish.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false"  >
-          <ui-select-match  placeholder="ชื่อเมนู..." >{{$select.selected.dish_name || "ชื่อเมนู" }}
+          <ui-select-match  placeholder="ชื่อเมนู..." >{{$select.selected.dish_name || "อาหารคาว" }}
 
           </ui-select-match>
           <ui-select-choices repeat="dish in dishs" refresh="refreshAddresses($select.search)" refresh-delay="0">
@@ -14,10 +14,12 @@
       </div>
       </div>
   </div>
- <div>     
+ <div>  
+
+    
 <div class="row">
     <div class="col-sm-9">
-      <h1> Menulist </h1>
+      <h1> รายการอาหาร </h1>
 
     </div>
 
@@ -37,15 +39,15 @@
 
     </br>
     <div class="tab-content ">
-      <div role="tabpanel" class="tab-pane active" id="carousel">
+      <div role="tabpanel" class="tab-pane active" id="dish">
      
       </div>
 
-      <div role="tabpanel" class="tab-pane" id="banner_search">
+      <div role="tabpanel" class="tab-pane" id="dessert">
       
       </div>
 
-      <div role="tabpanel" class="tab-pane" id="banner_listing">
+      <div role="tabpanel" class="tab-pane" id="drinking">
         
       </div>
   
@@ -135,16 +137,14 @@
   </ul>
 </nav></div>
   </div>
-
 </div>
-
-
-          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" ng-click="create_property()"data-dismiss="modal">ยืนยัน</button> 
           </div>
         </div>
+
       </div>
+
     </div>
   </div> 
 <div>

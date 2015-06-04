@@ -7,7 +7,7 @@ and open the template in the editor.
 <html ng-app="terebinth-pos">
     <head>
         <meta charset="UTF-8">
-        <title>Terebinth-POS</title>
+        <title>Terebinth-Restaurant</title>
           <%= stylesheet_link_tag    "application" %>
           <%= javascript_include_tag "application" %>
           <%= csrf_meta_tags %>
@@ -26,7 +26,7 @@ and open the template in the editor.
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/restuarants"><i class="fa fa-location-arrow"></i> Terebinth-POS</a>
+                    <a class="navbar-brand" href="/restuarants"><i class="fa fa-location-arrow"></i> Terebinth-Restaurant</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,6 +61,10 @@ and open the template in the editor.
                             <%end%>
                             <li class="divider"></li>
                            <li><a href="#" data-toggle="modal" data-target="#myModal">  <i class="fa fa-cart-plus"></i>&nbsp;</i> เพิ่มโต๊ะ </a></li>
+                           <li class="divider"></li>
+                           <li> <%= link_to report_restuarant_path do %> <i class="fa fa-calendar">&nbsp;</i> เรียกดูรายงาน</li>
+                            <%end%>
+
                           </ul> 
                         </li>
                         <% end %>
