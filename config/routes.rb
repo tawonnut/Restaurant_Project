@@ -59,12 +59,15 @@ resource :users, only: [:edit, :update, :new]
   
  resources :tables
  resources :menu_lists do
-   collection do
-        get 'drinking'
-        get 'dessert'
-        get 'show'
-         end
-      end
+  collection do
+    get 'drinking'
+    get 'dessert'
+    get 'show'
+   end
+  member do
+    patch 'create_menu'
+  end
+end
   
  resources :showusers do 
  collection do

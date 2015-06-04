@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
     helper_method :current_restuarant
 
-
+  after_filter :set_csrf_cookie_for_ng
   
 
   protected
@@ -37,6 +37,14 @@ class ApplicationController < ActionController::Base
     	devise_parameter_sanitizer.for(:sign_up) << :tel
       devise_parameter_sanitizer.for(:sign_up) << :super_user
       devise_parameter_sanitizer.for(:sign_up) << :restuarant_id
+  end
+    # AngularJS CSRF protection
+  def set_csrf_cookie_for_ng
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
+
+  def verified_request?
+    super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
   end
 
 end

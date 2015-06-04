@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require toastr
  *= require font-awesome
  *= require ui-select
  */
@@ -36,7 +37,7 @@ border-left: 1px solid #e7e7e7;
 border-radius: 5px 5px 0 0 ;
 }
 
-.gradient {
+.gradient1 {
 background-image: -o-linear-gradient(top, #FFF, #e7e7e7);
 background-image: -moz-linear-gradient(top, #FFF, #e7e7e7);
 background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#e7e7e7));

@@ -9,6 +9,43 @@
     </button>
   </div>
  </div>   
+                <div class="panel bg-body">
+
+                    <div class="panel-heading bg-header">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>หมายเลขโต๊ะ</th>
+                                <th>Table ID.</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <% @show_menu.each_with_index do |a, i| %>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%=a.menu%></td>
+                                <td>
+                      
+                                    <%end%>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -21,7 +58,7 @@
       <div class="modal-body">
         <div class="panel panel-default listingshoadow">
           <div role="tabpanel">
-            <ul class="nav nav-tabs  nav-justified gradient border-listing " role="tablist">
+            <ul class="nav nav-tabs  nav-justified gradient1 border-listing " role="tablist">
               <li role="presentation" class="active"><a href="#carousel" aria-controls="carousel" role="tab" data-toggle="tab">อาหารคาว</a></li>
               <li role="presentation"><a href="#banner_search" aria-controls="banner_search" role="tab" data-toggle="tab">อาหารหวาน</a></li>
               <li role="presentation"><a href="#banner_listing" aria-controls="banner_listing" role="tab" data-toggle="tab">เครื่องดื่ม</a></li>
@@ -30,6 +67,7 @@
             <div class="tab-content ">
               <div role="tabpanel" class="tab-pane active" id="carousel">
                 <form class="form-horizontal">
+
                   <div ng-controller="ListingController" >   
                     <div class="form-group"> 
                       <label class="col-sm-2 control-label" >ชื่อเมนู : </label>
@@ -42,26 +80,34 @@
                           </ui-select-choices>
                         </ui-select> 
                       </div>
+                      <input type="hidden" ng-model="dish.selected.dish_name"  ng-value="dish.selected.dish_name" />
                       <div class="col-sm-2" >
                         <div class="input-group">
-                          <input type="number" class="form-control" id="exampleInputAmount" value="1">
+                          <input type="number" class="form-control" id="exampleInputAmount" ng-model="menu.value"/>
                           <div class="input-group-addon">จาน</div>
                         </div>
-                      </div>
+                      </div>                      
                     </div>
                     <div class="form-group"> 
                       <label class="col-sm-2 control-label" >Remark : </label>
                       <div class="col-sm-7" >
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control"  ng-model="menu.remark" rows="3"></textarea>
                       </div>  
-                    </div>                     
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-primary" ng-click="menu_dish()"data-dismiss="modal">ยืนยัน</button>
+                      </div>  
+                    </div>
+                          
                   </div>  
                 </form>
               </div>
 
               <div role="tabpanel" class="tab-pane" id="banner_search">
                 <form class="form-horizontal">
-                  <div ng-controller="ListingController" >   
+                  <div ng-controller="ListingController" > 
+                  <input type="hidden" id="table_id" value="<%= @table.id.to_json %>"/>  
                     <div class="form-group"> 
                       <label class="col-sm-2 control-label" >ชื่อเมนู : </label>
                       <div class="col-sm-5" >
@@ -132,3 +178,4 @@
     </div>
   </div>
 </div>
+
