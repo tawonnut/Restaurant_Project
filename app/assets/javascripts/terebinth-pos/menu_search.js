@@ -18,6 +18,7 @@ listingCtrl = function($scope, $http){
       console.log
     var create_params = {
       menu :          $scope.dish.selected.dish_name,
+      menu_price :          $scope.dish.selected.dish_price,
       remark :        $scope.menu.remark,
       value :         $scope.menu.value,
       menu_type :     "อาหารคาว",
@@ -42,7 +43,7 @@ listingCtrl = function($scope, $http){
     //   $("#test").loat(html);
     // }
     // }); 
-    $( "#show_data").load("#show_data1 table")
+    $( "#show_dish").load("#show_dish1 #show_dish")
       }
     })
     .error(function(data){
@@ -65,3 +66,112 @@ listingCtrl = function($scope, $http){
 listingCtrl.$inject = ['$scope','$http'];
 
 App.controller('ListingController',listingCtrl);
+
+
+listingCtrl = function($scope, $http){
+  $scope.dessert = { selected:{} };
+  $scope.menu = {};
+  $scope.menu.value = 1
+  $scope.menu.table_id = JSON.parse($("#table_id").val());
+
+  $scope.refreshAddresses = function(dessert) {
+  var dessert_name = {dessert_name: dessert};
+    return $http.get(
+      "/desserts/dessert_search",
+      {params: dessert_name }
+    ).then(function(response) {
+      $scope.desserts = response.data;
+    }); 
+  }; 
+
+    $scope.menu_dessert = function() {
+      console.log
+    var create_params = {
+      menu :          $scope.dessert.selected.dessert_name,
+      menu_price :    $scope.dessert.selected.dessert_price,
+      remark :        $scope.menu.remark,
+      value :         $scope.menu.value,
+      menu_type :     "อาหารหวาน",
+      table_id :      $scope.menu.table_id.$oid
+    }; 
+    console.log(create_params)
+
+     $http.post('/menu_lists.json',create_params)
+    .success(function(data){
+      var property = JSON.stringify(data).substring(1, 8);
+      if (property === '"error"'){
+      toastr.warning("ยังไม่เลือกรายการอาหาร");    
+
+      }
+      else {
+        toastr.success("เพิ่มอาหารเรียบร้อย");
+         $scope.menu.remark ="" 
+    $( "#show_dessert").load("#show_dessert1 #show_dessert")
+      }
+    })
+    .error(function(data){
+      $scope.eeror = status;
+      console.log("เวลเกินว่ะ บราย_!!!!!!!");
+      console.log(create_params);
+    });   
+
+  }; 
+  
+}
+listingCtrl.$inject = ['$scope','$http'];
+
+App.controller('ListingController1',listingCtrl);
+
+listingCtrl = function($scope, $http){
+  $scope.drinking = { selected:{} };
+  $scope.menu = {};
+  $scope.menu.value = 1
+  $scope.menu.table_id = JSON.parse($("#table_id").val());
+
+  $scope.refreshAddresses = function(drinking) {
+  var drinking_name = {drinking_name: drinking};
+    return $http.get(
+      "/drinkings/drink_search",
+      {params: drinking_name }
+    ).then(function(response) {
+      $scope.drinkings = response.data;
+    }); 
+  }; 
+
+    $scope.menu_drinking = function() {
+
+    var create_params = {
+      menu :          $scope.drinking.selected.drinking_name,
+      menu_price :    $scope.drinking.selected.drinking_price,
+      remark :        $scope.menu.remark,
+      value :         $scope.menu.value,
+      menu_type :     "เครื่องดื่ม",
+      table_id :      $scope.menu.table_id.$oid
+    }; 
+    console.log(create_params)
+
+     $http.post('/menu_lists.json',create_params)
+    .success(function(data){
+      var property = JSON.stringify(data).substring(1, 8);
+      if (property === '"error"'){
+      toastr.warning("ยังไม่เลือกรายการอาหาร");    
+
+      }
+      else {
+        toastr.success("เพิ่มอาหารเรียบร้อย");
+         $scope.menu.remark ="" 
+    $( "#show_drink").load("#show_drink1 #show_drink")
+      }
+    })
+    .error(function(data){
+      $scope.eeror = status;
+      console.log("เวลเกินว่ะ บราย_!!!!!!!");
+      console.log(create_params);
+    });   
+
+  }; 
+  
+}
+listingCtrl.$inject = ['$scope','$http'];
+
+App.controller('ListingController2',listingCtrl);

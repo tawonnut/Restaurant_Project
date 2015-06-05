@@ -36,11 +36,17 @@ resources :drinkings do
   member do
     patch 'update_drinking' 
   end
+  collection do
+    get  'drink_search'
+  end
 end
 
 resources :desserts do
   member do
-patch 'update_dessert'
+    patch 'update_dessert'
+  end
+  collection do
+    get  'dessert_search'
   end
 end
 

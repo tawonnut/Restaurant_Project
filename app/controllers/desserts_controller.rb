@@ -41,11 +41,26 @@ class DessertsController < ApplicationController
   end
 
   def destroy
-      @dessert= Dessert.find(params[:id])
-      @restuarant= Restuarant.where(_id: @dessert.restuarant_id)
-      @dessert.destroy
-      flash[:notice] = "ลบเมนูเรียบร้อยแล้ว"
-      redirect_to dessert_path(@restuarant[0].id)
-
+    @dessert= Dessert.find(params[:id])
+    @restuarant= Restuarant.where(_id: @dessert.restuarant_id)
+    @dessert.destroy
+    flash[:notice] = "ลบเมนูเรียบร้อยแล้ว"
+    redirect_to dessert_path(@restuarant[0].id)
   end
+
+  def dessert_search
+    @dessert_name = params[:dessert_name]  
+    dessert = Dessert.where(restuarant_id: current_user.current_restuarant)
+      if @dessert_name != ""
+        @dessert = dessert.inject([]) do |name,dessert|
+          if dessert.dessert_name.include?(@dessert_name)
+            name << dessert
+          end 
+            name
+        end
+        render json: @dessert
+      else
+        render json: @dessert
+      end
+  end  
 end

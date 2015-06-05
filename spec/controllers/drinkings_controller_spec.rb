@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe DrinkingsController, type: :controller do
+RSpec.describe drinkingController, type: :controller do
 
 end

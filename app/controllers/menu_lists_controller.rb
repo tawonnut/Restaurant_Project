@@ -5,7 +5,9 @@ class MenuListsController < ApplicationController
   
   def show
     @table = Table.find(params[:id])
-    @show_menu = MenuList.where(table: @table.id.to_s)
+    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว")
+    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน")
+    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม")
   end
 
   def create  
@@ -29,29 +31,27 @@ class MenuListsController < ApplicationController
 
           end
           format.json do
-
-
             render json: {error: @errors_menu}
           end
         end 
       end  
   end          
 
-  def dish_search
-    @dish_name = params[:dish_name]  
-    dish = Dish.all
-      if @dish_name != ""
-        @dish = dish.inject([]) do |name,dish|
-          if dish.dish_name.include?(@dish_name)
-            name << dish
-          end 
-            name
-        end
-        render json: @dish
-      else
-        render json: @dish
-      end
-  end  
+  # def dish_search
+  #   @dish_name = params[:dish_name]  
+  #   dish = Dish.where(restuarent_id: ""current_user.current_restuarant)
+  #     if @dish_name != ""
+  #       @dish = dish.inject([]) do |name,dish|
+  #         if dish.dish_name.include?(@dish_name)
+  #           name << dish
+  #         end 
+  #           name
+  #       end
+  #       render json: @dish
+  #     else
+  #       render json: @dish
+  #     end
+  # end  
 
 #   def dessert_search
 #     @dessert_name = params[:dessert_name]  
@@ -92,6 +92,6 @@ class MenuListsController < ApplicationController
   end
 end
 
-    def create_params
-      params.require(:menu_list).permit(:menu,:value,:remark,:menu_type,:table_id)
-    end
+def create_params
+  params.require(:menu_list).permit(:menu,:value,:remark,:menu_type,:table_id,:menu_price)
+end

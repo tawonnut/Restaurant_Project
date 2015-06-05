@@ -49,9 +49,9 @@ class DishsController < ApplicationController
 
   end
 
-    def dish_search
+  def dish_search
     @dish_name = params[:dish_name]  
-    dish = Dish.all
+    dish = Dish.where(restuarant_id: current_user.current_restuarant)
       if @dish_name != ""
         @dish = dish.inject([]) do |name,dish|
           if dish.dish_name.include?(@dish_name)

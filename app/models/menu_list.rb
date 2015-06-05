@@ -3,11 +3,14 @@ class MenuList
 
   belongs_to :table
 
+
   field :menu_type,    type: String
   field :menu,         type: String
+  field :menu_price,   type: Integer
   field :value,        type: Integer,default: 1
   field :remark,   	   type: String
   field :table_id,        type: String
+
   validates :menu,           presence: {message: "ที่อยู่: ยังไม่ได้กรอก กรุณากรอกใหม่"}
 
   
@@ -15,6 +18,7 @@ class MenuList
     {
       id: self.id.to_s,
       menu_type: self.menu_type,
+      menu_price: self.menu_price,
       menu: self.menu,
       table_id: self.table_id,
       value: self.value,

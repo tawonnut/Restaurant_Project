@@ -49,4 +49,20 @@ class DrinkingsController < ApplicationController
 
   end
 
+ def drink_search
+    @drinking_name = params[:drinking_name]  
+    drinking = Drinking.where(restuarant_id: current_user.current_restuarant)
+      if @drinking_name != ""
+        @drinking = drinking.inject([]) do |name,drinking|
+          if drinking.drinking_name.include?(@drinking_name)
+            name << drinking
+          end 
+            name
+        end
+        render json: @drinking
+      else
+        render json: @drinking
+      end
+  end    
+
     end
