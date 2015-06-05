@@ -35,63 +35,45 @@ class MenuListsController < ApplicationController
           end
         end 
       end  
-  end          
+  end 
 
-  # def dish_search
-  #   @dish_name = params[:dish_name]  
-  #   dish = Dish.where(restuarent_id: ""current_user.current_restuarant)
-  #     if @dish_name != ""
-  #       @dish = dish.inject([]) do |name,dish|
-  #         if dish.dish_name.include?(@dish_name)
-  #           name << dish
-  #         end 
-  #           name
-  #       end
-  #       render json: @dish
-  #     else
-  #       render json: @dish
-  #     end
-  # end  
+  def edit
+    @menu = MenuList.find(params[:id])
+  end         
 
-#   def dessert_search
-#     @dessert_name = params[:dessert_name]  
-#     dessert = Dessert.all
-#       if @dessert_name != ""
-#         @dessert = dessert.inject([]) do |name,dessert|
-#           if dessert.dessert_name.include?(@dessert_name)
-#             name << dessert
-#           end 
-#             name
-#         end
-#         render json: @dessert
-#       else
-#         render json: @dessert
-#       end
-#   end
-
-# def drinking_search
-#     @drinking_name = params[:drinking_name]  
-#     drinking = Drinking.all
-#       if @drinking_name != ""
-#         @drinking = drinking.inject([]) do |name,drinking|
-#           if drinking.drinking_name.include?(@drinking_name)
-#             name << drinking
-#           end 
-#             name
-#         end
-#         render json: @drinking
-#       else
-#         render json: @drinking
-#       end
-#   end
-
-  def menu_lists
-  	@drinking = Drinking.all
-  	@dessert = Dessert.all
-  	@dish = Dish.all
+  def update
+    @menu = MenuList.find(params[:id])
+   if  @menu.update(menu: params[:name],remark: params[:remark], menu_type: params[:type],value: params[:value])
+    flash[:notice] = "เเก้ไขเมนูอาหารเรียบร้อยเเล้ว"
+    redirect_to menu_list_path(@menu.table_id)
+    else
+      rander action"edit"
+    end 
+    
   end
-end
 
-def create_params
-  params.require(:menu_list).permit(:menu,:value,:remark,:menu_type,:table_id,:menu_price)
+  def destroy
+    @menu = MenuList.find(params[:id])
+    @menu.destroy
+      respond_to do |format|
+          format.html do
+            flash[:notice] = "ลบเมนูอาหารเรียบร้อยเเล้ว"
+            redirect_to menu_list_path(@menu.table_id)
+          end
+          # format.json do
+          #   render json: {success: true}
+          # end
+        end 
+  end
+
+  # def menu_lists
+  # 	@drinking = Drinking.all
+  # 	@dessert = Dessert.all
+  # 	@dish = Dish.all
+  # end
+
+  def create_params
+    params.require(:menu_list).permit(:menu,:value,:remark,:menu_type,:table_id,:menu_price)
+  end
+
 end

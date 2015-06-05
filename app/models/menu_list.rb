@@ -24,4 +24,32 @@ class MenuList
       value: self.value,
     }.as_json
   end
+
+  def json_dish
+    {
+      id: self.id.to_s,
+      dish_price: self.menu_price,
+      dish_name: self.menu,
+      value: self.value,
+    }.as_json
+  end
+
+    def json_dessert
+    {
+      id: self.id.to_s,
+      dessert_price: self.menu_price,
+      dessert_name: self.menu,
+      value: self.value,
+    }.as_json
+  end
+  
+    def json_drinking
+    {
+      id: self.id.to_s,
+      drinking_price: self.menu_price,
+      drinking_name: self.menu,
+      value: self.value,
+    }.as_json
+  end
+
 end

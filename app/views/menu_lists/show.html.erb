@@ -1,4 +1,3 @@
-<%= current_user.current_restuarant%>
 <div class="row">
   <div class="col-sm-6">
     <font size = "+3">ราการอาหาร
@@ -12,6 +11,7 @@
  </div> 
 <hr>
 
+<div ng-controller="Delete_menu">
 <div  id="show_dish">
   <div  id="show_dish1">
     <div class="panel panel-default">
@@ -30,14 +30,21 @@
           </thead>
           <tbody>
               <% @show_dish.each_with_index do |a, i| %>
-              <tr >
+              <tr>
                 <td><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
                 <td><%=a.menu_price.to_f*a.value.to_f%></td>
                 <td><%=a.remark%></td>
-                <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td>
+                <td class="text-right">
+                <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
+                    <%end%>                
+                <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
+                    <%end%></td>
+                <!-- <td class="text-right"><button type="button" class="btn btn-danger" ng-click="delete('<%=a._id.to_s%>')" ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </button></td> -->
               </tr>
+              </div>
               <%end%>
               </tbody>
           </table>
@@ -71,7 +78,13 @@
                 <td><%=a.value%></td>
                 <td><%=a.menu_price.to_f*a.value.to_f%></td>
                 <td><%=a.remark%></td>
-                <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td>                
+                <td class="text-right">
+                <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
+                    <%end%>                 
+                <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
+                    <%end%></td>                
+<!--                 <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td>     -->            
               </tr>
               <%end%>
               </tbody>
@@ -80,7 +93,6 @@
       </div>
     </div>
  </div>
-
 
 <div  id="show_drink">
   <div  id="show_drink1">
@@ -106,7 +118,13 @@
                 <td><%=a.value%></td>
                 <td><%=a.menu_price.to_f*a.value.to_f%></td>
                 <td><%=a.remark%></td>
-                <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td>                
+                <td class="text-right">
+                <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
+                    <%end%> 
+                <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
+                    <%end%></td>                
+<!--                 <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td> -->                
               </tr>
               <%end%>
               </tbody>
@@ -115,6 +133,7 @@
       </div>
     </div>
  </div>
+  </div>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -264,4 +283,9 @@
   </div>
 </div>
 
-<input type="hidden" id="table_id" value="<%= @table.id.to_json %>"/>  
+<input type="hidden" id="table_id" value="<%= @table.id.to_json %>"/>
+<input type="hidden" id="dish_json" value="<%= @table.id.to_json %>">  
+<input type="hidden" id="dessert_json" value="<%= @table.id.to_json %>">  
+
+<input type="hidden" id="drinking_json" value="<%= @table.id.to_json %>">  
+

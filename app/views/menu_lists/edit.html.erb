@@ -1,0 +1,136 @@
+<div class="row">
+  <div class="col-sm-6">
+    <font size = "+3">เเก้ไขอาหาร
+    </font>
+  </div>
+ </div> 
+<hr>
+
+<%if @menu.menu_type == "อาหารคาว"%>
+<input type="hidden" id="table_id" name="table_id" value="<%= @menu.table_id.to_json %>"/>  
+<input type="hidden" id="dish_json" value="<%= @menu.json_dish.to_json%>" />
+<%= form_tag(menu_list_path,method: :patch) do |f| %>
+<input type="hidden"  name="type" value="อาหารคาว">
+	<div class="form-horizontal">
+	  <div ng-controller="ListingController" >   
+	    <div class="form-group"> 
+	      <label class="col-sm-2 control-label" >ชื่อเมนู : </label>
+	      <div class="col-sm-5" >
+	        <ui-select ng-model="dish.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false"  >
+	          <ui-select-match  placeholder="ชื่อเมนู..." >{{$select.selected.dish_name || "อาหารคาว" }}
+	          </ui-select-match>
+	          <ui-select-choices repeat="dish in dishs" refresh="refreshAddresses($select.search)" refresh-delay="0">
+	            <div>{{dish.dish_name}}</div>
+	          </ui-select-choices>
+	        </ui-select> 
+	      </div>
+	      <input type="text"  name="name" ng-model="dish.selected.dish_name"  ng-value="dish.selected.dish_name" />
+	       <input type="text" name="price" ng-model="dish.selected.dish_price"  ng-value="dish.selected.dish_price" />
+	      <div class="col-sm-2" >
+	        <div class="input-group">
+	          <input type="number" class="form-control" id="exampleInputAmount" name="value" value="<%=@menu.value%>" />
+	          <div class="input-group-addon">จาน</div>
+	        </div>
+	      </div>                      
+	    </div>
+	    <div class="form-group"> 
+	      <label class="col-sm-2 control-label" >Remark : </label>
+	      <div class="col-sm-7" >
+	        <textarea class="form-control"  name="remark" rows="3" ><%=@menu.remark%></textarea>
+	      </div>  
+	    </div>
+	    <div class="form-group">
+	      <div class="col-sm-offset-2 col-sm-10">
+	        <button type="submit" class="btn btn-primary" >ยืนยัน</button>
+	      </div>  
+	    </div>      
+	  </div>  
+	</div>
+<%end%>	
+
+<%elsif @menu.menu_type == "อาหารหวาน"%>	
+<input type="hidden" id="table_id" name="table_id" value="<%= @menu.table_id.to_json %>"/>  
+<input type="hidden" id="dessert_json" value="<%= @menu.json_dessert.to_json%>" />
+<%= form_tag(menu_list_path,method: :patch) do |f| %>
+<input type="hidden"  name="type" value="อาหารหวาน">
+	<div class="form-horizontal">
+	  <div ng-controller="ListingController1" >   
+	    <div class="form-group"> 
+	      <label class="col-sm-2 control-label" >ชื่อเมนู : </label>
+	      <div class="col-sm-5" >
+	        <ui-select ng-model="dessert.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false"  >
+	          <ui-select-match  placeholder="ชื่อเมนู..." >{{$select.selected.dessert_name || "อาหารคาว" }}
+	          </ui-select-match>
+	          <ui-select-choices repeat="dessert in desserts" refresh="refreshAddresses($select.search)" refresh-delay="0">
+	            <div>{{dessert.dessert_name}}</div>
+	          </ui-select-choices>
+	        </ui-select> 
+	      </div>
+	      <input type="text"  name="name" ng-model="dessert.selected.dessert_name"  ng-value="dessert.selected.dessert_name" />
+	       <input type="text" name="price" ng-model="dessert.selected.dessert_price"  ng-value="dessert.selected.dessert_price" />
+	      <div class="col-sm-2" >
+	        <div class="input-group">
+	          <input type="number" class="form-control" id="exampleInputAmount" name="value" value="<%=@menu.value%>" />
+	          <div class="input-group-addon">จาน</div>
+	        </div>
+	      </div>                      
+	    </div>
+	    <div class="form-group"> 
+	      <label class="col-sm-2 control-label" >Remark : </label>
+	      <div class="col-sm-7" >
+	        <textarea class="form-control"  name="remark" rows="3" ><%=@menu.remark%></textarea>
+	      </div>  
+	    </div>
+	    <div class="form-group">
+	      <div class="col-sm-offset-2 col-sm-10">
+	        <button type="submit" class="btn btn-primary" >ยืนยัน</button>
+	      </div>  
+	    </div>      
+	  </div>  
+	</div>
+<%end%>	
+
+
+<%else%>
+<input type="hidden" id="table_id" name="table_id" value="<%= @menu.table_id.to_json %>"/>  
+<input type="hidden" id="drinking_json" value="<%= @menu.json_drinking.to_json%>" />
+<%= form_tag(menu_list_path,method: :patch) do |f| %>
+<input type="hidden"  name="type" value="เครื่องดื่ม">
+	<div class="form-horizontal">
+	  <div ng-controller="ListingController2" >   
+	    <div class="form-group"> 
+	      <label class="col-sm-2 control-label" >ชื่อเมนู : </label>
+	      <div class="col-sm-5" >
+	        <ui-select ng-model="drinking.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false"  >
+	          <ui-select-match  placeholder="ชื่อเมนู..." >{{$select.selected.drinking_name || "อาหารคาว" }}
+	          </ui-select-match>
+	          <ui-select-choices repeat="drinking in drinkings" refresh="refreshAddresses($select.search)" refresh-delay="0">
+	            <div>{{drinking.drinking_name}}</div>
+	          </ui-select-choices>
+	        </ui-select> 
+	      </div>
+	      <input type="text"  name="name" ng-model="drinking.selected.drinking_name"  ng-value="drinking.selected.drinking_name" />
+	       <input type="text" name="price" ng-model="drinking.selected.drinking_price"  ng-value="drinking.selected.drinking_price" />
+	      <div class="col-sm-2" >
+	        <div class="input-group">
+	          <input type="number" class="form-control" id="exampleInputAmount" name="value" value="<%=@menu.value%>" />
+	          <div class="input-group-addon">จาน</div>
+	        </div>
+	      </div>                      
+	    </div>
+	    <div class="form-group"> 
+	      <label class="col-sm-2 control-label" >Remark : </label>
+	      <div class="col-sm-7" >
+	        <textarea class="form-control"  name="remark" rows="3" ><%=@menu.remark%></textarea>
+	      </div>  
+	    </div>
+	    <div class="form-group">
+	      <div class="col-sm-offset-2 col-sm-10">
+	        <button type="submit" class="btn btn-primary" >ยืนยัน</button>
+	      </div>  
+	    </div>      
+	  </div>  
+	</div>
+<%end%>	
+
+<%end%>

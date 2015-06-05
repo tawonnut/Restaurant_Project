@@ -14,11 +14,18 @@ listingCtrl = function($scope, $http){
     }); 
   }; 
 
+  $scope.init = function() {
+   $scope.dish.selected = JSON.parse($("#dish_json").val());
+    // Init as empty arrays, need to change later to get real coordinates from DB
+  console.log($scope.dish.selected)
+  };
+  $scope.init();  
+
     $scope.menu_dish = function() {
       console.log
     var create_params = {
       menu :          $scope.dish.selected.dish_name,
-      menu_price :          $scope.dish.selected.dish_price,
+      menu_price :     $scope.dish.selected.dish_price,
       remark :        $scope.menu.remark,
       value :         $scope.menu.value,
       menu_type :     "อาหารคาว",
@@ -36,14 +43,7 @@ listingCtrl = function($scope, $http){
       else {
         toastr.success("เพิ่มอาหารเรียบร้อย");
          $scope.menu.remark =""
-    //      $.ajax({
-    // url: "/menu_lists/"+$scope.menu.table_id.$oid,
-    // cache: false,
-    // success: function(html){
-    //   $("#test").loat(html);
-    // }
-    // }); 
-    $( "#show_dish").load("#show_dish1 #show_dish")
+          $( "#show_dish").load("#show_dish1 #show_dish")
       }
     })
     .error(function(data){
@@ -53,18 +53,9 @@ listingCtrl = function($scope, $http){
     });   
 
   };
-  // $scope.init = function() {
-  //  $scope.listing.selected = JSON.parse($("#listing_json").val());
-  //   // Init as empty arrays, need to change later to get real coordinates from DB
-  // };
 
-  //  console.log($scope.listing.selected);
-  // $scope.init();  
-
-   
 }
 listingCtrl.$inject = ['$scope','$http'];
-
 App.controller('ListingController',listingCtrl);
 
 
@@ -83,9 +74,14 @@ listingCtrl = function($scope, $http){
       $scope.desserts = response.data;
     }); 
   }; 
+  $scope.init = function() {
+   $scope.dessert.selected = JSON.parse($("#dessert_json").val());
+    // Init as empty arrays, need to change later to get real coordinates from DB
+  console.log($scope.dessert.selected)
+  };
+  $scope.init();  
 
     $scope.menu_dessert = function() {
-      console.log
     var create_params = {
       menu :          $scope.dessert.selected.dessert_name,
       menu_price :    $scope.dessert.selected.dessert_price,
@@ -137,7 +133,12 @@ listingCtrl = function($scope, $http){
       $scope.drinkings = response.data;
     }); 
   }; 
-
+    $scope.init = function() {
+   $scope.drinking.selected = JSON.parse($("#drinking_json").val());
+    // Init as empty arrays, need to change later to get real coordinates from DB
+  console.log($scope.drinking.selected)
+  };
+  $scope.init();  
     $scope.menu_drinking = function() {
 
     var create_params = {
