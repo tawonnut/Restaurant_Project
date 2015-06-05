@@ -35,6 +35,14 @@ listingCtrl = function($scope, $http){
       else {
         toastr.success("เพิ่มอาหารเรียบร้อย");
          $scope.menu.remark =""
+    //      $.ajax({
+    // url: "/menu_lists/"+$scope.menu.table_id.$oid,
+    // cache: false,
+    // success: function(html){
+    //   $("#test").loat(html);
+    // }
+    // }); 
+    $( "#show_data").load("#show_data1 table")
       }
     })
     .error(function(data){

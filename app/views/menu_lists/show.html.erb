@@ -1,53 +1,41 @@
+
 <div class="row">
   <div class="col-sm-6">
     <font size = "+3">ราการอาหาร
     </font>
   </div>
   <div class="col-sm-6 text-right">
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
       สั่งอาหาร
     </button>
   </div>
- </div>   
-                <div class="panel bg-body">
-
-                    <div class="panel-heading bg-header">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>หมายเลขโต๊ะ</th>
-                                <th>Table ID.</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                <% @show_menu.each_with_index do |a, i| %>
-                            <tr>
-                                <td><%= i + 1 %></td>
-                                <td><%=a.menu%></td>
-                                <td>
-                      
-                                    <%end%>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+ </div> 
 
 
-
-
-
-
-
-
-
-
+<div class="" id="show_data">
+  <div class="">
+    <table class="table table-striped" id="show_data1">
+      <thead>
+      <tr>
+        <th>หมายเลขโต๊ะ</th>
+        <th>Table ID.</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @show_menu.each_with_index do |a, i| %>
+        <tr >
+          <td><%= i + 1 %></td>
+          <td><%=a.menu%></td>
+          <td><%=a.remark%></td>
+          <td><%=a.value%></td>
+        </tr>
+        <%end%>
+        </tbody>
+    </table>
+    </div>
+ </div>
+</div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg">
     <div class="modal-content">

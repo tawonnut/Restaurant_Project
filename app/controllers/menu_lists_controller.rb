@@ -9,10 +9,6 @@ class MenuListsController < ApplicationController
   end
 
   def create  
-    require "pp"
-    pp "lllllllllllllllllllllllllllllllllllllllllllllllllll"
-    pp create_params
-    pp "dl;kfsl;kfsl;k;'fkaskfsk;'askdf"
     @menu = MenuList.new(create_params)
       if @menu.save
         respond_to do |format|
