@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-sm-6">
-    <font size = "+3">ราการอาหาร
+    <font size = "+3">รายการอาหาร
     </font>
   </div>
   <div class="col-sm-6 text-right">
-    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>
       สั่งอาหาร
     </button>
   </div>
@@ -23,7 +23,7 @@
               <th>#</th>
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
-              <th>ราคา</th>
+              <th>ราคา/บาท</th>
               <th>รายละเอียด</th>
               <th></th>
             </tr>
@@ -54,45 +54,7 @@
  </div>
 
 
-<div  id="show_dessert">
-  <div  id="show_dessert1">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h4>ราการอาหารหวาน<h4></div>
-        <div class="panel-body">
-          <table class="table table-striped" id="show_data1">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>ชื่ออาหาร</th>
-              <th>จำนวน</th>
-              <th>ราคา</th>
-              <th>รายละเอียด</th>
 
-            </tr>
-          </thead>
-          <tbody>
-              <% @show_dessert.each_with_index do |a, i| %>
-              <tr >
-                <td><%= i + 1 %></td>
-                <td><%=a.menu%></td>
-                <td><%=a.value%></td>
-                <td><%=a.menu_price.to_f*a.value.to_f%></td>
-                <td><%=a.remark%></td>
-                <td class="text-right">
-                <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
-                    <%end%>                 
-                <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
-                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
-                    <%end%></td>                
-<!--                 <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td>     -->            
-              </tr>
-              <%end%>
-              </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
- </div>
 
 <div  id="show_drink">
   <div  id="show_drink1">
@@ -105,7 +67,7 @@
               <th>#</th>
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
-              <th>ราคา</th>
+              <th>ราคา/บาท</th>
               <th>รายละเอียด</th>
 
             </tr>
@@ -125,6 +87,47 @@
                 class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
                     <%end%></td>                
 <!--                 <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td> -->                
+              </tr>
+              <%end%>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+ </div>   
+
+
+ <div  id="show_dessert">
+  <div  id="show_dessert1">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>ราการอาหารหวาน<h4></div>
+        <div class="panel-body">
+          <table class="table table-striped" id="show_data1">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>ชื่ออาหาร</th>
+              <th>จำนวน</th>
+              <th>ราคา/บาท</th>
+              <th>รายละเอียด</th>
+
+            </tr>
+          </thead>
+          <tbody>
+              <% @show_dessert.each_with_index do |a, i| %>
+              <tr >
+                <td><%= i + 1 %></td>
+                <td><%=a.menu%></td>
+                <td><%=a.value%></td>
+                <td><%=a.menu_price.to_f*a.value.to_f%></td>
+                <td><%=a.remark%></td>
+                <td class="text-right">
+                <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
+                    <%end%>                 
+                <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
+                    <%end%></td>                
+<!--                 <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td>     -->            
               </tr>
               <%end%>
               </tbody>
@@ -251,7 +254,7 @@
                       <div class="col-sm-2" >
                         <div class="input-group">
                           <input type="number" class="form-control" id="exampleInputAmount" ng-model="menu.value"/>
-                          <div class="input-group-addon">จาน</div>
+                          <div class="input-group-addon">หน่วย</div>
                         </div>
                       </div> <label class=" control-label" >ราคา : </label> {{drinking.selected.drinking_price}}                      
                     </div>
@@ -277,7 +280,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"> ปิด ห</button>
       </div>
     </div>
   </div>

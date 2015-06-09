@@ -2,7 +2,7 @@
     <div class="panel panel-primary bigmshoadow" >
         <div class="panel-heading gradient">
        		<div class="col-md-6">
-			<h3 style=" margin-top: 2%;"><i class="fa fa-coffee">&nbsp;</i> 
+			<h3 style=" margin-top: 2%;"><i class="fa fa-beer">&nbsp;</i> 
       		เครื่องดื่มทั้งหมด
         	</h3>
        </div>
@@ -31,8 +31,11 @@
 			              		<td><%= i + 1 %></td>
 						        <td><%= f.drinking_name %></td>
 						        <td><%= f.drinking_price %></td>
-						        <td><%= link_to "แก้ไข",  edit_drinking_path(f), class: "btn btn-success" %></td>
-						        <td><%= link_to 'ลบ',  drinking_path(f), class: "btn btn-danger" ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>
+						        <td><%= link_to edit_drinking_path(f), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
+                    <%end%></td>
+						        <td><%= link_to drinking_path(f),method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
+                    <%end%></td>
 			          <%end%>
 				      </tr>
 			  </tbody> 

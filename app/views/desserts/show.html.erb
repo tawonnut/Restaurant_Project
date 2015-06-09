@@ -32,8 +32,11 @@
 			              		<td><%= i + 1 %></td>
 						        <td><%= f.dessert_name %></td>
 						        <td><%= f.dessert_price %></td>
-						        <td><%= link_to "แก้ไข",  edit_dessert_path(f), class: "btn btn-success" %></td>
-						        <td><%= link_to 'ลบ',  dessert_path(f), class: "btn btn-danger" ,method: :delete, data: { confirm: 'ต้องการจะลบ?' } %></td>
+						        <td><%= link_to edit_dessert_path(f), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
+                    <%end%></td>
+						        <td><%= link_to dessert_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
+                    <%end%></td>
 			          <%end%>
 				      </tr>
 			  </tbody>

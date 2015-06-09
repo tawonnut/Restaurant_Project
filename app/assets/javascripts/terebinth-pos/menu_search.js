@@ -48,7 +48,6 @@ listingCtrl = function($scope, $http){
     })
     .error(function(data){
       $scope.eeror = status;
-      console.log("เวลเกินว่ะ บราย_!!!!!!!");
       console.log(create_params);
     });   
 
@@ -107,7 +106,6 @@ listingCtrl = function($scope, $http){
     })
     .error(function(data){
       $scope.eeror = status;
-      console.log("เวลเกินว่ะ บราย_!!!!!!!");
       console.log(create_params);
     });   
 
