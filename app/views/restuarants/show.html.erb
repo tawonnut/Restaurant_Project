@@ -45,7 +45,7 @@
                             <tr>
                                 <th>หมายเลขโต๊ะ</th>
                                 <th>Table ID.</th>
-                                <th></th>
+                                <th>การจัดการ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,7 +57,7 @@
                                     <i class="fa fa-ellipsis-v"></i>
                                     <%= link_to "สั่งอาหาร", menu_list_path(a), class: "btn btn-success" %>
                                     <i class="fa fa-ellipsis-v"></i>
-                                    <%= link_to "ดูรายการอาหาร", edit_restuarant_path(a), class: "btn btn-primary" %>
+                                    <%= link_to "เช็คบิล", edit_restuarant_path(a), class: "btn btn-primary" %>
                                     <i class="fa fa-ellipsis-v"></i>
                                     <%= link_to 'ลบข้อมูลโต๊ะ', table_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบโต๊ะ?' }  %>
                                     <i class="fa fa-ellipsis-v"></i>

@@ -1,13 +1,14 @@
 <hr>
-    <div class="panel panel-primary bigmshoadow" > 
+    <div class="panel panel-primary bigmshoadow" >
         <div class="panel-heading gradient">
        		<div class="col-md-6">
-			<h3 style=" margin-top: 2%;"><i class="fa fa-beer">&nbsp;</i> 
-      		เครื่องดื่มทั้งหมด
+			<h3 style=" margin-top: 2%;"><i class="fa fa-usd">&nbsp;</i> 
+      		ส่วนลด-โปรโมชั่น
         	</h3>
        </div>
              <div class="text-right">
-             	<button  type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> <i class="fa fa-search-plus"></i> เพิ่มเมนู</button>
+             	<button  type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-search-plus"></i>
+                เพิ่มส่วนลด</button>
             </div>
         </div>
         <div class="panel-body ">
@@ -19,32 +20,32 @@
 			      <tr>
 			        <th>ลำดับ</th>
 			        <th>ชื่อ</th>
-			        <th>ราคา/บาท</th>
+			        <th>อัตราส่วนลด(%)</th>
 		        			     
 			      </tr>
 			    </thead>
 
 			    <tbody>
-			      <% @drinking.each_with_index do |f, i| %>
+			      <% @promotion.each_with_index do |f, i| %>
 				      <tr>
 				        	 		 
 			              		<td><%= i + 1 %></td>
-						        <td><%= f.drinking_name %></td>
-						        <td><%= f.drinking_price %></td>
-						        <td><%= link_to edit_drinking_path(f), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
+						        <td><%= f.promotion_name %></td>
+						        <td><%= f.promotion_discount %></td>
+						        <td><%= link_to edit_promotion_path(f), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
                     <%end%></td>
-						        <td><%= link_to drinking_path(f),method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+						        <td><%= link_to promotion_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
                 class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
                     <%end%></td>
 			          <%end%>
 				      </tr>
-			  </tbody> 
+			  </tbody>
 			</table>
   </div>
      	</div>
      	</div>
 
-<%= form_for(@drinkings, url: drinking_url, method: :patch) do |f| %>
+<%= form_for(@promotions, url: promotion_url, method: :patch) do |f| %>
 
 <!-- Modal -->
 <form>
@@ -55,22 +56,22 @@
       <div class="modal-header">
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-        <h4 class="modal-title" id="myModalLabel">เพิ่มเมนู</h4>
+        <h4 class="modal-title" id="myModalLabel">เพิ่มโปรโมชัน</h4>
 
      </div>
       <div class="modal-body">
   <div class="form-group">
-   <label>ชื่อเมนู</label>
-    <input type="text" class="form-control" name="drinking_name">
+   <label>ชื่อโปรโมชัน</label>
+    <input type="text" class="form-control" name="promotion_name">
  </div>
   <div class="form-group">
   	<div class="input-group">
-   	<label>ราคา.-</label>
+   	<label>ส่วนลด</label>
           <div class="input-group">
 
-         <input type="text" class = "form-control" name= "drinking_price">
+         <input type="text" class = "form-control" name= "promotion_discount">
 
-          <div class="input-group-addon">บาท.-</div>
+          <div class="input-group-addon">เปอร์เซ็นต์</div>
 
          </div>
   </div>
@@ -79,7 +80,7 @@
 
       <div class="modal-footer">
 
-        <%= f.submit "เพิ่มเมนู",class: "btn btn-success" %>
+        <%= f.submit "ยืนยัน",class: "btn btn-success" %>
 
      </div>
 
@@ -90,3 +91,4 @@
 
 </form>
 <%end%>
+

@@ -1,0 +1,32 @@
+<%= form_for(@promotion, url: update_promotion_promotion_url, method: :patch) do |f| %>
+<hr>
+    <div class="panel panel-primary bigmshoadow" >
+      <div class="panel-heading gradient"><h3><i class="fa fa-pencil-square-o" ></i> แก้ไขส่วนลด-โปรโมชั่น</h3>  
+      </div>
+        <div class="panel-body ">
+         <div class="form-horizontal">
+      
+           <div class="form-group">
+            <%= f.label "ชื่อโปรโมชั่น : ", class: "col-sm-2 control-label"%>
+          <div class="col-sm-3">
+          <%= f.text_field :promotion_name, class: "form-control" %>
+        </div>
+      </div>
+
+       <div class="form-group">
+            <%= f.label "ส่วนลด : ", class: "col-sm-2 control-label"%>
+          <div class="col-sm-3">
+          <%= f.text_field :promotion_discount, class: "form-control" %>
+        </div>
+      </div>
+
+           <div class="form-group">
+            	<div class="col-sm-offset-2 col-sm-10">
+                	<%= f.submit "ยืนยัน",class: "btn btn-success" %>
+              	</div>
+          </div>  
+    	</div> 
+  	</div>
+  	</div
+
+<% end %>

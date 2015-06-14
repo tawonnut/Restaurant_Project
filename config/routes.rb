@@ -59,7 +59,11 @@ patch 'update_dish'
   end
 end
 
-
+resources :promotions do
+  member do
+  patch 'update_promotion'
+  end
+end
 
 resource :users, only: [:edit, :update, :new]
   

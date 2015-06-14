@@ -21,8 +21,6 @@ class RestuarantsController < ApplicationController
   end
 
   def edit
-    @restuarant_show = Restuarant.find(params[:id])
-    @restuarant_user = Restuarant.where(user_id: current_user.id).all 
   end
 
   def index
