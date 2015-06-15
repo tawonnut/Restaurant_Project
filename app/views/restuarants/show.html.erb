@@ -1,6 +1,5 @@
 <%= form_for(@table, url: tables_url, method: :post) do |f| %>    
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -31,13 +30,33 @@
 </div>    
 </div> 
 <%end%>
+<div class="row">
+  <div class="col-sm-4 text-left">
+        <button class="btn btn-primary" type="button">
+           ร้าน <span class="badge"><h4><%= @restuarant_show.restuarant_name%></h4></span>
+        </button>
+  </div>     
 
-<div><h2>ร้าน <%= @restuarant_show.restuarant_name %></h2> </div>
+
+<div class="col-sm-4 text-center">
+          <button class="btn btn-primary"  type="button">
+           วันที่ <span class="badge"><h4> 15 มิถุนายน 2558</h4></span>
+        </button>
+</div>
+
+<div class="col-sm-4 text-right">
+        <button class="btn btn-primary" type="button">
+           พนักงาน <span class="badge"><h4> <%= current_user.name%> <%= current_user.surname%> </h4></span>
+        </button>
+</div>
+</div>
+<hr>
+
 
   
     <% @table_show.each_with_index do |a, i| %>
       <div class="col-sm-3 text-center">
-        <button class="btn btn-success" type="button">
+        <button class="btn btn-info" type="button">
            โต๊ะที่ <span class="badge"><%= i+1 %></span>
         </button>
         <%=link_to( image_tag("table.jpg"), menu_list_path(a)) %><br>
