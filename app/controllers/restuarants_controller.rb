@@ -24,6 +24,7 @@ class RestuarantsController < ApplicationController
   end
 
   def index
+    @restuarant= Restuarant.new
     @user = User.where(_id: current_user.id) 
     @user.update(current_restuarant: nil)  
     @restuarants= Restuarant.where(user_id: current_user.id).all
