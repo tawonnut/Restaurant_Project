@@ -66,6 +66,9 @@ class MenuListsController < ApplicationController
         end 
   end
 
+  def payment
+  end
+
   # def menu_lists
   # 	@drinking = Drinking.all
   # 	@dessert = Dessert.all
@@ -75,5 +78,7 @@ class MenuListsController < ApplicationController
   def create_params
     params.require(:menu_list).permit(:menu,:value,:remark,:menu_type,:table_id,:menu_price)
   end
+
+
 
 end

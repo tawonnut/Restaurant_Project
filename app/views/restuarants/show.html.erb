@@ -1,5 +1,3 @@
-
-
 <%= form_for(@table, url: tables_url, method: :post) do |f| %>    
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -7,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         เพิ่มโต๊ะ
-     </div>
+      </div>
       <div class="modal-body">
           <div class="form-horizontal">
       
@@ -27,7 +25,7 @@
             </div>
 
           </div>       
-   </div>
+      </div>
 
   </div>
 </div>    
@@ -36,41 +34,14 @@
 
 <div><h2>ร้าน <%= @restuarant_show.restuarant_name %></h2> </div>
 
-        <div class="container">
-                <div class="panel bg-body">
-
-                    <div class="panel-heading bg-header">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>หมายเลขโต๊ะ</th>
-                                <th>Table ID.</th>
-                                <th>การจัดการ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                <% @table_show.each_with_index do |a, i| %>
-                            <tr>
-                                <td><%= i + 1 %></td>
-                                <td><%=a.id%></td>
-                                <td>
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <%= link_to "สั่งอาหาร", menu_list_path(a), class: "btn btn-success" %>
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <%= link_to "เช็คบิล", edit_restuarant_path(a), class: "btn btn-primary" %>
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <%= link_to 'ลบข้อมูลโต๊ะ', table_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบโต๊ะ?' }  %>
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <%end%>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-
+  
+    <% @table_show.each_with_index do |a, i| %>
+      <div class="col-sm-3 text-center">
+        <button class="btn btn-success" type="button">
+           โต๊ะที่ <span class="badge"><%= i+1 %></span>
+        </button>
+        <%=link_to( image_tag("table.jpg"), menu_list_path(a)) %><br>
+        <%= link_to 'ลบข้อมูลโต๊ะ', table_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบโต๊ะ?' }  %> 
+        <hr>                  
+      </div>  
+    <%end%>
