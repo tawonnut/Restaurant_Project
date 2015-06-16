@@ -1,1 +1,52 @@
-eiei
+<center><h4>สรุปยอดสั่งอาหารและเครื่องดื่ม</h4></center>
+<hr>
+<p>
+  <h4>ร้าน : </h4>
+  <h4>โต๊ะ : </h4>                                               
+  <h4>ชื่อพนักงาน :  <%= current_user.name%> <%= current_user.surname%> </h4>
+  <h4>วันที่/เวลา : </h4>
+</p>
+<hr>
+
+<div ng-controller="Delete_menu">
+<div  id="show_dish">
+  <div  id="show_dish1">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>รายการอาหาร<h4></div>
+        <div class="panel-body">
+          <table class="table table-striped" id="show_data1">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>ชื่ออาหาร</th>
+              <th>จำนวน</th>
+              <th>ราคา/บาท</th>
+              <th>เป็นเงิน(บาท)</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @show_dish.each_with_index do |a, i| %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><%=a.menu%></td>
+                <td><%=a.value%></td>
+                <td><%=a.menu_price.to_f%></td>
+                <td>
+                
+                </td>
+              </tr>
+              </div>
+              <%end%>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+ </div>
+ <hr>
+
+<p>
+  <h4>รวม 1 รายการ    9999 บาท</h4>
+  <h4>ส่วนลด 10 % ชื่อโปรโมชัน  90 บาท</h4>                                               
+  <h4>รวมสุทธิ  8000  บาท</h4>
+</p>

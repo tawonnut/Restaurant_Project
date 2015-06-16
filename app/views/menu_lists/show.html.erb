@@ -3,11 +3,9 @@
     <font size = "+3">รายการอาหาร
     </font>
   </div>
-  
-    <div class="col-sm-6 text-right">
-     <button type="button" class="btn btn-success"> <i class="fa fa-pencil-square-o"></i>
-      &nbsp;เช็คบิล&nbsp;
-    </button>
+    <div class="col-sm-6 text-center">
+    <%= link_to payment_menu_list_path, class: 'btn btn-success' do %><i class="fa fa-btc" ></i> เช๊คบิล
+                    <%end%>                      
     <div class="col-sm-6 text-center">
     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>
       &nbsp;สั่งอาหาร&nbsp;
@@ -21,7 +19,7 @@
 <div  id="show_dish">
   <div  id="show_dish1">
     <div class="panel panel-default">
-      <div class="panel-heading"><h4>อาหารคาว<h4></div>
+      <div class="panel-heading"><h4>เมนูอาหาร<h4></div>
         <div class="panel-body">
           <table class="table table-striped" id="show_data1">
             <thead>
@@ -156,7 +154,7 @@
         <div class="panel panel-default listingshoadow">
           <div role="tabpanel">
             <ul class="nav nav-tabs  nav-justified gradient1 border-listing " role="tablist">
-              <li role="presentation" class="active"><a href="#carousel" aria-controls="carousel" role="tab" data-toggle="tab">อาหารคาว</a></li>
+              <li role="presentation" class="active"><a href="#carousel" aria-controls="carousel" role="tab" data-toggle="tab">เมนูอาหาร</a></li>
               <li role="presentation"><a href="#banner_search" aria-controls="banner_search" role="tab" data-toggle="tab">อาหารหวาน</a></li>
               <li role="presentation"><a href="#banner_listing" aria-controls="banner_listing" role="tab" data-toggle="tab">เครื่องดื่ม</a></li>
             </ul>

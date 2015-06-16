@@ -73,10 +73,10 @@ resource :users, only: [:edit, :update, :new]
     get 'drinking'
     get 'dessert'
     get 'show'
-    get 'payment'
    end
   member do
     patch 'create_menu'
+    get 'payment'
   end
 end
   

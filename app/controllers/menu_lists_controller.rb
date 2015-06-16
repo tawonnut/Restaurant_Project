@@ -67,6 +67,11 @@ class MenuListsController < ApplicationController
   end
 
   def payment
+    @table = Table.find(params[:id])
+    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว")
+    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน")
+    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม")
+  
   end
 
   # def menu_lists

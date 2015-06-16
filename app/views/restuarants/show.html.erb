@@ -32,9 +32,9 @@
 <%end%>
 <div class="row">
   <div class="col-sm-4 text-left">
-    <button class="btn btn-primary"  type="button">
-        ร้าน  <span class="badge"><h5><%= @restuarant_show.restuarant_name%> </h5></span>
-    </button>
+    <h3> ร้าน: <%= @restuarant_show.restuarant_name %> </h3>
+     <h3> พนักงาน: <%= current_user.name%> <%= current_user.surname%>  </h3>
+    
         
   </div>     
 
@@ -70,4 +70,3 @@
         <hr>                  
       </div>  
     <%end%>
-
