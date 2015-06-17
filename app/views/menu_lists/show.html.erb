@@ -1,20 +1,19 @@
 <div class="row">
-  <div class="col-sm-6">
-    <font size = "+3">รายการอาหาร
-    </font>
-  </div>
-    <div class="col-sm-6 text-center">
-    <%= link_to payment_menu_list_path, class: 'btn btn-success' do %><i class="fa fa-btc" ></i> เช๊คบิล
-                    <%end%>                      
-    <div class="col-sm-6 text-center">
-    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>
+  <div class="col-sm-3 text-left">
+    <button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>
       &nbsp;สั่งอาหาร&nbsp;
     </button>
-    </div>
   </div>
-
+  <div class="col-md-3 col-md-offset-6 text-rigth">
+    <%= link_to payment_menu_list_path, class: 'btn btn-success btn-lg btn-block' do %><i class="fa fa-btc" ></i> เช๊คบิล
+    <%end%>                      
+  </div>
+</div>
 <hr>
-
+  <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
+  <%= f.collection_select :promotion_discount,Promotion.where(restuarant_id: current_user.current_restuarant),:promotion_discount,:promotion_name %>
+  <%= f.submit "check bill",class: "btn btn-success" %>
+  <%end%>
 <div ng-controller="Delete_menu">
 <div  id="show_dish">
   <div  id="show_dish1">

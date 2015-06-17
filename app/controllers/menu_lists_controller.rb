@@ -4,6 +4,7 @@ class MenuListsController < ApplicationController
   end 
   
   def show
+    @promotion = Promotion.new
     @table = Table.find(params[:id])
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว")
     @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน")
@@ -67,11 +68,18 @@ class MenuListsController < ApplicationController
   end
 
   def payment
+
+    require "pp"
+    @promotion_discount = params[:promotion][:promotion_discount]
     @table = Table.find(params[:id])
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว")
     @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน")
     @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม")
-  
+    price_dish = @show_dish.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
+    price_dessert = @show_dessert.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
+    price_drink = @show_drink.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
+    @total = price_dish+price_dessert+price_drink
+    @promotion = (@total.to_f * @promotion_discount.to_f)/100
   end
 
   # def menu_lists

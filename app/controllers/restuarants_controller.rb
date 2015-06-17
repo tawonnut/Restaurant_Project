@@ -35,6 +35,8 @@ class RestuarantsController < ApplicationController
 def create
     @restuarant = Restuarant.new(restuarant_params)
     if @restuarant.save
+      @promotion = Promotion.new(promotion_name: "ไม่มีส่วนลด",promotion_discount: 100,restuarant_id: @restuarant.id)
+      @promotion.save
       @restuarant.create_owner(current_user.id,@restuarant.id)
       flash[:notice] = "สร้างร้านใหม่เรียบร้อยแล้ว"
       redirect_to restuarants_path

@@ -1,10 +1,10 @@
 <center><h4>สรุปยอดสั่งอาหารและเครื่องดื่ม</h4></center>
 <hr>
 <p>
-  <h4>ร้าน : </h4>
-  <h4>โต๊ะ : </h4>                                               
+  <h4>ร้าน : <%= @table.restuarant.restuarant_name %> </h4>
+  <h4>โต๊ะ : <%= @table.table_number %> </h4>                                               
   <h4>ชื่อพนักงาน :  <%= current_user.name%> <%= current_user.surname%> </h4>
-  <h4>วันที่/เวลา : </h4>
+  <h4>วันที่/เวลา : <%= Time.new %></h4>
 </p>
 <hr>
 
@@ -31,26 +31,27 @@
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
                 <td><%=a.menu_price.to_f %></td>
-                <td>
-                </td>
+                <td><%=a.menu_price.to_f * a.value %></td>
               </tr> 
               <%end%>
-               <%= i = @show_dish.length %>
+               <% i = @show_dish.length %>
                <% @show_dessert.each_with_index do |f| %>
                <tr>
                <td><%= i + 1 %></td>
                <td><%=f.menu%></td>
                <td><%=f.value%></td>
                <td><%=f.menu_price.to_f %></td>
+               <td><%=f.menu_price.to_f * f.value %></td>
                </tr>
                <%end%>
-                <%= i = @show_dish.length + 1 %>
+                <% i = @show_dish.length + 1 %>
                <% @show_drink.each_with_index do |d| %>
                <tr>
                <td><%= i + 1 %></td>
                <td><%=d.menu%></td>
                <td><%=d.value%></td>
                <td><%=d.menu_price.to_f%></td>
+               <td><%=d.menu_price.to_f * d.value %></td>               
                </tr>
               <%end%>
               <tr>
@@ -60,14 +61,22 @@
               </tbody>
           </table>
           <div class = "col-sm-6 col-sm-offset-8">
-              รวม
+              รวม <%= @total %> บาท
           </div>
           <div class = "col-sm-6 col-sm-offset-8">
-            ส่วนลด
+          <% if @promotion_discount.to_i == 100 %>
+            ส่วนลด  0%     บาท
+          <% else %>  
+            ส่วนลด <%= @promotion_discount %> % 
+          <%end%>  
           </div>
           <br>
           <div class = "col-sm-6 col-sm-offset-8">
-            รวมสุทธิ
+          <% if @promotion_discount.to_i == 100 %>
+           รวมสุทธิ <%= @total%>   บาท
+          <% else %>  
+            รวมสุทธิ <%= @total - @promotion %>  บาท
+          <%end%>  
           </div>
         </div>
       </div>

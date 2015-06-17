@@ -7,13 +7,16 @@ class TablesController < ApplicationController
 	end
 
 	def create
+		table = Table.where(restuarant_id: current_user.current_restuarant)
+		table = table.length + 1
 		@table = params[:table].to_i
 		for i in 1..@table
-	    @table = Table.new(table_number: "N/A",restuarant_id: current_user.current_restuarant)
-	    @table.save
-  	end
-  	flash[:notice] = "สร้างโต๊ะเรียบร้อยเเล้ว"
-	  redirect_to restuarant_path(current_user.current_restuarant)
+	    	@table = Table.new(table_number: table.to_i,restuarant_id: current_user.current_restuarant)
+	    	@table.save
+	    	table = table.to_i + 1
+  		end
+  		flash[:notice] = "สร้างโต๊ะเรียบร้อยเเล้ว"
+	  	redirect_to restuarant_path(current_user.current_restuarant)
   end
 
   def destroy
