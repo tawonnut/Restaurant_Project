@@ -1,5 +1,7 @@
 class RestuarantsController < ApplicationController
 
+
+
   def new
     @restuarant= Restuarant.new
   end
@@ -109,5 +111,7 @@ end
   end
 
 
+
+  
 end
 

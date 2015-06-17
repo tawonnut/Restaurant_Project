@@ -14,7 +14,7 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h4>รายการอาหาร<h4></div>
         <div class="panel-body">
-          <table class="table table-striped" id="show_data1">
+          <table class="table table-striped" id="show_datal">
             <thead>
             <tr>
               <th>#</th>
@@ -30,23 +30,48 @@
                 <td><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
-                <td><%=a.menu_price.to_f%></td>
+                <td><%=a.menu_price.to_f %></td>
                 <td>
-                
                 </td>
-              </tr>
-              </div>
+              </tr> 
               <%end%>
+               <%= i = @show_dish.length %>
+               <% @show_dessert.each_with_index do |f| %>
+               <tr>
+               <td><%= i + 1 %></td>
+               <td><%=f.menu%></td>
+               <td><%=f.value%></td>
+               <td><%=f.menu_price.to_f %></td>
+               </tr>
+               <%end%>
+                <%= i = @show_dish.length + 1 %>
+               <% @show_drink.each_with_index do |d| %>
+               <tr>
+               <td><%= i + 1 %></td>
+               <td><%=d.menu%></td>
+               <td><%=d.value%></td>
+               <td><%=d.menu_price.to_f%></td>
+               </tr>
+              <%end%>
+              <tr>
+              </tr>
+              
+              </div>  
               </tbody>
           </table>
+          <div class = "col-sm-6 col-sm-offset-8">
+              รวม
+          </div>
+          <div class = "col-sm-6 col-sm-offset-8">
+            ส่วนลด
+          </div>
+          <br>
+          <div class = "col-sm-6 col-sm-offset-8">
+            รวมสุทธิ
+          </div>
         </div>
       </div>
     </div>
  </div>
  <hr>
 
-<p>
-  <h4>รวม 1 รายการ    9999 บาท</h4>
-  <h4>ส่วนลด 10 % ชื่อโปรโมชัน  90 บาท</h4>                                               
-  <h4>รวมสุทธิ  8000  บาท</h4>
-</p>
