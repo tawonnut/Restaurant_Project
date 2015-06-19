@@ -1,6 +1,8 @@
 class Restuarant
   include Mongoid::Document
 
+   has_many :billings
+   has_many :report
    has_many :memberships
    belongs_to :user
    belongs_to :waiter

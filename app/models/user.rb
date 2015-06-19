@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
 
+  has_many :billings
    has_many :restuarants
    has_many :memberships
   # Include default devise modules. Others available are:

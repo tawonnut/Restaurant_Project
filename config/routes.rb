@@ -28,6 +28,11 @@ resources :restuarants do
     end
 end
 
+resources :billings do
+  collection do
+    get 'search_billing'
+  end
+end  
 resources :registers
 
 resources :waiters
@@ -77,6 +82,7 @@ resource :users, only: [:edit, :update, :new]
   member do
     patch 'create_menu'
     get 'payment'
+    get "clear_table"
   end
 end
   

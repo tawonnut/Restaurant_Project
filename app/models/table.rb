@@ -1,8 +1,10 @@
 class Table
   include Mongoid::Document
 
+  	  has_many :billings
  	has_many :menu_lists
     belongs_to :restuarant
+    belongs_to :promotion
 
  field :table_number, type: Integer
  field :restuarant_id, type: String

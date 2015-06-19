@@ -6,9 +6,9 @@ class MenuListsController < ApplicationController
   def show
     @promotion = Promotion.new
     @table = Table.find(params[:id])
-    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว")
-    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน")
-    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม")
+    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)
+    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil)
+    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil)
   end
 
   def create  
@@ -68,13 +68,16 @@ class MenuListsController < ApplicationController
   end
 
   def payment
-
     require "pp"
     @promotion_discount = params[:promotion][:promotion_discount]
+    promotion = Promotion.where(promotion_discount: @promotion_discount.to_i)
+    pp "askljdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddf"
+    pp promotion
     @table = Table.find(params[:id])
-    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว")
-    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน")
-    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม")
+    @table.update(promotion_id: promotion[0].id)
+    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)
+    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil)
+    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil)
     price_dish = @show_dish.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
     price_dessert = @show_dessert.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
     price_drink = @show_drink.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
@@ -82,11 +85,25 @@ class MenuListsController < ApplicationController
     @promotion = (@total.to_f * @promotion_discount.to_f)/100
   end
 
-  # def menu_lists
-  # 	@drinking = Drinking.all
-  # 	@dessert = Dessert.all
-  # 	@dish = Dish.all
-  # end
+  def clear_table
+    @table = Table.find(params[:id])
+    @billing = Billing.where(restuarant_id: @table.restuarant_id)
+
+    if @billing.length == 0
+      @billing = Billing.new(billing_number: "1",time: Time.new,promotion_id: @table.promotion_id,restuarant_id: @table.restuarant_id,table_id: @table.id,user_id: current_user.id,date: Date.today.strftime("%Y-%m-%d"))
+      @billing.save
+    else
+      @billing = Billing.new(billing_number: @billing.length.to_i+1,time: Time.new,promotion_id: @table.promotion_id,restuarant_id: @table.restuarant_id,table_id: @table.id,user_id: current_user.id,date: Date.today.strftime("%Y-%m-%d"))
+      @billing.save
+    end  
+
+    @menu = MenuList.where(table: @table.id.to_s,billing_id: nil)
+    @menu.each do |list|
+      list.update(billing_id: @billing.id)
+    end  
+    redirect_to menu_list_path(@table._id)
+
+  end
 
   def create_params
     params.require(:menu_list).permit(:menu,:value,:remark,:menu_type,:table_id,:menu_price)

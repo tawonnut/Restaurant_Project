@@ -1,16 +1,15 @@
+
 <center><h4>สรุปยอดสั่งอาหารและเครื่องดื่ม</h4></center>
 <hr>
 <p>
-  <h4>ร้าน : <%= @table.restuarant.restuarant_name %> </h4>
-  <h4>โต๊ะ : <%= @table.table_number %> </h4>                                               
-  <h4>ชื่อพนักงาน :  <%= current_user.name%> <%= current_user.surname%> </h4>
-  <h4>วันที่/เวลา : <%= Time.new %></h4>
+  <h4>ร้าน : <%= @billing.table.restuarant.restuarant_name %> </h4>
+  <h4>โต๊ะ : <%= @billing.table.table_number %> </h4>                                               
+  <h4>ชื่อพนักงาน :  <%= @billing.user.name%> <%= @billing.user.surname%> </h4>
+  <h4>วันที่/เวลา : <%= @billing.time %></h4>
 </p>
 <hr>
 
-<div ng-controller="Delete_menu">
-<div  id="show_dish">
-  <div  id="show_dish1">
+
     <div class="panel panel-default">
       <div class="panel-heading"><h4>รายการอาหาร<h4></div>
         <div class="panel-body">
@@ -25,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-              <% @show_dish.each_with_index do |a, i| %>
+              <% @show_menu.each_with_index do |a, i| %>
               <tr>
                 <td><%= i + 1 %></td>
                 <td><%=a.menu%></td>
@@ -34,28 +33,6 @@
                 <td><%=a.menu_price.to_f * a.value %></td>
               </tr> 
               <%end%>
-               <% i = @show_dish.length %>
-               <% @show_dessert.each_with_index do |f| %>
-               <tr>
-               <td><%= i + 1 %></td>
-               <td><%=f.menu%></td>
-               <td><%=f.value%></td>
-               <td><%=f.menu_price.to_f %></td>
-               <td><%=f.menu_price.to_f * f.value %></td>
-               </tr>
-               <%end%>
-                <% i = @show_dish.length + 1 %>
-               <% @show_drink.each_with_index do |d| %>
-               <tr>
-               <td><%= i + 1 %></td>
-               <td><%=d.menu%></td>
-               <td><%=d.value%></td>
-               <td><%=d.menu_price.to_f%></td>
-               <td><%=d.menu_price.to_f * d.value %></td>               
-               </tr>
-              <%end%>
-              <tr>
-              </tr>
               
               </div>  
               </tbody>
@@ -79,9 +56,6 @@
           <%end%>  
           </div>
         </div>
-      </div>
-    </div>
- </div>
  <hr>
 
-     <%= link_to 'ลบข้อมูลโต๊ะ',  clear_table_menu_list_path, class: "btn btn-danger" , data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }  %> 
+    

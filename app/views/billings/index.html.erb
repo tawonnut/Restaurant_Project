@@ -1,0 +1,56 @@
+<%= form_tag( search_billing_billings_path,method: :get) do |f| %>
+<input type="hidden"  name="check" value="1">
+  <div class="form-group"> 
+    <%= label_tag "Date","วันที่ :", class: "col-sm-2 control-label" %>
+      <div class="col-sm-3">
+       <%= text_field_tag 'date_start',Date.today.strftime("%Y-%m-%d"),readonly: true, id: 'today_date_picked',class: "form-control"%>
+      </div>
+      <div class="col-sm-0.1"> 
+        <button type="button" class="btn btn-warning show-datepicker" data-target="#today_date_picked" class= "form-control">
+        <span class="fa fa-calendar"></span>
+        </button>
+      </div> 
+  </div>
+
+
+    <div class="form-group"> 
+    <%= label_tag "Date","วันที่ :", class: "col-sm-2 control-label" %>
+      <div class="col-sm-3">
+       <%= text_field_tag 'date_end',Date.today.strftime("%Y-%m-%d"),readonly: true, id: 'today_date_picked2',class: "form-control"%>
+      </div>
+      <div class="col-sm-0.1"> 
+        <button type="button" class="btn btn-warning show-datepicker" data-target="#today_date_picked2" class= "form-control">
+        <span class="fa fa-calendar"></span>
+        </button>
+      </div> 
+  </div>
+
+  <button class="btn btn-success" type="submit" ><i class="fa fa-search"></i> ค้นหา</button>
+<%end%>
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>เมนูอาหาร<h4></div>
+        <div class="panel-body">
+          <table class="table table-striped" id="show_data1">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>billing_number</th>
+              <th>วันที</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @billing.each_with_index do |a, i| %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><%=a.billing_number%></td>
+                <td><%=a.date%></td>
+                <td><%= link_to "see", billing_path(a)%>
+              </tr>
+              </div>
+              <%end%>
+              </tbody>
+          </table>
+        </div>
+      </div>

@@ -2,18 +2,17 @@ class MenuList
   include Mongoid::Document
 
   belongs_to :table
-
+  belongs_to :billing
 
   field :menu_type,    type: String
   field :menu,         type: String
   field :menu_price,   type: Integer
   field :value,        type: Integer,default: 1
   field :remark,   	   type: String
-  field :table_id,        type: String
+  field :table_id,     type: String
 
   validates :menu,           presence: {message: "ที่อยู่: ยังไม่ได้กรอก กรุณากรอกใหม่"}
 
-  
   def ng_json
     {
       id: self.id.to_s,
