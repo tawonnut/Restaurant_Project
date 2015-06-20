@@ -1,7 +1,14 @@
 class BillingsController < ApplicationController
 
 	def index
-		@billing = Billing.where(restuarant_id: current_user.current_restuarant)
+		date_start = params[:date_start]
+		date_end = params[:date_end]
+
+		if date_start != nil && date_end !=nil
+			@billing = Billing.where(:date.gte => date_start, :date.lte => date_end)
+		else
+			@billing = Billing.where(restuarant_id: current_user.current_restuarant)
+		end
 
 	end
 
@@ -11,9 +18,5 @@ class BillingsController < ApplicationController
 		@total = @show_menu.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
 		@promotion = (@total.to_f * @promotion_discount.to_f)/100
 	end
-
-	def search_billing
-		
-	end	
 
 end

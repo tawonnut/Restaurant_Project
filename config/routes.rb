@@ -28,11 +28,8 @@ resources :restuarants do
     end
 end
 
-resources :billings do
-  collection do
-    get 'search_billing'
-  end
-end  
+resources :billings 
+
 resources :registers
 
 resources :waiters
