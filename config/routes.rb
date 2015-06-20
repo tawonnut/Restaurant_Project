@@ -67,6 +67,12 @@ resources :promotions do
   end
 end
 
+resources :bookings do
+  member do
+  patch 'update_booking'
+  end
+end
+
 resource :users, only: [:edit, :update, :new]
   
  resources :tables

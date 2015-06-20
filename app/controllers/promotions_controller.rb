@@ -9,7 +9,7 @@ def new
     @restuarant_user = Restuarant.where(user_id: current_user.id) 
     @restuarant= Restuarant.find(params[:id])
     @promotion = Promotion.where(restuarant_id: @restuarant.id)
-    @promotions = Dish.new
+    @promotions = Promotion.new
   end
 
   def edit
