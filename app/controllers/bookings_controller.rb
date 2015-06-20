@@ -27,9 +27,9 @@ class BookingsController < ApplicationController
     end
   end
 
-  def update_promotion
+  def update_booking
       @booking = Booking.find(params[:id])
-      @restuarant = Restuarant.where(_id: @promotion.restuarant_id)
+      @restuarant = Restuarant.where(_id: @booking.restuarant_id)
     if @booking.update(booking_name: params[:booking][:booking_name],booking_time: params[:booking][:booking_time])
       flash[:notice] = "เปลี่ยนแปลงการจองเรียบร้อยแล้ว"
       redirect_to booking_path(@restuarant[0].id)
@@ -41,9 +41,9 @@ class BookingsController < ApplicationController
 
   def destroy
       @booking = Booking.find(params[:id])
-      @restuarant = Restuarant.where(_id: @promotion.restuarant_id)
+      @restuarant = Restuarant.where(_id: @booking.restuarant_id)
       @booking.destroy
-      flash[:notice] = "ลบโปรโมชันเรียบร้อยแล้ว"
+      flash[:notice] = "ลบข้อมูลการจองเรียบร้อยแล้ว"
       redirect_to booking_path(@restuarant[0].id)
 
   end
