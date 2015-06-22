@@ -1,11 +1,17 @@
 <center><h4>สรุปยอดสั่งอาหารและเครื่องดื่ม</h4></center>
 <hr>
-<p>
-  <h4>ร้าน : <%= @table.restuarant.restuarant_name %> </h4>
-  <h4>โต๊ะ : <%= @table.table_number %> </h4>                                               
-  <h4>ชื่อพนักงาน :  <%= current_user.name%> <%= current_user.surname%> </h4>
-  <h4>วันที่/เวลา : <%= Time.new %></h4>
-</p>
+<div class="row">
+  <div class="col-sm-4 text-left">
+    ร้าน : <%= @table.restuarant.restuarant_name %> <br>
+    โต๊ะ : <%= @table.table_number %> <br>
+    ชื่อพนักงาน :  <%= current_user.name%> <%= current_user.surname%> <br>
+    วันที่/เวลา : <%= Time.new %>
+  </div>
+  
+  <div class="col-sm-7 text-right">
+    <%= link_to( image_tag("print.jpg",width:'100' ,height:'100'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
+  </div>
+</div>
 <hr>
 
 <div ng-controller="Delete_menu">
@@ -64,7 +70,7 @@
               รวม <%= @total %> บาท
           </div>
           <div class = "col-sm-6 col-sm-offset-8">
-          <% if @promotion_discount.to_i == 100 %>
+          <% if @promotion_discount.to_i == 0 %>
             ส่วนลด  0%     บาท
           <% else %>  
             ส่วนลด <%= @promotion_discount %> % 
@@ -72,7 +78,7 @@
           </div>
           <br>
           <div class = "col-sm-6 col-sm-offset-8">
-          <% if @promotion_discount.to_i == 100 %>
+          <% if @promotion_discount.to_i == 0 %>
            รวมสุทธิ <%= @total%>   บาท
           <% else %>  
             รวมสุทธิ <%= @total - @promotion %>  บาท
@@ -83,5 +89,4 @@
     </div>
  </div>
  <hr>
-
-     <%= link_to 'ลบข้อมูลโต๊ะ',  clear_table_menu_list_path, class: "btn btn-danger" , data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }  %> 
+ 

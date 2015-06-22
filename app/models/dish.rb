@@ -5,7 +5,7 @@ class Dish
 
 
    field :dish_name,    type: String
-   field :dish_price,   type: Integer
+   field :dish_price,   type: String
 
 
    validates :dish_name, presence: true

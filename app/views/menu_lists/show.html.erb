@@ -1,19 +1,33 @@
+ <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
+ <hr>
 <div class="row">
   <div class="col-sm-3 text-left">
     <button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>
       &nbsp;สั่งอาหาร&nbsp;
     </button>
   </div>
-  <div class="col-md-3 col-md-offset-6 text-rigth">
-    <%= link_to payment_menu_list_path, class: 'btn btn-success btn-lg btn-block' do %><i class="fa fa-btc" ></i> เช๊คบิล
-    <%end%>                      
+  <div class ="col-sm-6 text-center">
+    <%= link_to( image_tag("print.jpg",width:'120' ,height:'120'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
   </div>
+    <div class = "col-sm-3" align ="right">
+    <%= button_tag( :class => "btn btn-success btn-lg btn-block") do %>
+      <i class="fa fa-btc"></i>&nbsp;เช็คบิล 
+      <% end %>
+    <br>
+      <div class = "text-center">
+        <%= f.collection_select :promotion_discount,Promotion.where(restuarant_id: current_user.current_restuarant),:promotion_discount,:promotion_name %>
+      </div>
+    </div> 
+    <%end%>                      
 </div>
 <hr>
-  <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
-  <%= f.collection_select :promotion_discount,Promotion.where(restuarant_id: current_user.current_restuarant),:promotion_discount,:promotion_name %>
-  <%= f.submit "check bill",class: "btn btn-success" %>
-  <%end%>
+
+<div class = "text-left" style="font-size:large;">
+  ร้าน : <%= @table.restuarant.restuarant_name %> <br>
+  โต๊ะ :  <%= @table.table_number %> 
+</div>  
+<br>
+
 <div ng-controller="Delete_menu">
 <div  id="show_dish">
   <div  id="show_dish1">
@@ -23,6 +37,7 @@
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
+              <th>Print</th>
               <th>#</th>
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
@@ -34,10 +49,14 @@
           <tbody>
               <% @show_dish.each_with_index do |a, i| %>
               <tr>
+                <td>
+                  <label>
+                  <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                  </label></td>
                 <td><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
-                <td><%=a.menu_price.to_f*a.value.to_f%></td>
+                <td><%=BigDecimal(a.menu_price)*BigDecimal(a.value) %></td>
                 <td><%=a.remark%></td>
                 <td class="text-right">
                 <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
@@ -67,6 +86,7 @@
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
+              <th>Print</th>
               <th>#</th>
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
@@ -78,6 +98,10 @@
           <tbody>
               <% @show_drink.each_with_index do |a, i| %>
               <tr >
+                <td>
+                <label>
+                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                </label></td>
                 <td><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
@@ -108,6 +132,7 @@
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
+              <th>Print</th>
               <th>#</th>
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
@@ -119,6 +144,9 @@
           <tbody>
               <% @show_dessert.each_with_index do |a, i| %>
               <tr >
+               <label>
+                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                </label></td>
                 <td><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>

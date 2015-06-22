@@ -4,7 +4,7 @@ class Dessert
    belongs_to :restuarant
 
    field :dessert_name,    type: String
-   field :dessert_price,   type: Integer
+   field :dessert_price,   type: String
    validates :dessert_name, presence: true
 
 end

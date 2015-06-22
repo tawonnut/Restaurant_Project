@@ -32,16 +32,15 @@
 <%end%>
 <div class="row">
   <div class="col-sm-4 text-left">
-    <h3> ร้าน: <%= @restuarant_show.restuarant_name %> </h3>
-     <h3> พนักงาน: <%= current_user.name%> <%= current_user.surname%>  </h3>
-    
-        
+   <button class="btn btn-primary"  type="button">
+           ร้าน <span class="badge"><h5><%= @restuarant_show.restuarant_name %></h5></span>
+        </button>
   </div>     
 
 
 <div class="col-sm-4 text-center">
           <button class="btn btn-primary"  type="button">
-           วันที่ <span class="badge"><h5> 15 มิถุนายน 2558</h5></span>
+           วันที่/เวลา <span class="badge"><h5><%= Time.now %></h5></span>
         </button>
 </div>
 
@@ -64,9 +63,15 @@
         </div>
         <p>
         </p>
-        <%=link_to( image_tag("icon4.jpg",width:'160' ,height:'160'), menu_list_path(a)) %><br>
-
-        <%= link_to 'ลบข้อมูลโต๊ะ', table_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบโต๊ะ?' }  %> 
+        <%=link_to( image_tag("table.jpg",width:'120' ,height:'120'), menu_list_path(a)) %><br>
+        <p>
+        </p>
+        <% if current_user.super_user? %>
+         <%= link_to table_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบโต๊ะ
+                    <%end%>
+        <%end%>
+       
         <hr>                  
       </div>  
     <%end%> 

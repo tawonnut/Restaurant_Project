@@ -9,6 +9,7 @@ class MenuListsController < ApplicationController
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)
     @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil)
     @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil)
+ 
   end
 
   def create  
@@ -68,11 +69,9 @@ class MenuListsController < ApplicationController
   end
 
   def payment
-    require "pp"
+  
     @promotion_discount = params[:promotion][:promotion_discount]
     promotion = Promotion.where(promotion_discount: @promotion_discount.to_i)
-    pp "askljdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddf"
-    pp promotion
     @table = Table.find(params[:id])
     @table.update(promotion_id: promotion[0].id)
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)

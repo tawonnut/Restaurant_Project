@@ -13,7 +13,7 @@ class RestuarantsController < ApplicationController
     @restuarant_user = Restuarant.where(user_id: current_user.id)  
     @restuarants= Restuarant.where(user_id: current_user.id).all
     @table = Table.new
-    @table_show = Table.where(restuarant_id: @restuarant_show.id)
+    @table_show = Table.where(restuarant_id: @restuarant_show.id).order_by
   end
 
   def staff
@@ -35,7 +35,7 @@ class RestuarantsController < ApplicationController
 def create
     @restuarant = Restuarant.new(restuarant_params)
     if @restuarant.save
-      @promotion = Promotion.new(promotion_name: "ไม่มีส่วนลด",promotion_discount: 100,restuarant_id: @restuarant.id)
+      @promotion = Promotion.new(promotion_name: "ไม่มีส่วนลด",promotion_discount: 0,restuarant_id: @restuarant.id)
       @promotion.save
       @restuarant.create_owner(current_user.id,@restuarant.id)
       flash[:notice] = "สร้างร้านใหม่เรียบร้อยแล้ว"
