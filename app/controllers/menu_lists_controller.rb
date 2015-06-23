@@ -69,7 +69,6 @@ class MenuListsController < ApplicationController
   end
 
   def payment
-  
     @promotion_discount = params[:promotion][:promotion_discount]
     promotion = Promotion.where(promotion_discount: @promotion_discount.to_i)
     @table = Table.find(params[:id])
@@ -80,7 +79,7 @@ class MenuListsController < ApplicationController
     price_dish = @show_dish.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
     price_dessert = @show_dessert.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
     price_drink = @show_drink.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
-    @total = price_dish+price_dessert+price_drink
+    @total = BigDecimal.new(price_dish)+BigDecimal.new(price_dessert)+BigDecimal.new(price_drink)
     @promotion = (@total.to_f * @promotion_discount.to_f)/100
   end
 

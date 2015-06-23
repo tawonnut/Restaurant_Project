@@ -13,7 +13,7 @@ class RestuarantsController < ApplicationController
     @restuarant_user = Restuarant.where(user_id: current_user.id)  
     @restuarants= Restuarant.where(user_id: current_user.id).all
     @table = Table.new
-    @table_show = Table.where(restuarant_id: @restuarant_show.id).order_by
+    @table_show = Table.order_by.where(restuarant_id: @restuarant_show.id)
   end
 
   def staff

@@ -3,7 +3,14 @@
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
--->
+--> 
+<style>
+@media print{
+.no-print{ display:none;}
+}
+</style>
+
+<div class= "no-print">
 <html ng-app="terebinth-pos">
     <head>
         <meta charset="UTF-8">
@@ -11,8 +18,8 @@ and open the template in the editor.
           <%= stylesheet_link_tag    "application" %>
           <%= javascript_include_tag "application" %>
           <%= csrf_meta_tags %>
-
     </head>
+
     <body>
         <nav class="navbar navbar-static-top bg-nav">
             <div class="container-fluid">
@@ -95,6 +102,7 @@ and open the template in the editor.
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
+          </div> 
         </nav>
 
             <div class="container">
@@ -141,7 +149,7 @@ and open the template in the editor.
           </div>
         </div>
       </div>
- -->
+ --> 
     <%= yield :bottom %>
 
     </body>

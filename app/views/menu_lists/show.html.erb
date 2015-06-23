@@ -1,13 +1,23 @@
  <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
- <hr>
-<div class="row">
+ <style type="text/css">   
+  #printable { display: block; }  
+
+  @media print   
+  {   
+     #non-printable { display: none; }   
+     #printable { display: block; margin: 0px 0px 0px 0px; font-size: 14px;  }   
+  }   
+</style>
+
+ <hr id="non-printable">
+<div class="row" id="non-printable">
   <div class="col-sm-3 text-left">
     <button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>
       &nbsp;สั่งอาหาร&nbsp;
     </button>
   </div>
-  <div class ="col-sm-6 text-center">
-    <%= link_to( image_tag("print.jpg",width:'120' ,height:'120'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
+  <div class ="col-sm-6 text-center" onClick="window.print()">
+    <%= link_to( image_tag("print.jpg",width:'120' ,height:'120')) %>
   </div>
     <div class = "col-sm-3" align ="right">
     <%= button_tag( :class => "btn btn-success btn-lg btn-block") do %>
@@ -22,26 +32,26 @@
 </div>
 <hr>
 
-<div class = "text-left" style="font-size:large;">
-  ร้าน : <%= @table.restuarant.restuarant_name %> <br>
-  โต๊ะ :  <%= @table.table_number %> 
-</div>  
+<div style="font-size:large; text-align:center;" id="printable">
+ ร้าน : <%= @table.restuarant.restuarant_name %> <br>
+ โต๊ะ :  <%= @table.table_number %>
+  </div> 
 <br>
 
-<div ng-controller="Delete_menu">
+<div  id="printable" ng-controller="Delete_menu">
 <div  id="show_dish">
   <div  id="show_dish1">
     <div class="panel panel-default">
-      <div class="panel-heading"><h4>เมนูอาหาร<h4></div>
+      <div class="panel-heading"><h4 style="text-align:center;">เมนูอาหาร<h4></div>
         <div class="panel-body">
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
-              <th>Print</th>
-              <th>#</th>
+              <th id="non-printable">Print</th>
+              <th id="non-printable">#</th>
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
-              <th>ราคา/บาท</th>
+              <th id="non-printable">ราคา/บาท</th>
               <th>รายละเอียด</th>
               <th></th>
             </tr>
@@ -51,14 +61,14 @@
               <tr>
                 <td>
                   <label>
-                  <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                  <input type="checkbox" id="non-printable" value="option1" aria-label="...">
                   </label></td>
-                <td><%= i + 1 %></td>
+                <td id="non-printable"><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
-                <td><%=BigDecimal(a.menu_price)*BigDecimal(a.value) %></td>
+                <td id="non-printable"><%=BigDecimal(a.menu_price)*BigDecimal(a.value) %></td>
                 <td><%=a.remark%></td>
-                <td class="text-right">
+                <td class="text-right" id="non-printable">
                 <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
                     <%end%>                
                 <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
@@ -74,23 +84,22 @@
       </div>
     </div>
  </div>
-
-
+<hr>
 
 
 <div  id="show_drink">
   <div  id="show_drink1">
     <div class="panel panel-default">
-      <div class="panel-heading"><h4>เครื่องดื่ม<h4></div>
+      <div class="panel-heading"><h4 style="text-align:center;">เครื่องดื่ม<h4></div>
         <div class="panel-body">
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
-              <th>Print</th>
-              <th>#</th>
+              <th id="non-printable">Print</th>
+              <th id="non-printable">#</th>
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
-              <th>ราคา/บาท</th>
+              <th id="non-printable">ราคา/บาท</th>
               <th>รายละเอียด</th>
 
             </tr>
@@ -100,14 +109,14 @@
               <tr >
                 <td>
                 <label>
-                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                <input type="checkbox" id="non-printable" value="option1" aria-label="...">
                 </label></td>
-                <td><%= i + 1 %></td>
+                <td id="non-printable"><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
-                <td><%=a.menu_price.to_f*a.value.to_f%></td>
+                <td id="non-printable"><%=a.menu_price.to_f*a.value.to_f%></td>
                 <td><%=a.remark%></td>
-                <td class="text-right">
+                <td class="text-right" id="non-printable">
                 <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
                     <%end%> 
                 <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
@@ -122,21 +131,21 @@
       </div>
     </div>
  </div>   
-
+<hr>
 
  <div  id="show_dessert">
   <div  id="show_dessert1">
     <div class="panel panel-default">
-      <div class="panel-heading"><h4>อาหารหวาน<h4></div>
+      <div class="panel-heading"><h4 style="text-align: center;">อาหารหวาน<h4></div>
         <div class="panel-body">
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
-              <th>Print</th>
-              <th>#</th>
+              <th id="non-printable">Print</th>
+              <th id="non-printable">#</th>
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
-              <th>ราคา/บาท</th>
+              <th id="non-printable">ราคา/บาท</th>
               <th>รายละเอียด</th>
 
             </tr>
@@ -145,14 +154,14 @@
               <% @show_dessert.each_with_index do |a, i| %>
               <tr >
                <label>
-                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                <td><input type="checkbox" id="non-printable" value="option1" aria-label="...">
                 </label></td>
-                <td><%= i + 1 %></td>
+                <td id="non-printable"><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
-                <td><%=a.menu_price.to_f*a.value.to_f%></td>
+                <td id="non-printable"><%=a.menu_price.to_f*a.value.to_f%></td>
                 <td><%=a.remark%></td>
-                <td class="text-right">
+                <td class="text-right" id="non-printable">
                 <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
                     <%end%>                 
                 <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
@@ -169,7 +178,7 @@
     </div>
   </div>
 
-
+<div id="non-printable">
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg">
     <div class="modal-content">
@@ -222,11 +231,10 @@
                         <button type="button" class="btn btn-success" ng-click="menu_dish()" >ยืนยัน</button>
                       </div>  
                     </div>
-                          
-                  </div>  
+                           
                 </form>
               </div>
-
+          </div>
               <div role="tabpanel" class="tab-pane" id="banner_search">
                 <form class="form-horizontal">
                   <div ng-controller="ListingController1" > 
@@ -299,9 +307,8 @@
                       <div class="col-sm-offset-2 col-sm-10">
                         <button type="button" class="btn btn-success" ng-click="menu_drinking()">ยืนยัน</button>
                       </div>  
-                    </div>
-                          
-                  </div>  
+                    </div>  
+                  </div>
                 </form>
               </div>
           
@@ -309,14 +316,16 @@
           </div>  
         </div>
 
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal"> ปิด </button>
       </div>
+  </div>
     </div>
   </div>
 </div>
-
+<hr>
 <input type="hidden" id="table_id" value="<%= @table.id.to_json %>"/>
 <input type="hidden" id="dish_json" value="<%= @table.id.to_json %>">  
 <input type="hidden" id="dessert_json" value="<%= @table.id.to_json %>">  

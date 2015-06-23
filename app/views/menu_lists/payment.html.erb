@@ -4,7 +4,7 @@
   <div class="col-sm-4 text-left">
     ร้าน : <%= @table.restuarant.restuarant_name %> <br>
     โต๊ะ : <%= @table.table_number %> <br>
-    ชื่อพนักงาน :  <%= current_user.name%> <%= current_user.surname%> <br>
+    ชื่อพนักงาน : <%= current_user.name%> <%= current_user.surname%> <br>
     วันที่/เวลา : <%= Time.new %>
   </div>
   
@@ -37,7 +37,7 @@
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
                 <td><%=a.menu_price.to_f %></td>
-                <td><%=a.menu_price.to_f * a.value %></td>
+                <td><%=BigDecimal.new(a.menu_price) *BigDecimal.new(a.value) %></td>
               </tr> 
               <%end%>
                <% i = @show_dish.length %>
@@ -47,7 +47,7 @@
                <td><%=f.menu%></td>
                <td><%=f.value%></td>
                <td><%=f.menu_price.to_f %></td>
-               <td><%=f.menu_price.to_f * f.value %></td>
+               <td><%=BigDecimal.new(f.menu_price) * BigDecimal.new(f.value) %></td>
                </tr>
                <%end%>
                 <% i = @show_dish.length + 1 %>
@@ -57,7 +57,7 @@
                <td><%=d.menu%></td>
                <td><%=d.value%></td>
                <td><%=d.menu_price.to_f%></td>
-               <td><%=d.menu_price.to_f * d.value %></td>               
+               <td><%=BigDecimal.new(d.menu_price) * BigDecimal.new(d.value) %></td>               
                </tr>
               <%end%>
               <tr>
