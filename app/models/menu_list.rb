@@ -3,10 +3,12 @@ class MenuList
 
   belongs_to :table
   belongs_to :billing
+  belongs_to :kitchen
+  belongs_to :restuarant
 
   field :menu_type,    type: String
   field :menu,         type: String
-  field :menu_price,   type: Integer
+  field :menu_price,   type: Float
   field :value,        type: Integer,default: 1
   field :remark,   	   type: String
   field :table_id,     type: String

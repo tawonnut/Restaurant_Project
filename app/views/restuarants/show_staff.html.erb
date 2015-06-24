@@ -27,7 +27,7 @@
 			    <tbody>
 			      <% @membership.each_with_index do |f| %>
 				      <tr>
-				        <%if f.user.super_user %>	 		 
+				        <%if f.user.super_user? %>	 		 
 			              		
 						        <td><%= f.user.name %></td>
 						        <td><%= f.user.surname %></td>
@@ -43,7 +43,7 @@
 						        <td><%=  f.user.email %></td>
 						        <td><%=  f.user.tel %></td>
 						        <td><font color = green> พนักงาน </font></td>
-						        <td><%= link_to showuser_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+						        <td><%= link_to destroy_staff_restuarant_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
                 					class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ <%end%></td>
 		
 			          <%end%>

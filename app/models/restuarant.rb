@@ -13,6 +13,8 @@ class Restuarant
    has_many :tables
    has_many :promotions
    has_many :bookings
+   has_many :kitchens
+   belongs_to :menu_lists
    
    field :restuarant_name,    type: String
    field :user_id,      type: String

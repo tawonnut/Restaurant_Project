@@ -6,9 +6,9 @@ class DessertsController < ApplicationController
 	end
 
   def show
-    @restuarant_show = Restuarant.find(params[:id])
+    @restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
     @restuarant_user = Restuarant.where(user_id: current_user.id) 
-    @restuarant= Restuarant.find(params[:id])
+    @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @dessert = Dessert.where(restuarant_id: @restuarant.id)
     @desserts = Dessert.new
   end
@@ -18,7 +18,7 @@ class DessertsController < ApplicationController
   end
 
 	def update
-    @restuarant= Restuarant.find(params[:id])
+  @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @dessert = Dessert.new(dessert_name: params[:dessert_name],dessert_price: params[:dessert_price],restuarant_id: @restuarant.id)
     if @dessert.save
       flash[:notice] = "เพิ่มเมนูเรียบร้อยแล้ว"

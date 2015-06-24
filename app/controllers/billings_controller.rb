@@ -10,10 +10,10 @@ class BillingsController < ApplicationController
 			@billing = Billing.where(restuarant_id: current_user.current_restuarant)
 		end
 
-		respond_to do |format|
-      		format.html
-      		format.csv { send_data @users.to_csv, filename: "Reports-#{Date.today}.csv" }
-      	end
+		# respond_to do |format|
+  #     		format.html
+  #     		format.csv { send_data @users.to_csv, filename: "Reports-#{Date.today}.csv" }
+  #     	end
 	end
 
 	def show
@@ -23,4 +23,7 @@ class BillingsController < ApplicationController
 		@promotion = (@total.to_f * @promotion_discount.to_f)/100
 	end
 
+	def report
+		@report = MenuList.where(restuarant_id: current_user.current_restuarant)
+	end
 end

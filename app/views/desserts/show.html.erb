@@ -20,21 +20,17 @@
 			      <tr>
 			        <th>ลำดับ</th>
 			        <th>ชื่อ</th>
-			        <th>ราคา/บาท</th>
-		        			     
+			        <th>ราคา/บาท</th>		     
 			      </tr>
 			    </thead>
-
 			    <tbody>
 			      <% @dessert.each_with_index do |f, i| %>
-				      <tr>
-				        	 		 
+				      <tr> 
 			              		<td><%= i + 1 %></td>
 						        <td><%= f.dessert_name %></td>
 						        <td><%= f.dessert_price %></td>
 						        <td><%= link_to edit_dessert_path(f), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
-                    <%end%></td>
-						        <td><%= link_to dessert_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                    <%end%> <%= link_to dessert_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
                 class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
                     <%end%></td>
 			          <%end%>

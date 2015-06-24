@@ -1,14 +1,5 @@
+
  <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
- <style type="text/css">   
-  #printable { display: block; }  
-
-  @media print   
-  {   
-     #non-printable { display: none; }   
-     #printable { display: block; margin: 0px 0px 0px 0px; font-size: 14px;  }   
-  }   
-</style>
-
  <hr id="non-printable">
 <div class="row" id="non-printable">
   <div class="col-sm-3 text-left">
@@ -44,6 +35,7 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h4 style="text-align:center;">เมนูอาหาร<h4></div>
         <div class="panel-body">
+         <%= form_for(@promotion, url:  dish_kitchen_kitchens_url,method: :get) do |f| %>
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
@@ -61,12 +53,16 @@
               <tr>
                 <td>
                   <label>
-                  <input type="checkbox" id="non-printable" value="option1" aria-label="...">
+                  <% if a.kitchen_id == nil%>
+                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" >
+                  <%else%>
+                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
+                  <%end%>
                   </label></td>
                 <td id="non-printable"><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
-                <td id="non-printable"><%=BigDecimal(a.menu_price)*BigDecimal(a.value) %></td>
+                <td id="non-printable"><%=a.menu_price.to_f*a.value.to_f %></td>
                 <td><%=a.remark%></td>
                 <td class="text-right" id="non-printable">
                 <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
@@ -80,6 +76,10 @@
               <%end%>
               </tbody>
           </table>
+            <%= button_tag( :class => "btn btn-success btn-lg btn-block", :target=>"_blank" ) do %>
+            <i class="fa fa-btc"></i>&nbsp;Print
+            <% end %>
+          <%end%> 
         </div>
       </div>
     </div>
@@ -92,6 +92,7 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h4 style="text-align:center;">เครื่องดื่ม<h4></div>
         <div class="panel-body">
+         <%= form_for(@promotion, url:  drinking_kitchen_kitchens_url,method: :get) do |f| %>
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
@@ -108,9 +109,13 @@
               <% @show_drink.each_with_index do |a, i| %>
               <tr >
                 <td>
-                <label>
-                <input type="checkbox" id="non-printable" value="option1" aria-label="...">
-                </label></td>
+                  <label>
+                  <% if a.kitchen_id == nil%>
+                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" >
+                  <%else%>
+                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
+                  <%end%>
+                  </label></td>
                 <td id="non-printable"><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
@@ -127,6 +132,10 @@
               <%end%>
               </tbody>
           </table>
+            <%= button_tag( :class => "btn btn-success btn-lg btn-block", :target=>"_blank" ) do %>
+            <i class="fa fa-btc"></i>&nbsp;Print
+            <% end %>
+          <%end%> 
         </div>
       </div>
     </div>
@@ -138,6 +147,7 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h4 style="text-align: center;">อาหารหวาน<h4></div>
         <div class="panel-body">
+          <%= form_for(@promotion, url:  dessert_kitchen_kitchens_url,method: :get) do |f| %>
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
@@ -153,9 +163,14 @@
           <tbody>
               <% @show_dessert.each_with_index do |a, i| %>
               <tr >
-               <label>
-                <td><input type="checkbox" id="non-printable" value="option1" aria-label="...">
-                </label></td>
+                <td>
+                  <label>
+                  <% if a.kitchen_id == nil%>
+                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" >
+                  <%else%>
+                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
+                  <%end%>
+                  </label></td>
                 <td id="non-printable"><%= i + 1 %></td>
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
@@ -172,6 +187,10 @@
               <%end%>
               </tbody>
           </table>
+            <%= button_tag( :class => "btn btn-success btn-lg btn-block", :target=>"_blank" ) do %>
+            <i class="fa fa-btc"></i>&nbsp;Print
+            <% end %>
+          <%end%>           
         </div>
       </div>
     </div>

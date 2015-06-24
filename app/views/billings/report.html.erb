@@ -1,0 +1,31 @@
+
+        <table class="table table-striped" id="show_datal">
+            <thead>
+            <tr>
+              <th>billing_number</th>
+              <th>วันที่</th>
+              <th>พนักงาน</th>
+              <th>ชื่ออาหาร</th>
+              <th>จำนวน</th>
+              <th>ราคา/บาท</th>
+              <th>เป็นเงิน(บาท)</th>
+              <th>รวม</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @report.each_with_index do |a, i| %>
+              <tr>
+                <td><%=a.billing.billing_number %></td>
+                <td><%=a.billing.date%></td>
+                <td><%=a.billing.user.name%></td>
+                <td><%=a.menu%></td>
+                <td><%=a.value%></td>
+                <td><%=a.menu_price.to_f %></td>
+                <td><%=a.menu_price.to_f * a.value %></td>
+                <%= p%>
+              </tr> 
+              <%end%>
+              
+              </div>  
+              </tbody>
+          </table>

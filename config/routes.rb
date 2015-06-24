@@ -24,11 +24,16 @@ resources :restuarants do
       get 'add_dish'
       post 'add_staff'
       get 'show_staff'
+      delete 'destroy_staff'
       get 'report'
     end
 end
 
-resources :billings 
+resources :billings   do
+  collection do
+    get 'report'
+  end  
+end
 
 resources :registers
 
@@ -116,6 +121,14 @@ end
    resources :orders do 
  collection do
         get 'orders'
+    end
+  end
+
+  resources :kitchens do
+    collection do
+      get 'dish_kitchen'
+      get 'drinking_kitchen'
+      get 'dessert_kitchen'
     end
   end
 

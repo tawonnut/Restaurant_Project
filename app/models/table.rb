@@ -1,7 +1,8 @@
 class Table
   include Mongoid::Document
 
-  	  has_many :billings
+  	has_many :kitchens
+  	has_many :billings
  	has_many :menu_lists
     belongs_to :restuarant
     belongs_to :promotion

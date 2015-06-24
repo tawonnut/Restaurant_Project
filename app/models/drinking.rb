@@ -3,7 +3,7 @@ class Drinking
   belongs_to :restuarant
 
    field :drinking_name,    type: String
-   field :drinking_price,   type: String
+   field :drinking_price,   type: Float
    validates :drinking_name, presence: true
 
 end

@@ -5,9 +5,9 @@ class DishsController < ApplicationController
 	end
 
   def show
-    @restuarant_show = Restuarant.find(params[:id])
+    @restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
     @restuarant_user = Restuarant.where(user_id: current_user.id) 
-    @restuarant= Restuarant.find(params[:id])
+    @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @dish = Dish.where(restuarant_id: @restuarant.id)
     @dishs = Dish.new
   end
@@ -17,7 +17,7 @@ class DishsController < ApplicationController
   end
 
 	def update
-    @restuarant= Restuarant.find(params[:id])
+    @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @dish = Dish.new(dish_name: params[:dish_name],dish_price: params[:dish_price],restuarant_id: @restuarant.id)
     if @dish.save
       flash[:notice] = "เพิ่มเมนูเรียบร้อยแล้ว"

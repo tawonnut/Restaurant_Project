@@ -24,6 +24,7 @@ class RegistersController < ApplicationController
     @user.surname = "N/A"
     @user.tel = "N/A"
     @user.restuarant_id = id
+    @user.current_restuarant = id
     
 
 

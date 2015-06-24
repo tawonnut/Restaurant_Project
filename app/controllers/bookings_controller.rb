@@ -5,9 +5,9 @@ class BookingsController < ApplicationController
 	end
 
   def show
-    @restuarant_show = Restuarant.find(params[:id])
+    @restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
     @restuarant_user = Restuarant.where(user_id: current_user.id) 
-    @restuarant= Restuarant.find(params[:id])
+    @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @booking = Booking.where(restuarant_id: @restuarant.id)
     @bookings = Booking.new
   end
@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
   end
 
 	def update
-    @restuarant= Restuarant.find(params[:id])
+        @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @booking = Booking.new(booking_name: params[:booking_name],booking_time: params[:booking_time],restuarant_id: @restuarant.id)
     if @booking.save
       flash[:notice] = "เพิ่มรายการจองเรียบร้อยแล้ว"

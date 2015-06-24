@@ -11,9 +11,9 @@ class RestuarantsController < ApplicationController
     @user = User.where(_id: current_user.id) 
     @user.update(current_restuarant: @restuarant_show.id) 
     @restuarant_user = Restuarant.where(user_id: current_user.id)  
-    @restuarants= Restuarant.where(user_id: current_user.id).all
+    @restuarants = Restuarant.where(user_id: current_user.id)
     @table = Table.new
-    @table_show = Table.order_by.where(restuarant_id: @restuarant_show.id)
+    @table_show = Table.where(restuarant_id: @restuarant_show.id).order(table_number: "aesc")
   end
 
   def staff
@@ -54,7 +54,8 @@ def destroy
 end
 
 def add_staff
-    @restuarant= Restuarant.find(params[:id])
+    @restuarant = Restuarant.where(id: current_user.current_restuarant)
+    @restuarant = @restuarant[0]
     @user = User.new(email: params[:email],name: "N/A",surname: "N/A",tel: "N/A",
       password: "", password_confirmation:"")
     random_password = Devise.friendly_token
@@ -76,11 +77,21 @@ def add_staff
 end
 
   def show_staff
-     @restuarant= Restuarant.find(params[:id])
-     @membership= Membership.where(restuarant_id: @restuarant.id)
-     @restuarant_user = Restuarant.where(user_id: current_user.id).all 
-     @restuarant_show = Restuarant.find(params[:id])
+     @membership= Membership.where(restuarant_id: current_user.current_restuarant)
+     @restuarant_user = Restuarant.where(user_id: current_user.id) 
+     @restuarant_show = Restuarant.where(id: current_user.current_restuarant)
+     @restuarant_show = @restuarant_show[0]
   end  
+
+  def destroy_staff
+      @membership = Membership.find(params[:id])
+      @user = User.where(id: @membership.user_id)
+      @user.destroy
+      @membership.destroy
+      flash[:notice] = "ลบเรียบร้อยแล้ว"
+      redirect_to show_staff_restuarant_path
+  end
+
     
   def add_drinking
     @drinking= Restuarant.find(params[:id])

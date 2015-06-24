@@ -31,24 +31,16 @@
 </div> 
 <%end%>
 <div class="row">
-  <div class="col-sm-4 text-left">
+  <div class="col-sm-3 text-left">
    <button class="btn btn-primary"  type="button">
            ร้าน <span class="badge"><h5><%= @restuarant_show.restuarant_name %></h5></span>
         </button>
   </div>     
-
-
-<div class="col-sm-4 text-center">
+  <div class="col-sm-7 text-right">
           <button class="btn btn-primary"  type="button">
            วันที่/เวลา <span class="badge"><h5><%= Time.now %></h5></span>
         </button>
-</div>
-
-<div class="col-sm-4 text-right">
-        <button class="btn btn-primary" type="button">
-           พนักงาน <span class="badge"><h5> <%= current_user.name%> <%= current_user.surname%> </h5></span>
-        </button>
-</div>
+  </div>
 </div>
 <hr>
 

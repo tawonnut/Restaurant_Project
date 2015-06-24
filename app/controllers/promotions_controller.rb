@@ -5,9 +5,9 @@ def new
 	end
 
   def show
-    @restuarant_show = Restuarant.find(params[:id])
+    @restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
     @restuarant_user = Restuarant.where(user_id: current_user.id) 
-    @restuarant= Restuarant.find(params[:id])
+    @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @promotion = Promotion.where(restuarant_id: @restuarant.id)
     @promotions = Promotion.new
   end
@@ -17,7 +17,7 @@ def new
   end
 
 	def update
-    @restuarant= Restuarant.find(params[:id])
+    @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @promotion = Promotion.new(promotion_name: params[:promotion_name],promotion_discount: params[:promotion_discount],restuarant_id: @restuarant.id)
     if @promotion.save
       flash[:notice] = "เพิ่มโปรโมชั่นเรียบร้อยแล้ว"

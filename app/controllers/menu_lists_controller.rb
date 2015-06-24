@@ -6,6 +6,9 @@ class MenuListsController < ApplicationController
   def show
     @promotion = Promotion.new
     @table = Table.find(params[:id])
+    @restuarant_show = Restuarant.where(id: @table.restuarant_id)
+    @restuarant_show = @restuarant_show[0]
+    @restuarant_user = Restuarant.where(user_id: current_user.id)
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)
     @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil)
     @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil)
@@ -73,13 +76,13 @@ class MenuListsController < ApplicationController
     promotion = Promotion.where(promotion_discount: @promotion_discount.to_i)
     @table = Table.find(params[:id])
     @table.update(promotion_id: promotion[0].id)
-    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)
-    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil)
-    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil)
+    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil ,:kitchen.ne => nil)
+    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil,:kitchen.ne => nil)
+    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil,:kitchen.ne => nil)
     price_dish = @show_dish.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
     price_dessert = @show_dessert.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
     price_drink = @show_drink.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
-    @total = BigDecimal.new(price_dish)+BigDecimal.new(price_dessert)+BigDecimal.new(price_drink)
+    @total = price_dish + price_dessert + price_drink
     @promotion = (@total.to_f * @promotion_discount.to_f)/100
   end
 
@@ -95,9 +98,13 @@ class MenuListsController < ApplicationController
       @billing.save
     end  
 
-    @menu = MenuList.where(table: @table.id.to_s,billing_id: nil)
+    @menu = MenuList.where(table: @table.id.to_s,billing_id: nil,:kitchen.ne => nil)
+    @menu_clear = MenuList.where(table: @table.id.to_s,billing_id: nil)
     @menu.each do |list|
-      list.update(billing_id: @billing.id)
+      list.update(billing_id: @billing.id ,restuarant_id: current_user.current_restuarant)
+    end  
+    @menu_clear.each do |list|
+      list.destroy
     end  
     redirect_to menu_list_path(@table._id)
 

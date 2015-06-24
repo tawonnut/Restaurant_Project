@@ -1,0 +1,26 @@
+<% if @menu != nil%>
+        <table class="table table-striped" id="show_datal">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>ชื่ออาหาร</th>
+              <th>จำนวน</th>
+              <th>ราคา/บาท</th>
+              <th>เป็นเงิน(บาท)</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @menu.each_with_index do |a, i| %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><%=a.menu%></td>
+                <td><%=a.value%></td>
+                <td><%=a.menu_price.to_f %></td>
+                <td><%=a.menu_price.to_f * a.value %></td>
+              </tr> 
+              <%end%>
+              
+              </div>  
+              </tbody>
+          </table>
+<%end%>

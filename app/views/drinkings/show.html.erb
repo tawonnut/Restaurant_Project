@@ -19,22 +19,19 @@
 			      <tr>
 			        <th>ลำดับ</th>
 			        <th>ชื่อ</th>
-			        <th>ราคา/บาท</th>
-		        			     
+			        <th>ราคา/บาท</th>	     
 			      </tr>
 			    </thead>
 
 			    <tbody>
 			      <% @drinking.each_with_index do |f, i| %>
-				      <tr>
-				        	 		 
-			              		<td><%= i + 1 %></td>
+				      <tr> 		 
+			              <td><%= i + 1 %></td>
 						        <td><%= f.drinking_name %></td>
 						        <td><%= f.drinking_price %></td>
 						        <td><%= link_to edit_drinking_path(f), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
-                    <%end%></td>
-						        <td><%= link_to drinking_path(f),method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
-                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
+                    <%end%> <%= link_to drinking_path(f),method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                    class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
                     <%end%></td>
 			          <%end%>
 				      </tr>

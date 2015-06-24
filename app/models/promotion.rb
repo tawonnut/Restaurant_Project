@@ -7,5 +7,5 @@ class Promotion
 
   	field :promotion_id,    type: String
 	field :promotion_name,    type: String
-	field :promotion_discount, type: Integer 
+	field :promotion_discount, type: Float
 end
