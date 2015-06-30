@@ -13,12 +13,12 @@
                 <div class="col-sm-4">
                   <input type = "number" name="table" min="1" max="10" class="form-control" value="1">  </div>
             </div>
-
+ 
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <div class="actions">
                   <%= f.submit("ยืนยัน", class: "btn btn-success") %>
-                  <%= link_to "กลับ", restuarant_path, class: "btn btn-danger" %>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal"> ปิด </button>
                 </div>
               </div>
             </div>
@@ -36,16 +36,13 @@
            ร้าน <span class="badge"><h5><%= @restuarant_show.restuarant_name %></h5></span>
         </button>
   </div>     
-  <div class="col-sm-7 text-right">
+  <div class="col-sm-8 text-right">
           <button class="btn btn-primary"  type="button">
            วันที่/เวลา <span class="badge"><h5><%= Time.now %></h5></span>
         </button>
   </div>
 </div>
 <hr>
-
-
-  
     <% @table_show.each_with_index do |a, i| %>
       <div class="col-sm-3 text-center">
         <div>

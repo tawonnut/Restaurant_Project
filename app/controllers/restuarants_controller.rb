@@ -1,7 +1,5 @@
 class RestuarantsController < ApplicationController
 
-
-
   def new
     @restuarant= Restuarant.new
   end
@@ -67,12 +65,12 @@ def add_staff
       @user.send_reset_password_instructions
       @restuarant.create_staff(@user.id,@restuarant.id)
       flash[:notice] = "สร้างยูสเซอร์สำเร็จแล้ว"
-      redirect_to restuarant_path(@restuarant.id)
+      redirect_to show_staff_restuarant_path(@restuarant.id)
     else
       flash.now[:error] ||= []
-      flash[:error] = "ll"
+      flash[:error] = "กรุณาระบุข้อมูลให้ครบถ้วน"
       flash[:error] << @user.errors.full_messages.uniq.join(', ')
-      redirect_to restuarant_path(@restuarant.id)
+      redirect_to show_staff_restuarant_path(@restuarant.id)
     end
 end
 
@@ -123,8 +121,5 @@ end
     params.require(:dish).permit(:dish_name, :restuarant_id)
   end
 
-
-
-  
 end
 

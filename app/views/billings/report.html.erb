@@ -1,5 +1,8 @@
 
-        <table class="table table-striped" id="show_datal">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h4>รายงานการขาย<h4></div>
+        <div class="panel-body">
+          <table class="table table-striped" id="show_datal">
             <thead>
             <tr>
               <th>billing_number</th>
@@ -11,8 +14,8 @@
               <th>เป็นเงิน(บาท)</th>
               <th>รวม</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
               <% @report.each_with_index do |a, i| %>
               <tr>
                 <td><%=a.billing.billing_number %></td>
@@ -29,3 +32,6 @@
               </div>  
               </tbody>
           </table>
+        </div>
+      </div>
+    </div>

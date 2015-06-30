@@ -1,14 +1,16 @@
+<h3>Css Print</h3>
 
-dish_kitchen.heml.erb
 <% if @menu != nil%>
-        <table class="table table-striped" id="show_datal">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>Print อาหารคาว<h4></div>
+        <div class="panel-body">
+          <table class="table table-striped" id="show_datal">
             <thead>
             <tr>
               <th>#</th>
               <th>ชื่ออาหาร</th>
+              <th>รายละเอียด</th>
               <th>จำนวน</th>
-              <th>ราคา/บาท</th>
-              <th>เป็นเงิน(บาท)</th>
             </tr>
           </thead>
           <tbody>
@@ -16,13 +18,15 @@ dish_kitchen.heml.erb
               <tr>
                 <td><%= i + 1 %></td>
                 <td><%=a.menu%></td>
+                <td><%=a.remark%></td>
                 <td><%=a.value%></td>
-                <td><%=a.menu_price.to_f %></td>
-                <td><%=a.menu_price.to_f * a.value %></td>
               </tr> 
               <%end%>
               
               </div>  
               </tbody>
           </table>
+        </div>
+      </div>
+    </div>
 <%end%>
