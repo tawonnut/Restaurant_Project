@@ -4,6 +4,7 @@ class Restuarant
    has_many :billings
    has_many :report
    has_many :memberships
+   has_many :printers
    belongs_to :user
    belongs_to :waiter
    belongs_to :cashier
@@ -17,9 +18,11 @@ class Restuarant
    belongs_to :menu_lists
    
    field :restuarant_name,    type: String
-   field :user_id,      type: String
+   field :user_id,            type: String
    field :restuarant_owner,   type: String
-   field :billing_id, 		  type: Integer
+   field :printer_ip,         type: String
+   field :printer_name,       type: String
+   field :billing_id, 		   type: Integer
    field :restuarant_address, type: String
    field :restuarant_tel,    type: String
    field :restuarant_email,    type: String

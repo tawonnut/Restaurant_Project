@@ -11,4 +11,3 @@
 
  window.App = angular.module('terebinth-pos', ['ui.select'])
 
-

@@ -31,15 +31,11 @@
 </div> 
 <%end%>
 <div class="row">
-  <div class="col-sm-3 text-left">
-   <button class="btn btn-primary"  type="button">
-           ร้าน <span class="badge"><h5><%= @restuarant_show.restuarant_name %></h5></span>
-        </button>
+  <div  class="col-sm-3 text-left">
+           ร้าน <%= @restuarant_show.restuarant_name %>
   </div>     
   <div class="col-sm-8 text-right">
-          <button class="btn btn-primary"  type="button">
-           วันที่/เวลา <span class="badge"><h5><%= Time.now %></h5></span>
-        </button>
+          <%= Time.now %>
   </div>
 </div>
 <hr>
