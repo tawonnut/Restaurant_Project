@@ -1,5 +1,31 @@
-  <
- <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
+<%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
+
+<script type="text/javascript">
+
+function printTest(){
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var address = 'http://192.168.0.26./cgi-bin/epos/service.cgi?devid=local_printer&timeout=60000';
+
+var builder = new epson.ePOSBuilder();
+builder.addTextAlign(builder.ALIGN_CENTER);
+builder.addText('Swiftlet.co.th');
+builder.addFeedLine(3);
+builder.addCut(builder.CUT_FEED);
+
+var epos = new epson.ePOSPrint(address);
+epos.onreceive = function (res) { alert(res.success); };
+epos.onerror = function (err) { alert(err.status); };
+epos.oncoveropen = function () { alert('coveropen'); };
+epos.send(builder.toString());
+}
+</script>
+
+
+<canvas id="canvas"> 
+Hello world
+</canvas>
+
  <hr id="non-printable">
 <div class="row" id="non-printable">
   <div class="col-sm-3 text-left">
@@ -7,12 +33,10 @@
       &nbsp;สั่งอาหาร&nbsp;
     </button>
   </div>
-  <div ng-controller="Print">
-    <div class ="col-sm-6 text-center">
-      <%= link_to( image_tag("print.jpg",width:'120' ,height:'120')) %>
-    </div>
-    <button ng-click="print_menu()">sdfasdf</button>
-  </div>  
+  
+    <div class ="col-sm-6 text-center" onclick="printTest()">
+      <%= image_tag("print.jpg",width:'120' ,height:'120') %>
+    </div> 
 
     <div class = "col-sm-3" align ="right">
     <%= button_tag( :class => "btn btn-success btn-lg btn-block") do %>
@@ -354,3 +378,7 @@
 <input type="hidden" id="dessert_json" value="<%= @table.id.to_json %>">  
 
 <input type="hidden" id="drinking_json" value="<%= @table.id.to_json %>">  
+
+<div ng-controller="Print">
+    <button ng-click="print_menu()">sdfasdf</button>
+  </div> 

@@ -8,6 +8,7 @@ class Dish
    field :dish_price,   type: Float
 
 
-   validates :dish_name, presence: true
+  validates :dish_name,                  presence: {message: "กรุณาระบุชื่อเมนู"},uniqueness: {message: "ชื่อเมนูนี้มีอยู่ในระบบแล้ว"}
+  validates :dish_price,             presence: {message: "กรุณาระบุราคา"},numericality: {message: "กรุณาระบุราคาเป็นตัวเลข"}
 
 end

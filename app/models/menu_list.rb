@@ -13,7 +13,7 @@ class MenuList
   field :remark,   	   type: String
   field :table_id,     type: String
 
-  validates :menu,           presence: {message: "ที่อยู่: ยังไม่ได้กรอก กรุณากรอกใหม่"}
+  validates :menu,           presence: {message: "กรุณาเลือกเมนู"}
 
   def ng_json
     {

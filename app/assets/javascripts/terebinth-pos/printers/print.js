@@ -4,8 +4,8 @@ print = function($scope){
   $scope.print_menu= function(){
 
   console.log("askdjfhsakdhfksjhdfs")
-  var canvas = document.getElementById('canvas');
-
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
 var address = 'http://192.168.0.26./cgi-bin/epos/service.cgi?devid=local_printer&timeout=60000';
 
 var builder = new epson.ePOSBuilder();
