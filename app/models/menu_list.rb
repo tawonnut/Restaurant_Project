@@ -12,6 +12,7 @@ class MenuList
   field :value,        type: Integer,default: 1
   field :remark,   	   type: String
   field :table_id,     type: String
+  field :cancle,       type: Boolean, default: false
 
   validates :menu,           presence: {message: "กรุณาเลือกเมนู"}
 

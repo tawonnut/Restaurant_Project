@@ -48,16 +48,18 @@
                <td><%=f.value%></td>
                <td><%=f.menu_price.to_f %></td>
                <td><%=f.menu_price.to_f * f.value.to_f %></td>
+               <%i=i+1%>
                </tr>
                <%end%>
-                <% i = @show_dish.length + 1 %>
+                <% i = @show_dish.length + 1 +@show_dessert.length %>
                <% @show_drink.each_with_index do |d| %>
                <tr>
                <td><%= i + 1 %></td>
                <td><%=d.menu%></td>
                <td><%=d.value%></td>
                <td><%=d.menu_price.to_f%></td>
-               <td><%=d.menu_price.to_f * d.value.to_f %></td>               
+               <td><%=d.menu_price.to_f * d.value.to_f %></td>     
+                <%i=i+1%>          
                </tr>
               <%end%>
               <tr>

@@ -1,6 +1,9 @@
 class BillingsController < ApplicationController
 
-	def index
+	def index_show
+		@restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
+    	@restuarant_user = Restuarant.where(user_id: current_user.id) 
+    	@restuarant= Restuarant.where(id: current_user.current_restuarant).first
 		date_start = params[:date_start]
 		date_end = params[:date_end]
 
@@ -24,6 +27,9 @@ class BillingsController < ApplicationController
 	end
 
 	def report
+		@restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
+    	@restuarant_user = Restuarant.where(user_id: current_user.id) 
+    	@restuarant= Restuarant.where(id: current_user.current_restuarant).first
 		@report = MenuList.where(restuarant_id: current_user.current_restuarant)
 	end
 end

@@ -57,28 +57,41 @@ class MenuListsController < ApplicationController
     
   end
 
-  def destroy
+  def cancle
     @menu = MenuList.find(params[:id])
-    @menu.destroy
-      respond_to do |format|
-          format.html do
-            flash[:notice] = "ลบเมนูอาหารเรียบร้อยเเล้ว"
-            redirect_to menu_list_path(@menu.table_id)
-          end
-          # format.json do
-          #   render json: {success: true}
-          # end
-        end 
+    @menu.update(cancle: true ,kitchen_id: nil)
+    flash[:notice] = "ยกเลิกเมนูอาหารเรียบร้อยเเล้ว"
+    redirect_to menu_list_path(@menu.table_id)
   end
+
+  # def destroy
+  #   @menu = MenuList.find(params[:id])
+  #   @menu.destroy
+  #     respond_to do |format|
+  #         format.html do
+  #           flash[:notice] = "ลบเมนูอาหารเรียบร้อยเเล้ว"
+  #           redirect_to menu_list_path(@menu.table_id)
+  #         end
+  #         # format.json do
+  #         #   render json: {success: true}
+  #         # end
+  #       end 
+  # end
 
   def payment
     @promotion_discount = params[:promotion][:promotion_discount]
     promotion = Promotion.where(promotion_discount: @promotion_discount.to_i)
     @table = Table.find(params[:id])
     @table.update(promotion_id: promotion[0].id)
-    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil ,:kitchen.ne => nil)
-    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil,:kitchen.ne => nil)
-    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil,:kitchen.ne => nil)
+    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil ,:kitchen.ne => nil, cancle: false)
+    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil,:kitchen.ne => nil, cancle: false)
+    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil,:kitchen.ne => nil, cancle: false)
+    pp 'asdkjflasjdflkjasdl;fjl;asjdfl;asdlfjsa;ldflk;sdf'
+    pp @show_dish
+    pp @show_dessert.first
+    pp @show_drink.first
+
+
     price_dish = @show_dish.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
     price_dessert = @show_dessert.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
     price_drink = @show_drink.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum

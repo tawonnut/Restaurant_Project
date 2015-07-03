@@ -30,9 +30,11 @@ resources :restuarants do
 end
 
 resources :billings   do
-  collection do
+  member do
+    get 'index_show'
     get 'report'
   end  
+
 end
 
 resources :registers
@@ -74,7 +76,7 @@ end
 
 resources :bookings do
   member do
-  patch 'update_booking'
+    patch 'update_booking'
   end
 end
 
@@ -91,6 +93,7 @@ resource :users, only: [:edit, :update, :new]
     patch 'create_menu'
     get 'payment'
     get "clear_table"
+    get "cancle"
   end
 end
   

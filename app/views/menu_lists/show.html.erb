@@ -1,31 +1,5 @@
 <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
 
-<script type="text/javascript">
-
-function printTest(){
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var address = 'http://192.168.0.26./cgi-bin/epos/service.cgi?devid=local_printer&timeout=60000';
-
-var builder = new epson.ePOSBuilder();
-builder.addTextAlign(builder.ALIGN_CENTER);
-builder.addText('Swiftlet.co.th');
-builder.addFeedLine(3);
-builder.addCut(builder.CUT_FEED);
-
-var epos = new epson.ePOSPrint(address);
-epos.onreceive = function (res) { alert(res.success); };
-epos.onerror = function (err) { alert(err.status); };
-epos.oncoveropen = function () { alert('coveropen'); };
-epos.send(builder.toString());
-}
-</script>
-
-
-<canvas id="canvas"> 
-Hello world
-</canvas>
-
  <hr id="non-printable">
 <div class="row" id="non-printable">
   <div class="col-sm-3 text-left">
@@ -74,6 +48,7 @@ Hello world
               <th id="non-printable">ราคา/บาท</th>
               <th>รายละเอียด</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -82,7 +57,7 @@ Hello world
                 <td>
                   <label>
                   <% if a.kitchen_id == nil%>
-                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" >
+                  <input checked type="checkbox" name="check_value[]" value="<%= a.id %>" >
                   <%else%>
                   <input type="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
                   <%end%>
@@ -92,13 +67,17 @@ Hello world
                 <td><%=a.value%></td>
                 <td id="non-printable"><%=a.menu_price.to_f*a.value.to_f %></td>
                 <td><%=a.remark%></td>
+                <% if a.cancle == true%>
+                  <td class="text-right"> ยกเลิก </td>
+                <%else%>
+                  <td class="text-right"><%= link_to cancle_menu_list_path(a), method: :get, data: { confirm: 'ยกเลิก' }, 
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ยกเลิก
+                <%end%></td>
+                <%end%>
                 <td class="text-right" id="non-printable">
                 <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
-                    <%end%>                
-                <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
-                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
-                    <%end%></td>
-                <!-- <td class="text-right"><button type="button" class="btn btn-danger" ng-click="delete('<%=a._id.to_s%>')" ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </button></td> -->
+                    <%end%>                 
+                </td>
               </tr>
               </div>
               <%end%>
@@ -139,7 +118,7 @@ Hello world
                 <td>
                   <label>
                   <% if a.kitchen_id == nil%>
-                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" >
+                  <input  checked type="checkbox" name="check_value[]" value="<%= a.id %>" >
                   <%else%>
                   <input type="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
                   <%end%>
@@ -152,9 +131,9 @@ Hello world
                 <td class="text-right" id="non-printable">
                 <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
                     <%end%> 
-                <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                <%= link_to cancle_menu_list_path(a), method: :get, data: { confirm: 'ยกเลิก' }, 
                 class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
-                    <%end%></td>                
+                <%end%></td>                
 <!--                 <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td> -->                
               </tr>
               <%end%>
@@ -194,7 +173,7 @@ Hello world
                 <td>
                   <label>
                   <% if a.kitchen_id == nil%>
-                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" >
+                  <input checked type="checkbox" name="check_value[]" value="<%= a.id %>" >
                   <%else%>
                   <input type="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
                   <%end%>
@@ -207,9 +186,9 @@ Hello world
                 <td class="text-right" id="non-printable">
                 <%= link_to edit_menu_list_path(a), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
                     <%end%>                 
-                <%= link_to menu_list_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                <%= link_to cancle_menu_list_path(a), method: :get, data: { confirm: 'ยกเลิก' }, 
                 class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
-                    <%end%></td>                
+                <%end%></td>                
 <!--                 <td class="text-right"><a type="button" class="btn btn-danger" ng-click="delete('<%=a._id%>')"ng-confirm-click="ยืนยันการลบ" ><i class="fa fa-trash-o "></i> ลบ </a></td>     -->            
               </tr>
               <%end%>
@@ -379,6 +358,167 @@ Hello world
 
 <input type="hidden" id="drinking_json" value="<%= @table.id.to_json %>">  
 
-<div ng-controller="Print">
-    <button ng-click="print_menu()">sdfasdf</button>
-  </div> 
+
+
+
+
+
+
+
+
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>ePOS-Print</title>
+
+<script type="text/javascript">
+<!--
+    $(function () {
+
+        // Button
+        $('#ticket, #coupon, #label').button();
+        $('#setting').button({
+            icons: {
+                primary: "ui-icon-gear"
+            }
+        });
+
+        // Setting Dialog
+        $('#dialog').dialog({
+            autoOpen: false,
+            width: 420,
+            buttons: {
+                "OK": function () {
+                    ipaddr = $('#ipaddr').val();
+                    devid = $('#devid').val();
+                    timeout = $('#timeout').val();
+                    grayscale = $('#grayscale').is(':checked');
+                    layout = $('#layout').is(':checked');
+                    $(this).dialog("close");
+                },
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            },
+            show: "fade",
+            hide: "drop",
+            draggable: true,
+            resizable: false,
+            modal: true
+        });
+
+        // Printing Dialog
+        $('#print').dialog({
+            autoOpen: false,
+            width: 320,
+            show: "fade",
+            hide: "drop",
+            draggable: true,
+            resizable: false,
+            modal: true
+        });
+
+        // Error Dialog
+        $('#receive, #error').dialog({
+            autoOpen: false,
+            width: 480,
+            buttons: {
+                "OK": function () {
+                    $(this).dialog("close");
+                }
+            },
+            show: "fade",
+            hide: "drop",
+            draggable: true,
+            resizable: false,
+            modal: true
+        });
+
+    });
+
+    // Open Setting Dialog
+    function openDialog() {
+        $('#ipaddr').val(ipaddr);
+        $('#devid').val(devid);
+        $('#timeout').val(timeout);
+        $('#grayscale').get(0).checked = grayscale;
+        $('#layout').get(0).checked = layout;
+        $('#dialog').dialog('open');
+    }
+
+    // Settings
+    var ipaddr = '192.168.192.168';
+    var devid = 'local_printer';
+    var timeout = '60000';
+    var grayscale = false;
+    var layout = false;
+
+    // Queue Ticket Sequence Number
+    var sequence = 1;
+
+    // Coupon Serial Number
+    var serial = 12301;
+
+    // Item Code
+    var code = 2012001;
+
+//-->
+</script>
+</head>
+
+<body>
+    <div class="ui-widget">
+      <div class="ui-widget-header" style="font-size:24pt;">ePOS-Print Demo</div>
+      <div class="ui-widget-content" style="text-align:center;">
+            <p>&nbsp;</p>
+            <p><button id="ticket" onclick="printTicket()" style="font-size:48pt;width:80%;">Queue Ticket</button></p>
+            <p><button id="coupon" onclick="printCoupon()" style="font-size:48pt;width:80%;">Coupon</button></p>
+            <p><button id="label" onclick="printLabel()" style="font-size:48pt;width:80%;">Label</button></p>
+            <p>&nbsp;</p>
+            <p><button id="setting" onclick="openDialog()">Settings</button></p>
+            <p>&nbsp;</p>
+        </div>
+    </div>
+
+  <!-- ui-dialog -->    
+  <div id="dialog" title="Settings">
+        <p>IP address of ePOS-Print supported printer<br />
+        <input id="ipaddr" type="text"></p>
+        <p>Device ID of the target printer<br />
+        <input id="devid" type="text"></p>
+        <p>Print timeout (milliseconds)<br />
+        <input id="timeout" type="text"></p>
+        <p><input id="grayscale" type="checkbox">Print in grayscale (Coupon)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;(Only for supported models)</p>
+        <p><input id="layout" type="checkbox">Set the paper layout (Label)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;(Only for TM-P60II)</p>
+  </div>
+
+  <!-- ui-dialog -->
+  <div id="print" title="Information">
+        <h2>Printing ...</h2>
+  </div>
+
+  <!-- ui-dialog -->
+  <div id="receive" title="Error">
+        <p>Print error occured.</p>
+  </div>
+
+  <!-- ui-dialog -->
+  <div id="error" title="Error">
+        <p>Network error occured.</p>
+  </div>
+
+    <!-- background -->
+    <div style="display:none;">
+        <canvas id="canvas" width="512" height="480"></canvas>
+        <div id="coffee">
+        sdkfjsdjlsdjf;lsdjf
+        ksdljfsjdljsljfsd
+        </div>
+
+    </div>
+</body>

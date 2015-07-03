@@ -1,6 +1,10 @@
 <h3>Css Print</h3>
 
 <% if @menu != nil%>
+<%= @menu.first.table.restuarant.restuarant_name %>
+<%= current_user.name %>
+<%= @menu.first.table.table_number%>
+<%= Time.now%>
     <div class="panel panel-default">
       <div class="panel-heading"><h4>Print อาหารคาว<h4></div>
         <div class="panel-body">
@@ -11,6 +15,7 @@
               <th>ชื่ออาหาร</th>
               <th>รายละเอียด</th>
               <th>จำนวน</th>
+              <th ></th>
             </tr>
           </thead>
           <tbody>
@@ -20,6 +25,11 @@
                 <td><%=a.menu%></td>
                 <td><%=a.remark%></td>
                 <td><%=a.value%></td>
+                <% if a.cancle == true%>
+                <td>ยกเลิก</td>
+                <%else%>
+                <td></td>
+                <%end%>
               </tr> 
               <%end%>
               
