@@ -47,13 +47,13 @@
         </button>
         </div>
         <p>
-        </p>
+        </p>  
         <%=link_to( image_tag("table.jpg",width:'120' ,height:'120'), menu_list_path(a)) %><br>
         <p>
         </p>
         <% if current_user.super_user? %>
          <%= link_to table_path(a), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
-                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบโต๊ะ
+                class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
                     <%end%>
         <%end%>
        

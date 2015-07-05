@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
 
 	def update
         @restuarant= Restuarant.where(id: current_user.current_restuarant).first
-    @booking = Booking.new(booking_name: params[:booking_name],booking_time: params[:booking_time],restuarant_id: @restuarant.id)
+        @booking = Booking.new(booking_name: params[:booking_name],booking_time: params[:booking_time],restuarant_id: @restuarant.id)
     if @booking.save
       flash[:notice] = "เพิ่มรายการจองเรียบร้อยแล้ว"
       redirect_to  booking_path

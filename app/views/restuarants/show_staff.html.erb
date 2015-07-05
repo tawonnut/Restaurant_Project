@@ -43,8 +43,10 @@
 						        <td><%=  f.user.email %></td>
 						        <td><%=  f.user.tel %></td>
 						        <td><font color = green> พนักงาน </font></td>
-						        <td><%= link_to destroy_staff_restuarant_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
-                					class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ <%end%></td>
+						        <td class="text-right"><%= link_to destroy_staff_restuarant_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
+                					class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i>
+                					<%end%>
+                				</td>
 		
 			          <%end%>
 				      </tr>

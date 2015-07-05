@@ -24,7 +24,9 @@
                           <%=link_to( image_tag("home.jpg",width:'160' ,height:'160'), restuarant_path(a)) %>
                           <p>
                           </p>
-                          <%= link_to 'ลบร้านค้า', restuarant_path(a), class: "btn btn-danger" , method: :delete, data: { confirm: 'คุณต้องการลบร้านค้า?' }  %> 
+                          <%= link_to restuarant_path(a), method: :delete, data: { confirm: 'คุณต้องการจะลบร้านค้า ?' }, 
+                          class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบร้านค้า
+                          <%end%>
                               <hr>                  
                         </div>  
                         <%end%>

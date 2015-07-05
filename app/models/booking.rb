@@ -8,7 +8,7 @@ class Booking
 
 
    validates :booking_name,              presence: {message: "กรุณาระบุชื่อลูกค้าที่จอง"}
-   validates :drinking_time,             presence: {message: "กรุณาระบุเวลาที่จอง"}
+   validates :booking_time,             presence: {message: "กรุณาระบุเวลาที่จอง"}
 
 
 

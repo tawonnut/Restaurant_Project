@@ -29,7 +29,7 @@
 			              <td><%= i + 1 %></td>
 						        <td><%= f.drinking_name %></td>
 						        <td><%= f.drinking_price %></td>
-						        <td class= "text-right"><%= link_to edit_drinking_path(f), class: 'btn btn-primary' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
+						        <td class= "text-right"><%= link_to edit_drinking_path(f), class: 'btn btn-info' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
                     <%end%> <%= link_to drinking_path(f),method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
                     class: 'btn btn-danger' do %><i class="fa fa-trash-o" ></i> ลบ
                     <%end%></td>

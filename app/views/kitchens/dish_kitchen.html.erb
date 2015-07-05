@@ -1,10 +1,11 @@
-<h3>Css Print</h3>
-
 <% if @menu != nil%>
-<%= @menu.first.table.restuarant.restuarant_name %>
-<%= current_user.name %>
-<%= @menu.first.table.table_number%>
-<%= Time.now%>
+<div class="text-center">
+รา้น :<%= @menu.first.table.restuarant.restuarant_name %> <br>
+พนักงาน :<%= current_user.name %> <br>
+โต๊ะที่ :<%= @menu.first.table.table_number%> <br>
+วันที่/เวลา :<%= Time.now%>
+</div>
+<hr>
     <div class="panel panel-default">
       <div class="panel-heading"><h4>Print อาหารคาว<h4></div>
         <div class="panel-body">
