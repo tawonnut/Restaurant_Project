@@ -109,18 +109,6 @@ end
     end
   end
 
-  resources :welcomes do 
- collection do
-        get 'welcomes'
-    end
-  end
-
-   resources :res_manages do 
- collection do
-        get 'res_manages'
-    end
-  end
-
    resources :orders do 
  collection do
         get 'orders'
