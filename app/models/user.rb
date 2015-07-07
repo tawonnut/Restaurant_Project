@@ -44,16 +44,14 @@ class User
   field :tel,            type: Integer    
   field :current_restuarant,   type:BSON::ObjectId
   field :super_user,           type: Boolean, default: false
-  field :tax_id,               type: String
+  field :tax_id,               type: Integer
 
 
 
 
    validates :name,                 presence: {message: "กรุณาระบุชื่อ"}  
    validates :surname,              presence: {message: "กรุณาระบุนามสกุล"}               
-   validates :tel,                  presence: {message: "กรุณาระบุเบอร์โทร"},numericality: {message: "เบอร์โทรระบุได้แต่ตัวเลขเท่านั้น"} 
-   validates :tax_id,               presence: {message: "กรุณาระบุเลขที่เสียภาษี"},numericality: {message: "เลขที่เสียภาษีระบุได้แต่ตัวเลขเท่านั้น"}                     
-
+   validates :tel,                  presence: {message: "กรุณาระบุเบอร์โทร"},numericality: {message: "เบอร์โทรระบุได้แต่ตัวเลขเท่านั้น"}
   
 
 

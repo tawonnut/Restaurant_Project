@@ -16,6 +16,21 @@ class MenuList
 
   validates :menu,           presence: {message: "กรุณาเลือกเมนู"}
 
+
+  def self.to_csv()
+    attributes = %w{billing_number วันที่ พนักงาน ชื่ออาหาร จำนวน ราคา/บาท เป็นเงิน(บาท)}
+
+    CSV.generate(headers: true) do |csv|
+    csv << attributes
+
+    all.each do |report|
+      # csv << attributes.{ |attr| report.send(attr) }
+      csv << [report.billing.billing_number,report.billing.date, report.billing.user.name, report.menu, report.value, report.menu_price, report.menu_price.to_f * report.value.to_f]
+    end
+  end
+end
+
+
   def ng_json
     {
       id: self.id.to_s,

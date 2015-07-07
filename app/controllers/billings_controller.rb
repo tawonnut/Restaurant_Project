@@ -4,6 +4,7 @@ class BillingsController < ApplicationController
 		@restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
     	@restuarant_user = Restuarant.where(user_id: current_user.id) 
     	@restuarant= Restuarant.where(id: current_user.current_restuarant).first
+    	@report = MenuList.where(restuarant_id: current_user.current_restuarant)
 		date_start = params[:date_start]
 		date_end = params[:date_end]
 		if date_start != nil && date_end !=nil
@@ -14,7 +15,7 @@ class BillingsController < ApplicationController
    
 		 respond_to do |format|
 		 	format.html
-		 	format.csv { send_data @billing.to_csv, filename: "Report-#{Date.today}.csv"}
+		 	format.csv { send_data @report.to_csv, filename: "Report-#{Date.today}.csv"}
 		 end
 	end
 
