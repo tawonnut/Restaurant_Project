@@ -28,7 +28,7 @@ class BillingsController < ApplicationController
 	def report
 		@restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
     	@restuarant_user = Restuarant.where(user_id: current_user.id) 
-    	@restuarant= Restuarant.where(id: current_user.current_restuarant).first
+    	@restuarant = Restuarant.where(id: current_user.current_restuarant).first
 		@report = MenuList.where(restuarant_id: current_user.current_restuarant)
 	end
 end

@@ -9,6 +9,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 require 'csv'
+require 'axlsx'
 
 
 # Require the gems listed in Gemfile, including any gems

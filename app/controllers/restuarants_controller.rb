@@ -93,6 +93,7 @@ end
     
   def add_drinking
     @drinking= Restuarant.find(params[:id])
+    
   end
 
   def add_dessert

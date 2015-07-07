@@ -11,15 +11,19 @@ class Billing
   field :time,                  type: Time
   field :date,					type: Date
 
-  def self.to_csv
-  	attributes = %w{id billing_number}
+  def self.to_csv()
+  	attributes = %w{billing_number วันที่ พนักงาน ชื่ออาหาร จำนวน ราคา/บาท เป็นเงิน}
+
   	CSV.generate(headers: true) do |csv|
   	csv << attributes
 
-  	all.each do |billing|
-  		csv << attributes.map{ |attr| billing.send(attr) }
+  	all.each do |report|
+  		# csv << attributes.{ |attr| report.send(attr) }
+  		csv << [report.billing_number, report.date, report.user.name]
   	end
+
   end
 end
 
 end
+ 	

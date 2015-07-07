@@ -1,7 +1,7 @@
 <%= form_tag(billings_path,method: :get) do |f| %>
 <input type="hidden"  name="check" value="1">
   <div class="form-group"> 
-    <%= label_tag "Date","วันที่ :", class: "col-sm-2 control-label" %>
+    <%= label_tag "Date","วันที่เริ่มต้น :", class: "col-sm-2 control-label" %>
       <div class="col-sm-3">
        <%= text_field_tag 'date_start',Date.today.strftime("%Y-%m-%d"),readonly: true, id: 'today_date_picked',class: "form-control"%>
       </div>
@@ -13,7 +13,7 @@
   </div>
 
     <div class="form-group"> 
-    <%= label_tag "Date","วันที่ :", class: "col-sm-2 control-label" %>
+    <%= label_tag "Date","วันที่สิ้นสุด :", class: "col-sm-2 control-label" %>
       <div class="col-sm-3">
        <%= text_field_tag 'date_end',Date.today.strftime("%Y-%m-%d"),readonly: true, id: 'today_date_picked2',class: "form-control"%>
       </div>
@@ -24,18 +24,18 @@
       </div> 
   </div>
 <div>
-  <button class="btn btn-primary" type="submit" ><i class="fa fa-search"></i> ค้นหา</button>
-  <button class="btn btn-success" type="submit" ><i class="fa fa-pencil-square-o"></i> Export </button>
-<%end%>
+  <button class="btn btn-primary" type="submit" ><i class="fa fa-search"></i> ค้นหา</button> <%end%> 
+  <%= link_to index_show_billing_path(format: "csv"), class: 'btn btn-success'  do %><i class="fa fa-file-text" ></i> Export
+  <%end%>
 </div>
-<hr>
 
+<hr>
     <div class="panel panel-primary">
-      <div class="panel-heading"><h4>รายงานการขาย<h4></div>
+      <div class="panel-heading"><h4><i class="fa fa-pencil-square-o"></i> รายงานการขาย<h4></div>
         <div class="panel-body">
           <table class="table table-striped" id="show_data1">
             <thead>
-            <tr>
+            <tr class="info">
               <th>#</th>
               <th>billing_number</th>
               <th>วันที</th>

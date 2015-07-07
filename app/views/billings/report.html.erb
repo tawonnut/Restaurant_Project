@@ -4,7 +4,7 @@
         <div class="panel-body">
           <table class="table table-striped" id="show_datal">
             <thead>
-            <tr>
+            <tr class="info">
               <th>billing_number</th>
               <th>วันที่</th>
               <th>พนักงาน</th>
@@ -13,6 +13,7 @@
               <th>ราคา/บาท</th>
               <th>เป็นเงิน(บาท)</th>
               <th>รวม</th>
+              <th></th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                 <td><%=a.value%></td>
                 <td><%=a.menu_price.to_f %></td>
                 <td><%=a.menu_price.to_f * a.value %></td>
+                <td></td>
                 <%= p%>
               </tr> 
               <%end%>

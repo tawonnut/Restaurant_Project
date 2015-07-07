@@ -34,7 +34,6 @@ resources :billings   do
     get 'index_show'
     get 'report'
   end  
-
 end
 
 resources :registers
