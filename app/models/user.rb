@@ -50,8 +50,7 @@ class User
 
 
    validates :name,                 presence: {message: "กรุณาระบุชื่อ"}  
-   validates :surname,              presence: {message: "กรุณาระบุนามสกุล"}               
-   validates :tel,                  presence: {message: "กรุณาระบุเบอร์โทร"},numericality: {message: "เบอร์โทรระบุได้แต่ตัวเลขเท่านั้น"}
+   validates :surname,              presence: {message: "กรุณาระบุนามสกุล"}                 
   
 
 

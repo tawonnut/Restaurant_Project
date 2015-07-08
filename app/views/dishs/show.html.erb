@@ -1,5 +1,5 @@
 <hr>
-    <div class="panel panel-primary bigmshoadow" >
+    <div class="panel panel-primary" >
         <div class="panel-heading gradient">
        		<div class="col-md-6">
 			<h3 style=" margin-top: 2%;"><i class="fa fa-cutlery">&nbsp;</i> 
@@ -20,15 +20,16 @@
 			      <tr class="info">
 			        <th>ลำดับ</th>
 			        <th>ชื่อ</th>
-			        <th>ราคา/บาท</th>	     
+			        <th>ราคา/บาท</th>
+              <th></th> 
+              <th></th> 
 			      </tr>
 			    </thead>
 
 			    <tbody>
 			      <% @dish.each_with_index do |f, i| %>
-				      <tr>
-				        	 		 
-			              		<td><%= i + 1 %></td>
+				      <tr>	 		 
+			              <td><%= i + 1 %></td>
 						        <td><%= f.dish_name %></td>
 						        <td><%= f.dish_price %></td>
 						        <td class="text-right"><%= link_to edit_dish_path(f), class: 'btn btn-info' do %><i class="fa fa-pencil-square-o" ></i> แก้ไข
