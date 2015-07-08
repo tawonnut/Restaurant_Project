@@ -13,11 +13,12 @@ class BillingsController < ApplicationController
 			@billing = Billing.where(restuarant_id: current_user.current_restuarant)
 		end
    
-		 respond_to do |format|
-		 	format.html
-		 	format.csv { send_data @report.to_csv, filename: "Report-#{Date.today}.csv"}
-		 end
+		  respond_to do |format|
+		  	format.html
+		  	format.csv { send_data @report.to_csv, filename: "Report-#{Date.today}.csv"}
+		  end
 	end
+
 
 	def show
 		@billing = Billing.find(params[:id])

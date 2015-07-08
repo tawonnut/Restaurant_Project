@@ -16,9 +16,11 @@ and open the template in the editor.
         <me
         ta charset="UTF-8">
         <title>Terebinth-Restaurant</title>
-          <%= stylesheet_link_tag    "application" %>
-          <%= javascript_include_tag "application" %>
-          <%= csrf_meta_tags %>
+            <%= favicon_link_tag asset_path('favicon.ico') %>
+            <%= favicon_link_tag asset_path('favicon.png'), rel: 'apple-touch-icon', type: 'image/png' %> 
+            <%= stylesheet_link_tag    "application" %>
+            <%= javascript_include_tag "application" %>
+            <%= csrf_meta_tags %>
     </head>
 
     <body>
@@ -70,9 +72,9 @@ and open the template in the editor.
                              <li class="divider"></li>
                            <li><a href="#" data-toggle="modal" data-target="#myModal">  <i class="fa fa-cart-plus"></i>&nbsp;</i> เพิ่มโต๊ะ </a></li>
                            <li class="divider"></li>
-                           <li> <%= link_to booking_path do %> <i class="fa fa-pencil-square-o"></i> รายการจองโต๊ะ</li>
-                            <%end%>
-                           <li class="divider"></li>
+                           <!-- <li> <%= link_to booking_path do %> <i class="fa fa-pencil-square-o"></i> รายการจองโต๊ะ</li>
+                            <%end%> -->
+                          <!--  <li class="divider"></li> -->
                             <li> <%= link_to promotion_path do %> <i class="fa fa-usd">&nbsp;</i>ส่วนลด-โปรโมชัน</li>
                             <%end%>
                             <li class="divider"></li>

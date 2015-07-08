@@ -90,26 +90,30 @@ www.swiftlet.co.th <br>
             ส่วนลด <%= @promotion_discount %> % 
           <%end%>  
           </div>
-          <div class = "col-sm-6 col-sm-offset-8">
+          <div class = "col-sm-6 col-sm-offset-8" >
           Vat 0%
           </div>
           <br>
-        <div class = "col-sm-5 col-sm-offset-8" id="doubleUnderline">
+        <div class = "col-sm-5 col-sm-offset-8" >
           <% if @promotion_discount.to_i == 0 %>
            รวมสุทธิ <%= @total%>   บาท
           <% else %>  
             รวมสุทธิ <%= @total - @promotion %>  บาท
           <%end%>  
+          <div class="row">
+          <div class="col-sm-6" id="doubleUnderline">
+          </div>
+          </div>
           </div>
           <div class = "col-sm-6 col-sm-offset-1">
             Cashier : <%=current_user.name%> <%=current_user.surname%>
           </div>
 
-          <div class = "col-sm-6 col-sm-offset-1">
+          <div class = "col-sm-11 col-sm-offset-1">
             Cashier Sign : ___________________ 
           </div>
 
-
+          <div class="row" style="padding-top:3%">
             <div class = "col-sm-6 col-sm-offset-5">
              www.swiftlet.co.th
             </div>
@@ -117,7 +121,7 @@ www.swiftlet.co.th <br>
             <div class = "col-sm-6 col-sm-offset-5">
              ขอบคุณที่ใช้บริการ
             </div>
-
+          </div>
 
 
         </div>
