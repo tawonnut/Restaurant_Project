@@ -1,42 +1,42 @@
-<center><h4>สรุปรายการอาหารและเครื่องดื่ม</h4></center>
+<style>
+#doubleUnderline{
+border-bottom: 3px double;
+}
+</style> 
 
- <hr>
-<div class="row" id="non-printable">
-  <div class="col-sm-3 text-left">
-   <%= link_to( image_tag("maincash.jpg",width:'100' ,height:'100'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
-   
-  </div>
-  
-    <div class ="col-sm-6 text-center" onclick="printTest()">
-    
-     <%= link_to( image_tag("print.jpg",width:'100' ,height:'100'),service_bill_menu_list_path) %>
-    </div> 
+<h3>Printer.css</h3>
 
-    <div class = "col-sm-3" align ="right">
-    <%= link_to( image_tag("credit1.jpg",width:'100' ,height:'100'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
-    </div> 
-                       
+
+
+<div class="text-center">
+ร้าน ผัดไทประตูน้ำ สาขาประเทศไทย <br>
+เลขที่99/99 หมู่ที่ 2 <br>
+อาคารห้างสรรพสินค้า เซนทรัล ชั้น 9 <br>
+ถ.แจ้งวัฒนะ ต.บางตลาด  อ.ปากเกร็ด
+จ.นนทบุรี 11120 <br>
+TEL: 0878889999 <br>
+www.swiftlet.co.th <br>
 </div>
-<hr>
+<br>
+
   <div class="text-center">
-    ร้าน : <%= @table.restuarant.restuarant_name %> <br>
-    โต๊ะ : <%= @table.table_number %> <br>
-    ชื่อพนักงาน : <%= current_user.name%> <%= current_user.surname%> <br>
-    วันที่/เวลา : <%= Time.new %>
+   Tax ID NO.0105537143215 <br>
+   เวลา:<%= Time.now %> <br>
+   พนักงาน: <%=current_user.name%> <%=current_user.surname%> <br>
+    โต๊ะที่: 1
   </div>
-  
-  
+
 <hr>
 <div ng-controller="Delete_menu">
 <div  id="show_dish">
   <div  id="show_dish1">
     <div class="panel panel-default">
-      <div class="panel-heading"><h4>รายการอาหาร<h4></div>
+      <div class="panel-heading"><h4 class="text-center">ใบเสร็จรับเงิน/ใบกำกับภาษี<h4></div>
         <div class="panel-body">
           <table class="table table-striped" id="show_datal">
             <thead>
-            <tr class="info">
-              <th>#</th>
+            <tr>
+              
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
               <th>ราคา/บาท</th>
@@ -46,7 +46,7 @@
           <tbody>
               <% @show_dish.each_with_index do |a, i| %>
               <tr>
-                <td><%= i + 1 %></td>
+               
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
                 <td><%=a.menu_price.to_f %></td>
@@ -56,23 +56,22 @@
                <% i = @show_dish.length %>
                <% @show_dessert.each_with_index do |f| %>
                <tr>
-               <td><%= i + 1 %></td>
+              
                <td><%=f.menu%></td>
                <td><%=f.value%></td>
                <td><%=f.menu_price.to_f %></td>
                <td><%=f.menu_price.to_f * f.value.to_f %></td>
-               <%i=i+1%>
+           
                </tr>
                <%end%>
                 <% i = @show_dish.length + 1 +@show_dessert.length %>
                <% @show_drink.each_with_index do |d| %>
                <tr>
-               <td><%= i + 1 %></td>
                <td><%=d.menu%></td>
                <td><%=d.value%></td>
                <td><%=d.menu_price.to_f%></td>
                <td><%=d.menu_price.to_f * d.value.to_f %></td>     
-                <%i=i+1%>          
+                   
                </tr>
               <%end%>
               <tr>
@@ -82,7 +81,7 @@
               </tbody>
           </table>
           <div class = "col-sm-6 col-sm-offset-8">
-              รวม <%= @total %> บาท
+              ค่าอาหาร <%= @total %> บาท
           </div>
           <div class = "col-sm-6 col-sm-offset-8">
           <% if @promotion_discount.to_i == 0 %>
@@ -91,17 +90,38 @@
             ส่วนลด <%= @promotion_discount %> % 
           <%end%>  
           </div>
-          <br>
           <div class = "col-sm-6 col-sm-offset-8">
+          Vat 0%
+          </div>
+          <br>
+        <div class = "col-sm-5 col-sm-offset-8" id="doubleUnderline">
           <% if @promotion_discount.to_i == 0 %>
            รวมสุทธิ <%= @total%>   บาท
           <% else %>  
             รวมสุทธิ <%= @total - @promotion %>  บาท
           <%end%>  
           </div>
+          <div class = "col-sm-6 col-sm-offset-1">
+            Cashier : <%=current_user.name%> <%=current_user.surname%>
+          </div>
+
+          <div class = "col-sm-6 col-sm-offset-1">
+            Cashier Sign : ___________________ 
+          </div>
+
+
+            <div class = "col-sm-6 col-sm-offset-5">
+             www.swiftlet.co.th
+            </div>
+
+            <div class = "col-sm-6 col-sm-offset-5">
+             ขอบคุณที่ใช้บริการ
+            </div>
+
+
+
         </div>
       </div>
     </div>
  </div>
  <hr>
- 

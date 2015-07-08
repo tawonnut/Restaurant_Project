@@ -12,7 +12,6 @@ class MenuListsController < ApplicationController
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)
     @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil)
     @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil)
- 
   end
 
   def create  
@@ -86,10 +85,6 @@ class MenuListsController < ApplicationController
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil ,:kitchen.ne => nil, cancle: false)
     @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil,:kitchen.ne => nil, cancle: false)
     @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil,:kitchen.ne => nil, cancle: false)
-    pp 'asdkjflasjdflkjasdl;fjl;asjdfl;asdlfjsa;ldflk;sdf'
-    pp @show_dish
-    pp @show_dessert.first
-    pp @show_drink.first
 
 
     price_dish = @show_dish.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
@@ -98,6 +93,23 @@ class MenuListsController < ApplicationController
     @total = price_dish + price_dessert + price_drink
     @promotion = (@total.to_f * @promotion_discount.to_f)/100
   end
+
+  def service_bill
+  
+    @table = Table.find(params[:id])
+    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil ,:kitchen.ne => nil, cancle: false)
+    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil,:kitchen.ne => nil, cancle: false)
+    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil,:kitchen.ne => nil, cancle: false)
+  
+   
+
+    price_dish = @show_dish.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
+    price_dessert = @show_dessert.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
+    price_drink = @show_drink.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
+    @total = price_dish + price_dessert + price_drink
+    
+  end
+    
 
   def clear_table
     @table = Table.find(params[:id])
@@ -126,7 +138,5 @@ class MenuListsController < ApplicationController
   def create_params
     params.require(:menu_list).permit(:menu,:value,:remark,:menu_type,:table_id,:menu_price)
   end
-
-
 
 end

@@ -31,11 +31,12 @@
 </div> 
 <%end%>
 <div class="row">
-  <div  class="col-sm-3 text-left">
-           ร้าน : <%= @restuarant_show.restuarant_name %>
+  <div  class="col-sm-4 text-left">
+           <h3>ร้าน : <%= @restuarant_show.restuarant_name %></h3>
   </div>     
   <div class="col-sm-8 text-right">
-          <%= Time.now %>
+          <h4><%= Time.now %></h4>
+          <h4>พนักงาน :<%=current_user.name%> <%=current_user.surname%></h4>
   </div>
 </div>
 <hr>

@@ -91,6 +91,7 @@ resource :users, only: [:edit, :update, :new]
   member do
     patch 'create_menu'
     get 'payment'
+    get 'service_bill'
     get "clear_table"
     get "cancle"
   end
