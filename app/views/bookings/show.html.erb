@@ -1,3 +1,11 @@
+<link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
+<script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"> </script>
+
+<script type="text/javascript">
+    $('.clockpicker').clockpicker();
+</script>
+
+
 <hr>
     <div class="panel panel-primary bigmshoadow" >
         <div class="panel-heading gradient">
@@ -18,18 +26,21 @@
 			    <thead>
 			      <tr class="info">
 			        <th>ลำดับ</th>
-			        <th>ชื่อผู้จอง</th>
+			        <th>วันที่</th>
 			        <th>เวลาจอง</th>
-              <th>วันที่จอง</th>
+              <th>จำนวน(คน)</th>
+              <th>ชื่อผู้จอง</th>
 			      </tr>
 			    </thead>
 
 			    <tbody>
 			      <% @booking.each_with_index do |f, i| %>
 				      <tr>	 
-			             <td><%= i + 1 %></td>
-						       <td><%= f.booking_name %></td>
-                   <td><%= f.booking_time %></td>
+			             <td> <%= i + 1 %> </td>
+						       <td> <%= f.booking_date %> </td>
+                   <td> <%= f.booking_time %> </td>
+                   <td> <%= f.booking_person %> </td>
+                   <td> <%= f.booking_name %> </td>
 						       <td class = "text-right"><%= link_to edit_booking_path(f), class: 'btn btn-info' do %><i class="fa fa-pencil-square-o" ></i>เเก้ไข
                    <%end%>
 						       <%= link_to booking_path(f), method: :delete, data: { confirm: 'ยืนยันการลบ' }, 
@@ -46,7 +57,7 @@
 <%= form_for(@bookings, url: booking_url, method: :patch) do |f| %>
 
 <!-- Modal -->
-<form>
+
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
   <div class="modal-dialog">
@@ -57,30 +68,56 @@
         <h4 class="modal-title" id="myModalLabel">รายละเอียดการจอง</h4>
 
      </div>
+      
       <div class="modal-body">
+ <form>
   <div class="form-group">
-   <label>ชื่อลูกค้า</label>
+   <label> ชื่อลูกค้า : </label>
     <input type="text" class="form-control" name="booking_name">
  </div>
-  <div class="form-group">
-  	<div class="input-group">
-   	<label>เวลาที่จอง</label>
-          <div class="input-group">
-         <input type="text" class = "form-control" name= "booking_time">
-          <div class="input-group-addon">00.00 น.</div>
-         </div>
-    </div>
 
-     </div>
+ <div class="form-group">
+   <label> จำนวน/คน : </label>
+    <input type="text" class="form-control" name="booking_person">
+ </div>
+
+<div class="form-group">
+   <label> วันที่ : </label>
+   <div class="row">
+   <div class="col-sm-9">
+   <%= text_field_tag 'booking_date',Date.today.strftime("%Y-%m-%d"),readonly: true, id: 'today_date_picked',class: "form-control"%>
+   </div>
+   <div class="col-sm-0.1">
+      <button type="button" class="btn btn-warning show-datepicker" data-target="#today_date_picked">
+        <span class="fa fa-calendar"></span>
+        </button>
+        </div>
+        </div>
+ </div>
+  
+  <div class="form-group">
+   <label> เวลาจอง : </label>
+   <div class="row">
+   <div class="col-sm-9">
+   <%= text_field_tag 'booking_time',Time.new(),readonly: true, id: 'today_date_picked',class: "form-control"%>
+   </div>
+   <div class="col-sm-0.1">
+      <button type="button" class="btn btn-warning show-datepicker" data-target="#today_date_picked">
+        <span class="fa fa-clock-o"></span>
+        </button>
+        </div>
+        </div>
+ </div>
+
+     </form>
 
       <div class="modal-footer">
-
         <%= f.submit "ยืนยัน",class: "btn btn-success" %>
       </div>
    </div>
   </div>
 </div>
 </div>
-</form>
+
 <%end%>
 

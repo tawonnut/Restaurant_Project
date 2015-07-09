@@ -57,7 +57,7 @@
                   <% if a.kitchen_id == nil%>
                   <input checked type="checkbox" name="check_value[]" value="<%= a.id %>" >
                   <%else%>
-                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
+                  <input tabindex="">ype="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
                   <%end%>
                   </label></td>
                 <td id="non-printable"><%= i + 1 %></td>
@@ -78,7 +78,7 @@
               </tbody>
           </table>
             <%= button_tag( :class => "btn btn-info btn-lg btn-block", :target=>"_blank" ) do %>
-            <i class="fa fa-btc"></i>&nbsp;Print
+            <i class="fa fa-print"></i>&nbsp;Print
             <% end %>
           <%end%> 
         </div>
@@ -133,7 +133,7 @@
               </tbody>
           </table>
             <%= button_tag( :class => "btn btn-info btn-lg btn-block", :target=>"_blank" ) do %>
-            <i class="fa fa-btc"></i>&nbsp;Print
+            <i class="fa fa-print"></i>&nbsp;Print
             <% end %>
           <%end%> 
         </div>
@@ -187,7 +187,7 @@
               </tbody>
           </table>
             <%= button_tag( :class => "btn btn-info btn-lg btn-block", :target=>"_blank" ) do %>
-            <i class="fa fa-btc"></i>&nbsp;Print
+            <i class="fa fa-print"></i>&nbsp;Print
             <% end %>
           <%end%>           
         </div>
@@ -357,160 +357,3 @@
 
 
 
-
-  <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>ePOS-Print</title>
-
-<script type="text/javascript">
-<!--
-    $(function () {
-
-        // Button
-        $('#ticket, #coupon, #label').button();
-        $('#setting').button({
-            icons: {
-                primary: "ui-icon-gear"
-            }
-        });
-
-        // Setting Dialog
-        $('#dialog').dialog({
-            autoOpen: false,
-            width: 420,
-            buttons: {
-                "OK": function () {
-                    ipaddr = $('#ipaddr').val();
-                    devid = $('#devid').val();
-                    timeout = $('#timeout').val();
-                    grayscale = $('#grayscale').is(':checked');
-                    layout = $('#layout').is(':checked');
-                    $(this).dialog("close");
-                },
-                "Cancel": function () {
-                    $(this).dialog("close");
-                }
-            },
-            show: "fade",
-            hide: "drop",
-            draggable: true,
-            resizable: false,
-            modal: true
-        });
-
-        // Printing Dialog
-        $('#print').dialog({
-            autoOpen: false,
-            width: 320,
-            show: "fade",
-            hide: "drop",
-            draggable: true,
-            resizable: false,
-            modal: true
-        });
-
-        // Error Dialog
-        $('#receive, #error').dialog({
-            autoOpen: false,
-            width: 480,
-            buttons: {
-                "OK": function () {
-                    $(this).dialog("close");
-                }
-            },
-            show: "fade",
-            hide: "drop",
-            draggable: true,
-            resizable: false,
-            modal: true
-        });
-
-    });
-
-    // Open Setting Dialog
-    function openDialog() {
-        $('#ipaddr').val(ipaddr);
-        $('#devid').val(devid);
-        $('#timeout').val(timeout);
-        $('#grayscale').get(0).checked = grayscale;
-        $('#layout').get(0).checked = layout;
-        $('#dialog').dialog('open');
-    }
-
-    // Settings
-    var ipaddr = '192.168.0.26';
-    var devid = 'local_printer';
-    var timeout = '60000';
-    var grayscale = false;
-    var layout = false;
-
-    // Queue Ticket Sequence Number
-    var sequence = 1;
-
-    // Coupon Serial Number
-    var serial = 12301;
-
-    // Item Code
-    var code = 2012001;
-
-//-->
-</script>
-</head>
-
-<body>
-    <div class="ui-widget">
-      <div class="ui-widget-header" style="font-size:24pt;">ePOS-Print Demo</div>
-      <div class="ui-widget-content" style="text-align:center;">
-            <p>&nbsp;</p>
-            <p><button id="ticket" onclick="printTicket()" style="font-size:48pt;width:80%;">Queue Ticket</button></p>
-            <p><button id="coupon" onclick="printCoupon()" style="font-size:48pt;width:80%;">Coupon</button></p>
-            <p><button id="label" onclick="printLabel()" style="font-size:48pt;width:80%;">Label</button></p>
-            <p>&nbsp;</p>
-            <p><button id="setting" onclick="openDialog()">Settings</button></p>
-            <p>&nbsp;</p>
-        </div>
-    </div>
-
-  <!-- ui-dialog -->    
-  <div id="dialog" title="Settings">
-        <p>IP address of ePOS-Print supported printer<br />
-        <input id="ipaddr" type="text"></p>
-        <p>Device ID of the target printer<br />
-        <input id="devid" type="text"></p>
-        <p>Print timeout (milliseconds)<br />
-        <input id="timeout" type="text"></p>
-        <p><input id="grayscale" type="checkbox">Print in grayscale (Coupon)<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;(Only for supported models)</p>
-        <p><input id="layout" type="checkbox">Set the paper layout (Label)<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;(Only for TM-P60II)</p>
-  </div>
-
-  <!-- ui-dialog -->
-  <div id="print" title="Information">
-        <h2>Printing ...</h2>
-  </div>
-
-  <!-- ui-dialog -->
-  <div id="receive" title="Error">
-        <p>Print error occured.</p>
-  </div>
-
-  <!-- ui-dialog -->
-  <div id="error" title="Error">
-        <p>Network error occured.</p>
-  </div>
-
-    <!-- background -->
-    <div style="display:none;">
-        <canvas id="canvas" width="512" height="480"></canvas>
-        <div id="coffee">
-        sdkfjsdjlsdjf;lsdjf
-        ksdljfsjdljsljfsd
-        </div>
-
-    </div>
-</body>

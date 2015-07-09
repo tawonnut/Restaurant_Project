@@ -12,13 +12,14 @@
                 <div class="col-sm-4">
                   <%= f.text_field :restuarant_name, class: "form-control"%>
                   <%= f.hidden_field :user_id, :value => current_user.id %>
-                 </div>
-            </div>
+                  <%= f.hidden_field :restuarant_owner, :value => current_user.name %>
+                </div>
+              </div>
 
              <div class="form-group">
                 <%= f.label :legal_person ,"ชื่อนิติบุคคล:",class: "col-sm-2 control-label"%>
                 <div class="col-sm-4">
-                  <%= f.text_field :legal_person, class: "form-control"%>
+                  <%= f.text_field :legal_person, :value => (current_user.name + " " + current_user.surname)  ,class: "form-control"%>
                  </div>
             </div>
 
