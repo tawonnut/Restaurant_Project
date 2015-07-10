@@ -9,5 +9,6 @@
 //= require_tree ./terebinth-pos
 //= require_tree .
 
+
  window.App = angular.module('terebinth-pos', ['ui.select'])
 
