@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
 
 	def update
         @restuarant= Restuarant.where(id: current_user.current_restuarant).first
-        @booking = Booking.new(booking_name: params[:booking_name],booking_time: params[:booking_time],restuarant_id: @restuarant.id)
+        @booking = Booking.new(booking_name: params[:booking_name],booking_time: params[:booking_time],booking_person: params[:booking_person],booking_tel: params[:booking_tel],booking_date: params[:booking_date],restuarant_id: @restuarant.id)
     if @booking.save
       flash[:notice] = "เพิ่มรายการจองเรียบร้อยแล้ว"
       redirect_to  booking_path
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
   def update_booking
       @booking = Booking.find(params[:id])
       @restuarant = Restuarant.where(_id: @booking.restuarant_id)
-    if @booking.update(booking_name: params[:booking][:booking_name],booking_person: params[:booking][:booking_person],booking_date: params[:booking][:booking_date],booking_time: params[:booking][:booking_time])
+    if @booking.update(booking_name: params[:booking_name],booking_time: params[:booking_time],booking_person: params[:booking_person],booking_tel: params[:booking_tel],booking_date: params[:booking_date])
       flash[:notice] = "เปลี่ยนแปลงการจองเรียบร้อยแล้ว"
       redirect_to booking_path(@restuarant[0].id)
     else

@@ -1,29 +1,61 @@
 <%= form_for(@booking, url: update_booking_booking_url, method: :patch) do |f| %>
 <hr>
-    <div class="panel panel-primary bigmshoadow" >
+    <div class="panel panel-primary" >
       <div class="panel-heading gradient"><h3><i class="fa fa-pencil-square-o" ></i>แก้ไขการจอง</h3>
       </div>
         <div class="panel-body ">
-         <div class="form-horizontal">
-           <div class="form-group">
-            <%= f.label "ชื่อผู้จอง : ", class: "col-sm-2 control-label"%>
-          <div class="col-sm-3">
-          <%= f.text_field :booking_name, class: "form-control" %>
+<form>
+  <div class="form-group">
+   <label> ชื่อลูกค้า : </label>
+    <input type="text" class="form-control" name="booking_name">
+ </div>
+
+  <div class="form-group">
+   <label> เบอร์ติดต่อลูกค้า : </label>
+    <input type="text" class="form-control" name="booking_tel">
+ </div>
+
+ <div class="form-group">
+    <label>จำนวน :</label>
+    <div class="input-group">
+      <input type="text" class = "form-control" name= "booking_person">
+        <div class="input-group-addon">คน</div>
+    </div>
+  </div>
+
+<div class="form-group">
+   <label> วันที่ : </label>
+   <div class="row">
+   <div class="col-sm-9">
+   <%= text_field_tag 'booking_date',Date.today.strftime("%Y-%m-%d"),readonly: true, id: 'today_date_picked',class: "form-control"%>
+   </div>
+   <div class="col-sm-0.1">
+      <button type="button" class="btn btn-warning show-datepicker" data-target="#today_date_picked">
+        <span class="fa fa-calendar"></span>
+        </button>
         </div>
-      </div>
-       <div class="form-group">
-            <%= f.label "เวลาที่จอง : ", class: "col-sm-2 control-label"%>
-          <div class="col-sm-3">
-          <%= f.text_field :booking_time, class: "form-control" %>
         </div>
-      </div>
+ </div>
+  
+  <div class="form-group">
+   <label> เวลาจอง : </label>
+   <div class="row">
+   <div class="col-sm-9">
+   <%= text_field_tag 'booking_time',Time.now(),readonly: true, id: 'today_date_picked',class: "form-control"%>
+   </div>
+   <div class="col-sm-0.1">
+      <button type="button" class="btn btn-danger  " data-target="#today_date_picked">
+        <span class="fa fa-clock-o"></span>
+        </button>
+        </div>
+        </div>
+ </div> 
+     </form>
            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
                   <%= f.submit "ยืนยัน",class: "btn btn-success" %>
-                </div>
-          </div>  
+          </div> 
       </div> 
     </div>
-    </div
+  </div>
 
 <% end %>
