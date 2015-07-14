@@ -2,7 +2,6 @@ class KitchensController < ApplicationController
 
 	def dish_kitchen
 		@check = params[:check_value]
-		require "pp"
 		if @check != nil
 			@kitchen = Kitchen.new()
 		    @check.each do |list|

@@ -12,6 +12,18 @@ class MenuListsController < ApplicationController
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)
     @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil)
     @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil)
+    @user = User.where(_id: current_user.id) 
+
+    @check = params[:check_value]
+    if @check != nil
+      @kitchen = Kitchen.new()
+        @check.each do |list|
+          @menu = MenuList.where(:id => list.to_s)
+          @menu.update(kitchen_id: @kitchen.id )
+        end 
+
+    @menu = MenuList.where(kitchen_id: @kitchen.id)  
+    end  
   end
 
   def create  

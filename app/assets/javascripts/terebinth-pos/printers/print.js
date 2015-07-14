@@ -1,11 +1,12 @@
-﻿function printorders() {
-    
+﻿function printorders(table,name,surname,time,menu) { 
     // open print dialog
     $('#print').dialog('open');
 
     //
     // build print data
     //
+console.log(menu)
+var menu = JSON.parse("[" + menu + "]");
 
     // create print data builder object
     var builder = new epson.ePOSBuilder();
@@ -23,12 +24,27 @@
         // start page mode
         addPageBegin();
         builder.addTextAlign(builder.ALIGN_CENTER);
-        builder.addText('ร้าน: Home Recipe');
+        builder.addText('\n');
+        builder.addText('โต๊ะที่:',' ').addText(table);
+        builder.addText('\n');
+        builder.addText('พนักงาน:\t').addText(name).addText(' ').addText(surname);
+        builder.addText('\n');
+        builder.addText('วันที่/เวลา:').addText(' ').addText(time);
+        builder.addText('\n');
+        builder.addText('_______________________________________');
+        builder.addText('\n');
+        builder.addText('              ').addText('รายการอาหาร\n');
+        builder.addTextLineSpace(30);
+        builder.addText('#    ชื่ออาหาร        รายละเอียด    จำนวน \n');
+        for (i = 0; i < menu[0].length; i++) { 
+            builder.addText(menu[0][i].menu);
+        }
 
 
         // end page mode
         addPageEnd();
         builder.addCut(builder.CUT_FEED);
+        // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
 
     }
 
