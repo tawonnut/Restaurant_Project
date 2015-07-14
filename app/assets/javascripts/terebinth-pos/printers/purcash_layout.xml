@@ -1,7 +1,0 @@
-<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print">
-<text align="center"/>
-<text>Swiftlet.co.th</text>
-<feed line="3"/>
-<cut type="feed"/>
-</epos-print>
-

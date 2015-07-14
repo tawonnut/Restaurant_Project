@@ -1,5 +1,4 @@
 <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
-<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print">
 
  <hr id="non-printable">
 <div class="row" id="non-printable">
@@ -9,7 +8,7 @@
     </button>
   </div>
   
-    <div class ="col-sm-6 text-center" onclick="testpaper()">
+    <div class ="col-sm-6 text-center" onclick="printorders('<%= @table.restuarant.restuarant_name%>')">
       <%= image_tag("print.jpg",width:'120' ,height:'120') %>
     </div> 
 
@@ -526,14 +525,4 @@ epos.send(builder.toString());
         <p>Network error occured.</p>
   </div>
 
-    <!-- background -->
-    <div style="display:none;">
-        <canvas id="canvas" width="512" height="480"></canvas>
-        <div id="coffee">
-        sdkfjsdjlsdjf;lsdjf
-        ksdljfsjdljsljfsd
-        </div>
-
-    </div>
-</body>
-
+ 
