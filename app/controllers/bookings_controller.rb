@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
     @restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
     @restuarant_user = Restuarant.where(user_id: current_user.id) 
     @restuarant= Restuarant.where(id: current_user.current_restuarant).first
-    @booking = Booking.where(restuarant_id: @restuarant.id)
+    @booking = Booking.where(restuarant_id: @restuarant.id).order(booking_date: "aesc")
     @bookings = Booking.new
   end
 

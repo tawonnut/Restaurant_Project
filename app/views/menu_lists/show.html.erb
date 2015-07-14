@@ -1,4 +1,5 @@
 <%= form_for(@promotion, url: payment_menu_list_url,method: :get) do |f| %>
+<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print">
 
  <hr id="non-printable">
 <div class="row" id="non-printable">
@@ -8,7 +9,7 @@
     </button>
   </div>
   
-    <div class ="col-sm-6 text-center" onclick="printTest()">
+    <div class ="col-sm-6 text-center" onclick="testpaper()">
       <%= image_tag("print.jpg",width:'120' ,height:'120') %>
     </div> 
 
@@ -57,7 +58,7 @@
                   <% if a.kitchen_id == nil%>
                   <input checked type="checkbox" name="check_value[]" value="<%= a.id %>" >
                   <%else%>
-                  <input tabindex="">ype="checkbox" name="check_value[]" value="<%= a.id %>" disabled>
+                  <input type="checkbox" name="check_value[]" value="<%= a.id %>" disabled >
                   <%end%>
                   </label></td>
                 <td id="non-printable"><%= i + 1 %></td>
@@ -492,19 +493,10 @@ epos.send(builder.toString());
 </head>
 
 <body>
-    <div class="ui-widget">
-      <div class="ui-widget-header" style="font-size:24pt;">ePOS-Print Demo</div>
-      <div class="ui-widget-content" style="text-align:center;">
-            <p>&nbsp;</p>
-            <p><button id="ticket" onclick="printTicket()" style="font-size:48pt;width:80%;">Queue Ticket</button></p>
-            <p><button id="coupon" onclick="printCoupon()" style="font-size:48pt;width:80%;">Coupon</button></p>
-            <p><button id="label" onclick="printLabel()" style="font-size:48pt;width:80%;">Label</button></p>
-            <p>&nbsp;</p>
+    
             <p><button id="setting" onclick="openDialog()">Settings</button></p>
             <p>&nbsp;</p>
-        </div>
-    </div>
-
+        
   <!-- ui-dialog -->    
   <div id="dialog" title="Settings">
         <p>IP address of ePOS-Print supported printer<br />
