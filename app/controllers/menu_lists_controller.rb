@@ -1,5 +1,5 @@
 class MenuListsController < ApplicationController
-
+ 
   def index
   end 
   

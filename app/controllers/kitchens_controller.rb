@@ -1,5 +1,5 @@
 class KitchensController < ApplicationController
-
+ 
 	def dish_kitchen
 		@check = params[:check_value]
 		if @check != nil

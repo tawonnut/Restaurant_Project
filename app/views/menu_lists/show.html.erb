@@ -353,47 +353,6 @@
 
 
 
-
-
-
-
-<!-- 
-<script type="text/javascript">
-
-function printTest(){
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var address = 'http://192.168.0.26./cgi-bin/epos/service.cgi?devid=local_printer&timeout=60000';
-
-var builder = new epson.ePOSBuilder();
-builder.addTextAlign(builder.ALIGN_CENTER);
-builder.addText('Swiftlet.co.th');
-builder.addFeedLine(3);
-builder.addCut(builder.CUT_FEED);
-
-var epos = new epson.ePOSPrint(address);
-epos.onreceive = function (res) { alert(res.success); };
-epos.onerror = function (err) { alert(err.status); };
-epos.oncoveropen = function () { alert('coveropen'); };
-epos.send(builder.toString());
-}
-</script>
-
-
-<canvas id="canvas"> 
-</canvas> -->
-
-
-
-
-  <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>ePOS-Print</title>
-
 <script type="text/javascript">
 <!--
     $(function () {
@@ -493,20 +452,20 @@ epos.send(builder.toString());
 
 <body>
     
-            <p><button id="setting" onclick="openDialog()">Settings</button></p>
-            <p>&nbsp;</p>
+    <p><button id="setting" onclick="openDialog()">Settings</button></p>
+    <p>&nbsp;</p>
         
   <!-- ui-dialog -->    
   <div id="dialog" title="Settings">
-        <p>IP address of ePOS-Print supported printer<br />
+        <p>ตั้งค่า IP Printer<br />
         <input id="ipaddr" type="text"></p>
-        <p>Device ID of the target printer<br />
+        <p>Device ID <br />
         <input id="devid" type="text"></p>
         <p>Print timeout (milliseconds)<br />
         <input id="timeout" type="text"></p>
-        <p><input id="grayscale" type="checkbox">Print in grayscale (Coupon)<br />
+        <p><input id="grayscale" type="checkbox"> Print in grayscale<br />
         &nbsp;&nbsp;&nbsp;&nbsp;(Only for supported models)</p>
-        <p><input id="layout" type="checkbox">Set the paper layout (Label)<br />
+        <p><input id="layout" type="checkbox"> Set the paper layout (Label)<br />
         &nbsp;&nbsp;&nbsp;&nbsp;(Only for TM-P60II)</p>
   </div>
 

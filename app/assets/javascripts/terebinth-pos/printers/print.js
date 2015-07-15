@@ -2,11 +2,8 @@
     // open print dialog
     $('#print').dialog('open');
 
-    //
-    // build print data
-    //
-console.log(menu)
-var menu = JSON.parse("[" + menu + "]");
+    console.log(menu)
+    var menu = JSON.parse("[" + menu + "]");
 
     // create print data builder object
     var builder = new epson.ePOSBuilder();
@@ -31,14 +28,18 @@ var menu = JSON.parse("[" + menu + "]");
         builder.addText('\n');
         builder.addText('วันที่/เวลา:').addText(' ').addText(time);
         builder.addText('\n');
-        builder.addText('_______________________________________');
+        builder.addText('_________________________________________');
         builder.addText('\n');
-        builder.addText('              ').addText('รายการอาหาร\n');
-        builder.addTextLineSpace(30);
-        builder.addText('#    ชื่ออาหาร        รายละเอียด    จำนวน \n');
-        for (i = 0; i < menu[0].length; i++) { 
-            builder.addText(menu[0][i].menu);
-        }
+        builder.addTextPosition(120);
+        builder.addText('รายการอาหาร');
+        // builder.addText('              ').addText('รายการอาหาร');
+        // builder.addText('\n');
+        // builder.addText(' ชื่ออาหาร         รายละเอียด          จำนวน\n');
+        // for (i = 0; i < menu[0].length; i++) { 
+        //     builder.addText(menu[0][i].menu);
+        //     builder.addText('        ','\t').addText(menu[0][i].remark),addText('\t').addText(menu[0][i].value);
+        //     builder.addText('\n');
+        // }
 
 
         // end page mode
@@ -66,7 +67,6 @@ var menu = JSON.parse("[" + menu + "]");
             $('#receive').dialog('open');
         }
     }
-
     // register callback function
     epos.onerror = function (err) {
         // close print dialog
@@ -75,12 +75,13 @@ var menu = JSON.parse("[" + menu + "]");
         $('#error').dialog('open');
     }
 
-    // send
     epos.send(builder.toString());
-
-    // set next item code
-    code++;
+    window.location.reload();
 }
+
+
+
+
 
 
 
