@@ -1,19 +1,18 @@
 <center><h4>สรุปรายการอาหารและเครื่องดื่ม</h4></center>
-
+ <%= @total %>
  <hr>
 <div class="row" id="non-printable">
   <div class="col-sm-3 text-left">
-   <%= link_to( image_tag("maincash.jpg",width:'100' ,height:'100'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
+   <%= link_to( image_tag("maincash.jpg",width:'120' ,height:'120'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
    
   </div>
   
-    <div class ="col-sm-6 text-center" onclick="printorders()">
-    
-     <%= link_to( image_tag("print.jpg",width:'100' ,height:'100'),service_bill_menu_list_path) %>
+    <div class ="col-sm-6 text-center" onclick="printpayments('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @total %>')">
+      <%= image_tag("print.jpg",width:'120' ,height:'120') %>
     </div> 
 
     <div class = "col-sm-3" align ="right">
-    <%= link_to( image_tag("credit1.jpg",width:'100' ,height:'100'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
+    <%= link_to( image_tag("credit1.jpg",width:'120' ,height:'120'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
     </div> 
                        
 </div>
@@ -104,4 +103,34 @@
     </div>
  </div>
  <hr>
+ <p><button id="setting" onclick="openDialog()">Settings</button></p>
+    <p>&nbsp;</p>
  
+  <!-- ui-dialog -->    
+  <div id="dialog" title="Settings">
+        <p>ตั้งค่า IP Printer<br />
+        <input id="ipaddr" type="text"></p>
+        <p>Device ID <br />
+        <input id="devid" type="text"></p>
+        <p>Print timeout (milliseconds)<br />
+        <input id="timeout" type="text"></p>
+        <p><input id="grayscale" type="checkbox"> Print in grayscale<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;(Only for supported models)</p>
+        <p><input id="layout" type="checkbox"> Set the paper layout (Label)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;(Only for TM-P60II)</p>
+  </div>
+
+  <!-- ui-dialog -->
+  <div id="print" title="Information">
+        <h2>Printing ...</h2>
+  </div>
+
+  <!-- ui-dialog -->
+  <div id="receive" title="Error">
+        <p>Print error occured.</p>
+  </div>
+
+  <!-- ui-dialog -->
+  <div id="error" title="Error">
+        <p>Network error occured.</p>
+  </div>
