@@ -1,7 +1,6 @@
 ﻿function printorders(table,name,surname,time,menu) { 
     // open print dialog
     $('#print').dialog('open');
-
     console.log(menu)
     var menu = JSON.parse("[" + menu + "]");
 
@@ -14,41 +13,44 @@
         addTextSmooth(1);
 
         // paper control for first print
-        if (layout) {
-            addFeedPosition(FEED_NEXT_TOF);
-        }
+        // if (layout) {
+        //     addFeedPosition(FEED_NEXT_TOF);
+        // }
 
         // start page mode
         addPageBegin();
-        builder.addTextAlign(builder.ALIGN_CENTER);
-        builder.addText('\n');
-        builder.addText('โต๊ะที่:',' ').addText(table);
-        builder.addText('\n');
-        builder.addText('พนักงาน:\t').addText(name).addText(' ').addText(surname);
-        builder.addText('\n');
+        builder.addTextAlign(builder.ALIGN_CENTER).addText('\n');
+        builder.addText('โต๊ะที่:',' ').addText(table).addText('\n');
+        builder.addText('พนักงาน:\t').addText(name).addText(' ').addText(surname).addText('\n');
         builder.addText('วันที่/เวลา:').addText(' ').addText(time);
         builder.addText('\n');
         builder.addText('_________________________________________');
         builder.addText('\n');
-        builder.addTextPosition(120);
+        builder.addTextPosition(180);
+        builder.addTextStyle(undefined,undefined,1,undefined);
         builder.addText('รายการอาหาร');
-        // builder.addText('              ').addText('รายการอาหาร');
-        // builder.addText('\n');
-        // builder.addText(' ชื่ออาหาร         รายละเอียด          จำนวน\n');
-        // for (i = 0; i < menu[0].length; i++) { 
-        //     builder.addText(menu[0][i].menu);
-        //     builder.addText('        ','\t').addText(menu[0][i].remark),addText('\t').addText(menu[0][i].value);
-        //     builder.addText('\n');
-        // }
+        builder.addText('\n');
+        builder.addTextPosition(10);
+        builder.addText('รายการ'),addTextPosition(410);
+        builder.addText('จำนวน').addText('\n');
+        builder.addTextStyle(undefined,undefined,0,undefined);
 
-
-        // end page mode
-        addPageEnd();
+        for (i = 0; i < menu[0].length; i++) { 
+            builder.addText(menu[0][i].menu);
+            builder.addTextPosition(425);
+            builder.addText(menu[0][i].value)
+            builder.addText('\n');
+            if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
+                builder.addTextPosition(20);
+                builder.addText('*').addText(menu[0][i].remark)
+                builder.addText('\n'); 
+            }              
+        }
+        builder.addPageEnd();
         builder.addCut(builder.CUT_FEED);
         // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
 
     }
-
     //
     // send print data
     //
@@ -76,7 +78,7 @@
     }
 
     epos.send(builder.toString());
-    window.location.reload();
+    // window.location.reload();
 }
 
 

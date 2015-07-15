@@ -37,7 +37,6 @@
     <div class="panel panel-info">
       <div class="panel-heading"><h4 style="text-align:center;">เมนูอาหาร<h4></div>
         <div class="panel-body">
-         <%= form_for(@promotion, url:  dish_kitchen_kitchens_url,method: :get) do |f| %>
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
@@ -77,10 +76,7 @@
               <%end%>
               </tbody>
           </table>
-            <%= button_tag( :class => "btn btn-info btn-lg btn-block", :target=>"_blank" ) do %>
-            <i class="fa fa-print"></i>&nbsp;Print
-            <% end %>
-          <%end%> 
+<button type="submit" class="btn btn-info btn-lg btn-block" onclick="printorders('<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>')"> <i class="fa fa-print"></i>&nbsp;Print</button>
         </div>
       </div>
     </div>
@@ -93,7 +89,7 @@
     <div class="panel panel-info">
       <div class="panel-heading"><h4 style="text-align:center;">เครื่องดื่ม<h4></div>
         <div class="panel-body">
-         <%= form_for(@promotion, url:  drinking_kitchen_kitchens_url,method: :get) do |f| %>
+     
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
@@ -132,10 +128,8 @@
               <%end%>
               </tbody>
           </table>
-            <%= button_tag( :class => "btn btn-info btn-lg btn-block", :target=>"_blank" ) do %>
-            <i class="fa fa-print"></i>&nbsp;Print
-            <% end %>
-          <%end%> 
+            
+          <button type="submit" class="btn btn-info btn-lg btn-block" onclick="printorders('<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_drink.to_json%>')"> <i class="fa fa-print"></i>&nbsp;Print</button> 
         </div>
       </div>
     </div>
@@ -147,7 +141,7 @@
     <div class="panel panel-info">
       <div class="panel-heading"><h4 style="text-align: center;">อาหารหวาน<h4></div>
         <div class="panel-body">
-          <%= form_for(@promotion, url:  dessert_kitchen_kitchens_url,method: :get) do |f| %>
+        
           <table class="table table-striped" id="show_data1">
             <thead>
             <tr>
@@ -186,10 +180,7 @@
               <%end%>
               </tbody>
           </table>
-            <%= button_tag( :class => "btn btn-info btn-lg btn-block", :target=>"_blank" ) do %>
-            <i class="fa fa-print"></i>&nbsp;Print
-            <% end %>
-          <%end%>           
+          <button type="submit" class="btn btn-info btn-lg btn-block" onclick="printorders('<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dessert.to_json%>')"> <i class="fa fa-print"></i>&nbsp;Print</button>          
         </div>
       </div>
     </div>
