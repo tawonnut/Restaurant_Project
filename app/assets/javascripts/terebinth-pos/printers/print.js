@@ -180,12 +180,11 @@ function printorders(table,name,surname,time,menu) {
 }
 
 
-function printpayments(restuarant,table,name,surname,time,menu,total) {
+function printpayments(restuarant,table,name,surname,time,menu,total,discount) {
      // open print dialog
     $('#print').dialog('open');
-    console.log(total)
+    
     var menu = JSON.parse("[" + menu + "]");
-
     // create print data builder object
     var builder = new epson.ePOSBuilder();
     with (builder) {
@@ -245,20 +244,20 @@ function printpayments(restuarant,table,name,surname,time,menu,total) {
         builder.addTextPosition(25);
         builder.addText('ค่าอาหาร');
         builder.addTextPosition(390);
-        builder.addText('134.50').addText('\n');
+        builder.addText(total).addText('\n');
+        builder.addTextPosition(25);
+        builder.addText('ส่วนลด');
+        builder.addTextPosition(195);
+        builder.addText(discount).addText(' %');
+        builder.addTextPosition(400);
+        builder.addText('0 บาท').addText('\n');
         builder.addTextPosition(25);
         builder.addText('SERV.Charge');
         builder.addTextPosition(195);
         builder.addText('0 ').addText('%');
         builder.addTextPosition(400);
-        builder.addText('0 บาท')
+        builder.addText('0 บาท');
         builder.addText('\n');
-        builder.addTextPosition(25);
-        builder.addText('ส่วนลด');
-        builder.addTextPosition(195);
-        builder.addText('0 ').addText('%');
-        builder.addTextPosition(400);
-        builder.addText('0 ').addText('บาท').addText('\n');
         builder.addTextPosition(25);
         builder.addText('Vat');
         builder.addTextPosition(195);
@@ -269,12 +268,12 @@ function printpayments(restuarant,table,name,surname,time,menu,total) {
         builder.addText('รวมสุทธิ');
         builder.addTextPosition(390);
         builder.addTextStyle(undefined,true);
-        builder.addText('134.50 ');
+        builder.addText(total);
         builder.addTextStyle(undefined,0);
-        builder.addText('บาท');
-
-
-
+        builder.addText(' บาท').addText('\n');
+        builder.addFeedUnit(50);
+        builder.addTextPosition(155);
+        builder.addText('**รับเฉพาะเงินสด**');
 
 
 
@@ -310,7 +309,148 @@ function printpayments(restuarant,table,name,surname,time,menu,total) {
     }
 
     epos.send(builder.toString());
-    // window.location.reload();
+    window.location.reload();
 
     
+}
+
+
+
+function printbills(restuarant,table,name,surname,time,menu,total,discount) {
+     // open print dialog
+    $('#print').dialog('open');
+    
+    var menu = JSON.parse("[" + menu + "]");
+    var cash = $('#cash').val();
+    submit = cash - total;
+    // create print data builder object
+     
+    var builder = new epson.ePOSBuilder();
+
+       builder.addPageBegin();
+       builder.addTextSmooth(true);
+        // Paper Header
+        // addPageBegin();
+        builder.addTextAlign(builder.ALIGN_CENTER).addText('\n');
+        builder.addTextPosition(100);
+        builder.addTextStyle(undefined,undefined,1);
+        builder.addText('ใบเสร็จรับเงิน/ใบกำกับภาษี').addText('\n');
+        builder.addTextPosition(150);
+        builder.addTextStyle(undefined,undefined,0);
+        builder.addText('ร้าน :',' ').addText(restuarant).addText('\n');
+        builder.addFeedUnit(10);
+        builder.addText('Tax ID NO. ').addText('0105537143215').addText('\n');
+        builder.addText('โต๊ะที่:',' ').addText(table).addText('\n');
+        builder.addText('พนักงาน:\t').addText(name).addText(' ').addText(surname).addText('\n');
+        builder.addText('วันที่/เวลา:').addText(' ').addText(time).addText('\n');
+        builder.addText('_________________________________________').addText('\n');
+
+        //Top menu
+        builder.addFeedUnit(10);
+        builder.addTextPosition(180);
+        builder.addTextStyle(undefined,undefined,1,undefined);
+        builder.addText('ค่าอาหาร/บริการ');
+        builder.addText('\n');
+        builder.addTextPosition(10);
+        builder.addText('รายการ').addTextPosition(190);
+        builder.addText('จำนวน').addTextPosition(310);
+        builder.addText('ราคา').addTextPosition(435);
+        builder.addText('รวม').addText('\n')
+        builder.addTextStyle(undefined,undefined,0,undefined);
+        builder.addFeedUnit(20);
+
+
+        // Var loop
+        for (i = 0; i < menu[0].length; i++) { 
+            builder.addText(menu[0][i].menu);
+            builder.addTextPosition(200);
+            builder.addText(menu[0][i].value).addTextPosition(320);
+            builder.addText(menu[0][i].menu_price).addTextPosition(440);
+            builder.addText(parseFloat(menu[0][i].menu_price) * parseFloat(menu[0][i].value ));
+            builder.addText('\n');
+
+            if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
+                builder.addTextPosition(20);
+                builder.addText('*').addText(menu[0][i].remark)
+                builder.addText('\n'); 
+            }              
+        }
+            // Paper Body
+        builder.addFeedUnit(30);
+        builder.addTextPosition(25);
+        builder.addText('ค่าอาหาร');
+        builder.addTextPosition(390);
+        builder.addText(total).addText(' บาท').addText('\n');
+        builder.addTextPosition(25);
+        builder.addText('ส่วนลด');
+        builder.addTextPosition(195);
+        builder.addText(discount).addText(' %');
+        builder.addTextPosition(400);
+        builder.addText('0 บาท').addText('\n');
+        builder.addTextPosition(25);
+        builder.addText('SERV.Charge');
+        builder.addTextPosition(195);
+        builder.addText('0 ').addText('%');
+        builder.addTextPosition(400);
+        builder.addText('0 บาท');
+        builder.addText('\n');
+        builder.addTextPosition(25);
+        builder.addText('Vat');
+        builder.addTextPosition(195);
+        builder.addText('0 ').addText('%')
+        builder.addTextPosition(400);
+        builder.addText('0 ').addText('บาท').addText('\n');
+        builder.addFeedUnit(10);
+        builder.addText('รวมสุทธิ');
+        builder.addTextPosition(390);
+        builder.addTextStyle(undefined,true);
+        builder.addText(total);
+        builder.addTextStyle(undefined,0);
+        builder.addText(' บาท').addText('\n');
+        builder.addFeedUnit(20);
+        builder.addText('รับเงิน');
+        builder.addTextPosition(360);
+        builder.addText(cash).addText(' บาท').addText('\n');
+        builder.addText('ชำระ');
+        builder.addTextPosition(390);
+        builder.addText(total).addText(' บาท').addText('\n');
+        builder.addText('เงินทอน');
+        builder.addTextPosition(390);
+        builder.addText(submit).addText(' บาท').addText('\n');
+        builder.addFeedUnit(30);
+        builder.addText('Cashier Sign: ').addText('___________________').addText('\n');
+        builder.addFeedUnit(30);
+        builder.addTextPosition(180);
+        builder.addText('ขอบคุณที่ใช้บริการ');
+        builder.addPageEnd();
+        builder.addCut(builder.CUT_FEED);
+        // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
+
+    //
+    // send print data
+    //
+
+    // create print object
+    var url = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
+    var epos = new epson.ePOSPrint(url);
+
+    // register callback function
+    epos.onreceive = function (res) {
+        // close print dialog
+        $('#print').dialog('close');
+        // print failure
+        if (!res.success) {
+            // show error message
+            $('#receive').dialog('open');
+        }
+    }
+    // register callback function
+    epos.onerror = function (err) {
+        // close print dialog
+        $('#print').dialog('close');
+        // show error message
+        $('#error').dialog('open');
+    }
+    epos.send(builder.toString());
+    window.location.reload();
 }
