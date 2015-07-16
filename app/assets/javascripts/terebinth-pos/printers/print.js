@@ -1,7 +1,6 @@
 ﻿ $(function () {
 
         // Button
-        $('#ticket, #coupon, #label').button();
         $('#setting').button({
             icons: {
                 primary: "ui-icon-gear"
@@ -81,14 +80,7 @@
     var grayscale = false;
     var layout = false;
 
-    // Queue Ticket Sequence Number
-    var sequence = 1;
-
-    // Coupon Serial Number
-    var serial = 12301;
-
-    // Item Code
-    var code = 2012001;
+   
 
 
 function printorders(table,name,surname,time,menu) { 
@@ -111,7 +103,7 @@ function printorders(table,name,surname,time,menu) {
         // }
 
         // start page mode
-        addPageBegin();
+     
         builder.addTextAlign(builder.ALIGN_CENTER).addText('\n');
         builder.addTextPosition(180);
         builder.addTextStyle(undefined,undefined,1);
@@ -144,7 +136,7 @@ function printorders(table,name,surname,time,menu) {
                 builder.addText('\n'); 
             }              
         }
-        builder.addPageEnd();
+        
         builder.addCut(builder.CUT_FEED);
         // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
 
@@ -275,11 +267,10 @@ function printpayments(restuarant,table,name,surname,time,menu,total,discount) {
         builder.addTextPosition(155);
         builder.addText('**รับเฉพาะเงินสด**');
 
-
-
         builder.addPageEnd();
         builder.addCut(builder.CUT_FEED);
         // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
+
 
     }
     //
@@ -307,11 +298,8 @@ function printpayments(restuarant,table,name,surname,time,menu,total,discount) {
         // show error message
         $('#error').dialog('open');
     }
-
     epos.send(builder.toString());
     window.location.reload();
-
-    
 }
 
 
