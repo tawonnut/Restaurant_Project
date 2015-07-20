@@ -37,12 +37,60 @@
                 </div>
               </div>
 
-                 <div class="form-group">
+                <div class="form-group">
                 <%= f.label :restuarant_address ,"ที่อยู่ร้าน:",class: "col-sm-2 control-label"%>
                 <div class="col-sm-4">
                   <%= f.text_area  :restuarant_address,  class: "form-control"%>
                 </div>
               </div>
+
+
+            <div ng-controller = "ProvinceController">
+              <div class="form-group">  
+                <label class="col-sm-2 control-label">จังหวัด : </label>
+                  <div class="col-sm-5" >
+                   <ui-select ng-model="province.selected" theme="select2" ng-disabled="" style="min-width: 300px;"  on-select="selecte_province($item)">
+                    <ui-select-match placeholder="ระบุจังหวัด...">{{$select.selected.province_name|| "ระบุจังหวัด..." }}</ui-select-match>
+                      <ui-select-choices repeat="province in provinces | propsFilter: {province_name: $select.search}">
+                        <div  ng-bind-html="province.province_name "></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+              </div>
+
+              <input type="hidden"  name="restuarant[province]" ng-model="province.selected.province_name" ng-value="province.selected.province_name" />
+
+              <div class="form-group">  
+                <label class="col-sm-2 control-label">เขต/อำเภอ : </label>
+                  <div class="col-sm-5">
+                   <ui-select ng-model="county.selected" theme="select2" ng-disabled="" style="min-width: 300px;"  on-select="selecte_county($item)">
+                    <ui-select-match placeholder="ระบุเขต/อำเภอ...">{{$select.selected.county_name }}</ui-select-match>
+                      <ui-select-choices repeat="county in counties | propsFilter: {county_name: $select.search}">
+                        <div ng-bind-html="county.county_name "></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+              </div>
+
+              <input type="hidden"  name="restuarant[county]" ng-model="county.selected.county_name" ng-value="county.selected.county_name" />
+
+              <div class="form-group">  
+                <label class="col-sm-2 control-label">แขวง/ตำบล : </label>
+                  <div class="col-sm-5">
+                   <ui-select ng-model="district.selected" theme="select2" ng-disabled="" style="min-width: 300px;">
+                    <ui-select-match placeholder="ระบุแขวง/ตำบล...">{{$select.selected.district_name}}</ui-select-match>
+                      <ui-select-choices repeat="district in districts | propsFilter: {district_name: $select.search}">
+                        <div ng-bind-html="district.district_name "></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+              </div>
+
+              <input type="hidden"  name="restuarant[district]" ng-model="district.selected.district_name" ng-value="district.selected.district_name" />
+
+            </div>
+         
+               
                   <div class="col-sm-6">
                   <p class="text-center">
                       <%= submit_tag "ตกลง", class: "btn btn-success" %>

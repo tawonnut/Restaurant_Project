@@ -27,7 +27,10 @@ class Restuarant
    field :restuarant_tel,     type: String     
    field :restuarant_email,   type: String     
    field :legal_person,       type: String            
-   field :tax_id,             type: String   
+   field :tax_id,             type: String
+  field :province,          type: String
+  field :county,            type: String
+  field :district,          type: String   
 
 
      validates :restuarant_name,                  presence: {message: "กรุณาระบุชื่อร้าน"},uniqueness: {message: "ชื่อร้านนี้ มีอยู่ในระบบแล้ว"}

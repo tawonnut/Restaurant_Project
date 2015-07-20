@@ -1,0 +1,114 @@
+Searching 1292 files for "rack1.6.4" (case sensitive)
+
+0 matches
+
+Searching 1292 files for "rack" (case sensitive)
+
+/home/bombayz/terebinth-pos/Gemfile.lock:
+   11        actionview (= 4.2.0)
+   12        activesupport (= 4.2.0)
+   15        rails-dom-testing (~> 1.0, >= 1.0.5)
+   16        rails-html-sanitizer (~> 1.0, >= 1.0.1)
+   ..
+   75        mime-types (>= 1.16)
+   76        nokogiri (>= 1.3.3)
+   79        xpath (~> 2.0)
+   80      childprocess (0.5.6)
+   ..
+  158      orm_adapter (0.5.0)
+  159      puma (2.11.3
+  164      rails (4.2.0)
+  165        actionmailer (= 4.2.0)
+  ...
+  231      spring (1.3.6)
+  232      sprockets (3.2.0)
+  234      sprockets-rails (2.3.2)
+  235        actionpack (>= 3.0)
+  ...
+  251        json (>= 1.8.0)
+  252      warden (1.2.3)
+  254      web-console (2.1.3)
+  255        activemodel (>= 4.0)
+
+/home/bombayz/terebinth-pos/app/assets/javascripts/terebinth-pos/bootstrap_dropdown.js:
+    1  (function ($, window, undefined) {
+    2      // outside the scope of the jQuery plugin to
+    3:     // keep track of all dropdowns
+    4      var $allDropdowns = $();
+    5  
+
+/home/bombayz/terebinth-pos/app/assets/javascripts/terebinth-pos/ui-select.js:
+  131      /**
+  132       * Example:
+  133:      * expression = "address in addresses | filter: {street: $select.search} track by $index"
+  134       * itemName = "address",
+  135       * source = "addresses | filter: {street: $select.search}",
+  136:      * trackByExp = "$index",
+  137       */
+  138      self.parse = function(expression) {
+  139  
+  140:       var match = expression.match(/^\s*(?:([\s\S]+?)\s+as\s+)?([\S]+?)\s+in\s+([\s\S]+?)(?:\s+track\s+by\s+([\s\S]+?))?\s*$/);
+  141  
+  142        if (!match) {
+  143:         throw uiSelectMinErr('iexp', "Expected expression in form of '_item_ in _collection_[ track by _id_]' but got '{0}'.",
+  144                  expression);
+  145        }
+  ...
+  148          itemName: match[2], // (lhs) Left-hand side,
+  149          source: $parse(match[3]),
+  150:         trackByExp: match[4],
+  151          modelMapper: $parse(match[1] || match[2])
+  152        };
+  ...
+  158      };
+  159  
+  160:     self.getNgRepeatExpression = function(itemName, source, trackByExp, grouped) {
+  161        var expression = itemName + ' in ' + (grouped ? '$group.items' : source);
+  162:       if (trackByExp) {
+  163:         expression += ' track by ' + trackByExp;
+  164        }
+  165        return expression;
+  ...
+  965                    locals[$select.parserResult.itemName] = list[p];
+  966                    result = $select.parserResult.modelMapper(scope, locals);
+  967:                   if($select.parserResult.trackByExp){
+  968:                       var matches = /\.(.+)/.exec($select.parserResult.trackByExp);
+  969                        if(matches.length>0 && result[matches[1]] == value[matches[1]]){
+  970                            resultMultiple.unshift(list[p]);
+  ...
+ 1262            }
+ 1263  
+ 1264:           choices.attr('ng-repeat', RepeatParser.getNgRepeatExpression($select.parserResult.itemName, '$select.items', $select.parserResult.trackByExp, groupByExp))
+ 1265                .attr('ng-if', '$select.open') //Prevent unnecessary watches when dropdown is closed
+ 1266                .attr('ng-mouseenter', '$select.setActiveItem('+$select.parserResult.itemName +')')
+ ....
+ 1344  
+ 1345  angular.module("ui.select").run(["$templateCache", function($templateCache) {$templateCache.put("bootstrap/choices.tpl.html","<ul class=\"ui-select-choices ui-select-choices-content dropdown-menu\" role=\"listbox\" ng-show=\"$select.items.length > 0\"><li class=\"ui-select-choices-group\" id=\"ui-select-choices-{{ $select.generatedId }}\"><div class=\"divider\" ng-show=\"$select.isGrouped && $index > 0\"></div><div ng-show=\"$select.isGrouped\" class=\"ui-select-choices-group-label dropdown-header\" ng-bind-html=\"$group.name\"></div><div id=\"ui-select-choices-row-{{ $select.generatedId }}-{{$index}}\" class=\"ui-select-choices-row\" ng-class=\"{active: $select.isActive(this), disabled: $select.isDisabled(this)}\" role=\"option\"><a href=\"javascript:void(0)\" class=\"ui-select-choices-row-inner\"></a></div></li></ul>");
+ 1346: $templateCache.put("bootstrap/match-multiple.tpl.html","<span class=\"ui-select-match\"><span ng-repeat=\"$item in $select.selected track by $index\"><span style=\"margin-right: 3px;\" class=\"ui-select-match-item btn btn-default btn-xs\" tabindex=\"-1\" type=\"button\" ng-disabled=\"$select.disabled\" ng-click=\"$select.activeMatchIndex = $index;\" ng-class=\"{\'btn-primary\':$select.activeMatchIndex === $index, \'select-locked\':$select.isLocked(this, $index)}\"><span class=\"close ui-select-match-close\" ng-hide=\"$select.disabled\" ng-click=\"$select.removeChoice($index)\">&nbsp;&times;</span> <span uis-transclude-append=\"\"></span></span></span></span>");
+ 1347  $templateCache.put("bootstrap/match.tpl.html","<div class=\"ui-select-match\" ng-hide=\"$select.open\" ng-disabled=\"$select.disabled\" ng-class=\"{\'btn-default-focus\':$select.focus}\"><button aria-label=\"{{ $select.baseTitle }} activate\" type=\"button\" class=\"btn btn-default btn-block ui-select-toggle\" tabindex=\"-1\" ;=\"\" ng-disabled=\"$select.disabled\" ng-click=\"$select.activate()\"><span ng-show=\"$select.isEmpty()\" class=\"ui-select-placeholder text-muted\">{{$select.placeholder}}</span> <span ng-hide=\"$select.isEmpty()\" class=\"ui-select-match-text\" ng-class=\"{\'ui-select-allow-clear\': $select.allowClear && !$select.isEmpty()}\" ng-transclude=\"\"></span> <i class=\"caret pull-right\" ng-click=\"$select.toggle($event)\"></i></button><button aria-label=\"{{ $select.baseTitle }} clear\" type=\"button\" class=\"ui-select-clear\" ng-if=\"$select.allowClear && !$select.isEmpty()\" ng-click=\"$select.select(undefined)\"><i class=\"glyphicon glyphicon-remove\"></i></button></div>");
+ 1348  $templateCache.put("bootstrap/select-multiple.tpl.html","<div class=\"ui-select-container ui-select-multiple ui-select-bootstrap dropdown form-control\" ng-class=\"{open: $select.open}\"><div><div class=\"ui-select-match\"></div><input type=\"text\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\" class=\"ui-select-search input-xs\" placeholder=\"{{$select.getPlaceholder()}}\" ng-disabled=\"$select.disabled\" ng-hide=\"$select.disabled\" ng-click=\"$select.activate()\" ng-model=\"$select.search\" role=\"combobox\" aria-label=\"{{ $select.baseTitle }}\"></div><div class=\"ui-select-choices\"></div></div>");
+
+/home/bombayz/terebinth-pos/app/models/user.rb:
+    8    # :confirmable, :lockable, :timeoutable and :omniauthable
+    9    devise :database_authenticatable, :registerable,
+   10:          :recoverable, :rememberable, :trackable, :validatable
+   11  
+   12    ## Database authenticatable
+   ..
+   21    field :remember_created_at, type: Time
+   22  
+   23:   ## Trackable
+   24    field :sign_in_count,      type: Integer, default: 0
+   25    field :current_sign_in_at, type: Time
+
+/home/bombayz/terebinth-pos/config/environments/production.rb:
+   16  
+   17    # Enable Rack::Cache to put a simple HTTP cache in front of your application
+   18:   # Add `rack-cache` to your Gemfile before enabling this.
+   19    # For large-scale production use, consider using a caching reverse proxy like
+   20    # NGINX, varnish or squid.
+   21:   # config.action_dispatch.rack_cache = true
+   22  
+   23    # Disable serving static files from the `/public` folder by default since
+
+28 matches across 5 files

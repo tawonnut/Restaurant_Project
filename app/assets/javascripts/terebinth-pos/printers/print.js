@@ -104,39 +104,38 @@ function printorders(table,name,surname,time,menu) {
 
         // start page mode
      
-        builder.addTextAlign(builder.ALIGN_CENTER).addText('\n');
-        builder.addTextPosition(180);
+        builder.addTextAlign(builder.ALIGN_CENTER);
         builder.addTextStyle(undefined,undefined,1);
         builder.addText('ใบสั่งอาหาร').addText('\n');
         builder.addTextStyle(undefined,undefined,0);
         builder.addText('โต๊ะที่:',' ').addText(table).addText('\n');
-        builder.addText('พนักงาน:\t').addText(name).addText(' ').addText(surname).addText('\n');
+        builder.addText('พนักงาน: ').addText(name).addText(' ').addText(surname).addText('\n');
         builder.addText('วันที่/เวลา:').addText(' ').addText(time);
         builder.addText('\n');
         builder.addText('_________________________________________');
         builder.addText('\n');
-        builder.addTextPosition(180);
         builder.addTextStyle(undefined,undefined,1,undefined);
         builder.addText('รายการอาหาร');
         builder.addText('\n');
         builder.addTextPosition(10);
-        builder.addText('รายการ'),addTextPosition(410);
+        builder.addText('รายการ'),addTextPosition(400);
         builder.addText('จำนวน').addText('\n');
-        builder.addTextPosition(10);
         builder.addTextStyle(undefined,undefined,0);
 
         for (i = 0; i < menu[0].length; i++) { 
             builder.addText(menu[0][i].menu);
-            builder.addTextPosition(425);
+            builder.addTextPosition(400);
             builder.addText(menu[0][i].value)
             builder.addText('\n');
+
             if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
-                builder.addTextPosition(20);
+                builder.addTextAlign(builder.ALIGN_LEFT);
+                builder.addTextPosition(70);
                 builder.addText('*').addText(menu[0][i].remark)
                 builder.addText('\n'); 
             }              
         }
-        
+
         builder.addCut(builder.CUT_FEED);
         // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
 
