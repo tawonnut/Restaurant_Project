@@ -5,7 +5,7 @@
       <%= image_tag("maincash.jpg",width:'120' ,height:'120') %>
   </div>
   
-    <div class ="col-sm-6 text-center" onclick="printpayments('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')">
+    <div class ="col-sm-6 text-center" onclick="printpayments('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @show_drink.to_json%>','<%= @show_dessert.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')">
       <%= image_tag("print.jpg",width:'120' ,height:'120') %>
     </div> 
 
@@ -156,12 +156,23 @@
     <input type="text" class="form-control" id='cash' name="cash">
  </div>
 
+  
 
-      <div class="modal-footer" onclick="printbills('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')">
+
+      <div class="modal-footer" onclick="printbills('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @show_drink.to_json%>','<%= @show_dessert.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')">
        <%= image_tag("print.jpg",width:'60' ,height:'60') %>
+
+     </div>
+
+     <div class = "modal-footer" "col-sm-3" align ="left">
+      <%= link_to( image_tag("credit1.jpg",width:'60' ,height:'60'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
+    </div> 
+
      </div>
 
    </div>
 
   </div>
 </div>
+
+clear_table_menu_list_path

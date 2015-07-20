@@ -8,7 +8,7 @@
     </button>
   </div>
   
-    <div class ="col-sm-6 text-center" onclick="printorders('<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>')">
+    <div class ="col-sm-6 text-center" onclick="printorders('<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json %>')">
       <%= image_tag("print.jpg",width:'120' ,height:'120') %>
     </div> 
 

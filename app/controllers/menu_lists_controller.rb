@@ -12,6 +12,11 @@ class MenuListsController < ApplicationController
     @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil)
     @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil)
     @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil)
+
+    @show_dishc = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil ,cancle: false)
+    @show_dessertc = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil,cancle: false)
+    @show_drinkc = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil,cancle: false)
+
     @user = User.where(_id: current_user.id) 
     @check = params[:check_value]
     if @check != nil
@@ -93,9 +98,9 @@ class MenuListsController < ApplicationController
     promotion = Promotion.where(promotion_discount: @promotion_discount.to_i)
     @table = Table.find(params[:id])
     @table.update(promotion_id: promotion[0].id)
-    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil ,:kitchen.ne => nil, cancle: false)
-    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil,:kitchen.ne => nil, cancle: false)
-    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil,:kitchen.ne => nil, cancle: false)
+    @show_dish = MenuList.where(table: @table.id.to_s,menu_type: "อาหารคาว",billing_id: nil , cancle: false)
+    @show_dessert = MenuList.where(table: @table.id.to_s,menu_type: "อาหารหวาน",billing_id: nil, cancle: false)
+    @show_drink = MenuList.where(table: @table.id.to_s,menu_type: "เครื่องดื่ม",billing_id: nil, cancle: false)
 
 
     price_dish = @show_dish.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum

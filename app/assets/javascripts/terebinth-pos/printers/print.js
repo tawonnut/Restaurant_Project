@@ -86,9 +86,10 @@
 function printorders(table,name,surname,time,menu) { 
     // open print dialog
     $('#print').dialog('open');
-    console.log(menu)
+    console.log(menu);
     var menu = JSON.parse("[" + menu + "]");
 
+       
     // create print data builder object
     var builder = new epson.ePOSBuilder();
     with (builder) {
@@ -123,33 +124,77 @@ function printorders(table,name,surname,time,menu) {
         builder.addTextStyle(undefined,undefined,0);
 
         for (i = 0; i < menu[0].length; i++) { 
-            builder.addText(menu[0][i].menu);
-            builder.addTextPosition(400);
-            builder.addText(menu[0][i].value)
-            builder.addText('\n');
-
-            if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
+            if (menu[0][i].cancle === false) {
                 builder.addTextAlign(builder.ALIGN_LEFT);
-                builder.addTextPosition(70);
-                builder.addText('*').addText(menu[0][i].remark)
-                builder.addText('\n'); 
-            }              
+                builder.addText(menu[0][i].menu);
+                builder.addTextPosition(450);
+                builder.addText(menu[0][i].value);
+                builder.addText('\n');
+
+                if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
+                    builder.addTextAlign(builder.ALIGN_LEFT);
+                    builder.addTextPosition(20);
+                    builder.addText('*').addText(menu[0][i].remark)
+                    builder.addText('\n'); 
+                }       
+            }             
         }
 
         builder.addCut(builder.CUT_FEED);
-        // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
-
+      // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
     }
-    //
-    // send print data
-    //
+    //      var builder2 = new epson.ePOSBuilder();
+    // with (builder2) {
+    //     // initialize (alphanumeic mode, smoothing)
+    //     addTextLang('en');
+    //     addTextSmooth(1);
+     
+    //     builder.addTextAlign(builder.ALIGN_CENTER);
+    //     builder.addTextStyle(undefined,undefined,1);
+    //     builder.addText('ใบสั่งอาหาร').addText('\n');
+    //     builder.addTextStyle(undefined,undefined,0);
+    //     builder.addText('โต๊ะที่:',' ').addText(table).addText('\n');
+    //     builder.addText('พนักงาน: ').addText(name).addText(' ').addText(surname).addText('\n');
+    //     builder.addText('วันที่/เวลา:').addText(' ').addText(time);
+    //     builder.addText('\n');
+    //     builder.addText('_________________________________________');
+    //     builder.addText('\n');
+    //     builder.addTextStyle(undefined,undefined,1,undefined);
+    //     builder.addText('รายการอาหาร');
+    //     builder.addText('\n');
+    //     builder.addTextPosition(10);
+    //     builder.addText('รายการ'),addTextPosition(400);
+    //     builder.addText('จำนวน').addText('\n');
+    //     builder.addTextStyle(undefined,undefined,0);
 
+    //     for (i = 0; i < menu[0].length; i++) { 
+    //         if (menu[0][i].cancle === true) {
+    //             builder.addTextAlign(builder.ALIGN_LEFT);
+    //             builder.addText(menu[0][i].menu);
+    //             builder.addTextPosition(450);
+    //             builder.addText(menu[0][i].value);
+    //             builder.addText('\n');
+
+    //             if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
+    //                 builder.addTextAlign(builder.ALIGN_LEFT);
+    //                 builder.addTextPosition(20);
+    //                 builder.addText('*').addText(menu[0][i].remark)
+    //                 builder.addText('\n'); 
+    //             }       
+    //         }             
+    //     }
+
+    //     builder.addCut(builder.CUT_FEED);
+    //   // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
+    // }
+
+  
     // create print object
-    var url = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
-    var epos = new epson.ePOSPrint(url);
+    var url1 = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
+    var epos2 = new epson.ePOSPrint(url1);
 
     // register callback function
-    epos.onreceive = function (res) {
+    epos2.onreceive = function (res) {
         // close print dialog
         $('#print').dialog('close');
         // print failure
@@ -159,23 +204,30 @@ function printorders(table,name,surname,time,menu) {
         }
     }
     // register callback function
-    epos.onerror = function (err) {
+    epos2.onerror = function (err) {
         // close print dialog
         $('#print').dialog('close');
         // show error message
         $('#error').dialog('open');
     }
 
-    epos.send(builder.toString());
+    epos2.send(builder.toString());
     // window.location.reload();
+
+ 
 }
 
 
-function printpayments(restuarant,table,name,surname,time,menu,total,discount) {
+
+function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudessert,total,discount) {
      // open print dialog
     $('#print').dialog('open');
     
     var menu = JSON.parse("[" + menu + "]");
+    var menudrink = JSON.parse("[" + menudrink + "]");
+    var menudessert = JSON.parse("[" + menudessert + "]");
+
+    var disbath = (total*discount)/100;
     // create print data builder object
     var builder = new epson.ePOSBuilder();
     with (builder) {
@@ -226,22 +278,53 @@ function printpayments(restuarant,table,name,surname,time,menu,total,discount) {
 
             if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
                 builder.addTextPosition(20);
-                builder.addText('*').addText(menu[0][i].remark)
+                builder.addText('*').addText(menu[0][i].remark);
                 builder.addText('\n'); 
             }              
         }
+
+         for (i = 0; i < menudrink[0].length; i++) { 
+            builder.addText(menudrink[0][i].menu);
+            builder.addTextPosition(200);
+            builder.addText(menudrink[0][i].value).addTextPosition(320);
+            builder.addText(menudrink[0][i].menu_price).addTextPosition(440);
+            builder.addText(parseFloat(menudrink[0][i].menu_price) * parseFloat(menudrink[0][i].value ));
+            builder.addText('\n');
+
+            if ((menudrink[0][i].remark) != null && (menudrink[0][i].remark) != "" ) {
+                builder.addTextPosition(20);
+                builder.addText('*').addText(menudrink[0][i].remark);
+                builder.addText('\n'); 
+            }              
+        }
+         for (i = 0; i < menudessert[0].length; i++) { 
+            builder.addText(menudessert[0][i].menu);
+            builder.addTextPosition(200);
+            builder.addText(menudessert[0][i].value).addTextPosition(320);
+            builder.addText(menudessert[0][i].menu_price).addTextPosition(440);
+            builder.addText(parseFloat(menudessert[0][i].menu_price) * parseFloat(menudessert[0][i].value ));
+            builder.addText('\n');
+
+            if ((menudessert[0][i].remark) != null && (menudessert[0][i].remark) != "" ) {
+                builder.addTextPosition(20);
+                builder.addText('*').addText(menudessert[0][i].remark);
+                builder.addText('\n'); 
+            }              
+        }
+
 
         builder.addFeedUnit(75);
         builder.addTextPosition(25);
         builder.addText('ค่าอาหาร');
         builder.addTextPosition(390);
-        builder.addText(total).addText('\n');
+        builder.addText(total).addText(' บาท')
+        builder.addText('\n');
         builder.addTextPosition(25);
         builder.addText('ส่วนลด');
         builder.addTextPosition(195);
         builder.addText(discount).addText(' %');
         builder.addTextPosition(400);
-        builder.addText('0 บาท').addText('\n');
+        builder.addText(disbath).addText(' บาท').addText('\n');
         builder.addTextPosition(25);
         builder.addText('SERV.Charge');
         builder.addTextPosition(195);
@@ -259,7 +342,7 @@ function printpayments(restuarant,table,name,surname,time,menu,total,discount) {
         builder.addText('รวมสุทธิ');
         builder.addTextPosition(390);
         builder.addTextStyle(undefined,true);
-        builder.addText(total);
+        builder.addText(total-disbath);
         builder.addTextStyle(undefined,0);
         builder.addText(' บาท').addText('\n');
         builder.addFeedUnit(50);
@@ -298,30 +381,36 @@ function printpayments(restuarant,table,name,surname,time,menu,total,discount) {
         $('#error').dialog('open');
     }
     epos.send(builder.toString());
-    window.location.reload();
+    // window.location.reload();
 }
 
 
 
-function printbills(restuarant,table,name,surname,time,menu,total,discount) {
+function printbills(restuarant,table,name,surname,time,menu,menudrink,menudessert,total,discount) {
      // open print dialog
     $('#print').dialog('open');
     
     var menu = JSON.parse("[" + menu + "]");
+    var menudrink = JSON.parse("[" + menudrink + "]");
+    var menudessert = JSON.parse("[" + menudessert + "]");
     var cash = $('#cash').val();
     submit = cash - total;
+
+    
+
     // create print data builder object
      
     var builder = new epson.ePOSBuilder();
-
-       builder.addPageBegin();
-       builder.addTextSmooth(true);
+    with (builder) {
+     
+       builder.addTextLang('en');
+   
         // Paper Header
-        // addPageBegin();
+        addPageBegin();
         builder.addTextAlign(builder.ALIGN_CENTER).addText('\n');
-        builder.addTextPosition(100);
         builder.addTextStyle(undefined,undefined,1);
-        builder.addText('ใบเสร็จรับเงิน/ใบกำกับภาษี').addText('\n');
+        builder.addTextPosition(90);
+        builder.addText('ใบเสร็จรับเงิน/ใบกำกับภาษีอย่างย่อ').addText('\n');
         builder.addTextPosition(150);
         builder.addTextStyle(undefined,undefined,0);
         builder.addText('ร้าน :',' ').addText(restuarant).addText('\n');
@@ -342,7 +431,7 @@ function printbills(restuarant,table,name,surname,time,menu,total,discount) {
         builder.addText('รายการ').addTextPosition(190);
         builder.addText('จำนวน').addTextPosition(310);
         builder.addText('ราคา').addTextPosition(435);
-        builder.addText('รวม').addText('\n')
+        builder.addText('รวม').addText('\n');
         builder.addTextStyle(undefined,undefined,0,undefined);
         builder.addFeedUnit(20);
 
@@ -358,10 +447,42 @@ function printbills(restuarant,table,name,surname,time,menu,total,discount) {
 
             if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
                 builder.addTextPosition(20);
-                builder.addText('*').addText(menu[0][i].remark)
+                builder.addText('*').addText(menu[0][i].remark);
                 builder.addText('\n'); 
             }              
         }
+
+         for (i = 0; i < menudrink[0].length; i++) { 
+            builder.addText(menudrink[0][i].menu);
+            builder.addTextPosition(200);
+            builder.addText(menudrink[0][i].value).addTextPosition(320);
+            builder.addText(menudrink[0][i].menu_price).addTextPosition(440);
+            builder.addText(parseFloat(menudrink[0][i].menu_price) * parseFloat(menudrink[0][i].value ));
+            builder.addText('\n');
+
+            if ((menudrink[0][i].remark) != null && (menudrink[0][i].remark) != "" ) {
+                builder.addTextPosition(20);
+                builder.addText('*').addText(menudrink[0][i].remark);
+                builder.addText('\n'); 
+            }              
+        }
+
+        for (i = 0; i < menudessert[0].length; i++) { 
+            builder.addText(menudessert[0][i].menu);
+            builder.addTextPosition(200);
+            builder.addText(menudessert[0][i].value).addTextPosition(320);
+            builder.addText(menudessert[0][i].menu_price).addTextPosition(440);
+            builder.addText(parseFloat(menudessert[0][i].menu_price) * parseFloat(menudessert[0][i].value ));
+            builder.addText('\n');
+
+            if ((menudessert[0][i].remark) != null && (menudessert[0][i].remark) != "" ) {
+                builder.addTextPosition(20);
+                builder.addText('*').addText(menudessert[0][i].remark);
+                builder.addText('\n'); 
+            }              
+        }
+
+
             // Paper Body
         builder.addFeedUnit(30);
         builder.addTextPosition(25);
@@ -382,7 +503,7 @@ function printbills(restuarant,table,name,surname,time,menu,total,discount) {
         builder.addText('0 บาท');
         builder.addText('\n');
         builder.addTextPosition(25);
-        builder.addText('Vat');
+        builder.addText('VAT');
         builder.addTextPosition(195);
         builder.addText('0 ').addText('%')
         builder.addTextPosition(400);
@@ -409,10 +530,11 @@ function printbills(restuarant,table,name,surname,time,menu,total,discount) {
         builder.addFeedUnit(30);
         builder.addTextPosition(180);
         builder.addText('ขอบคุณที่ใช้บริการ');
+
         builder.addPageEnd();
         builder.addCut(builder.CUT_FEED);
         // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
-
+    }
     //
     // send print data
     //
