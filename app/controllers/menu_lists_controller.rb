@@ -139,7 +139,7 @@ class MenuListsController < ApplicationController
       @billing.save
     end  
 
-    @menu = MenuList.where(table: @table.id.to_s,billing_id: nil,:kitchen.ne => nil)
+    @menu = MenuList.where(table: @table.id.to_s,billing_id: nil)
     @menu_clear = MenuList.where(table: @table.id.to_s,billing_id: nil)
     @menu.each do |list|
       list.update(billing_id: @billing.id ,restuarant_id: current_user.current_restuarant)
