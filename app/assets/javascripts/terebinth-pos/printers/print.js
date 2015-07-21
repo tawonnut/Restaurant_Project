@@ -141,53 +141,9 @@ function printorders(table,name,surname,time,menu) {
         }
 
         builder.addCut(builder.CUT_FEED);
-      // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
+      
     }
-    //      var builder2 = new epson.ePOSBuilder();
-    // with (builder2) {
-    //     // initialize (alphanumeic mode, smoothing)
-    //     addTextLang('en');
-    //     addTextSmooth(1);
-     
-    //     builder.addTextAlign(builder.ALIGN_CENTER);
-    //     builder.addTextStyle(undefined,undefined,1);
-    //     builder.addText('ใบสั่งอาหาร').addText('\n');
-    //     builder.addTextStyle(undefined,undefined,0);
-    //     builder.addText('โต๊ะที่:',' ').addText(table).addText('\n');
-    //     builder.addText('พนักงาน: ').addText(name).addText(' ').addText(surname).addText('\n');
-    //     builder.addText('วันที่/เวลา:').addText(' ').addText(time);
-    //     builder.addText('\n');
-    //     builder.addText('_________________________________________');
-    //     builder.addText('\n');
-    //     builder.addTextStyle(undefined,undefined,1,undefined);
-    //     builder.addText('รายการอาหาร');
-    //     builder.addText('\n');
-    //     builder.addTextPosition(10);
-    //     builder.addText('รายการ'),addTextPosition(400);
-    //     builder.addText('จำนวน').addText('\n');
-    //     builder.addTextStyle(undefined,undefined,0);
-
-    //     for (i = 0; i < menu[0].length; i++) { 
-    //         if (menu[0][i].cancle === true) {
-    //             builder.addTextAlign(builder.ALIGN_LEFT);
-    //             builder.addText(menu[0][i].menu);
-    //             builder.addTextPosition(450);
-    //             builder.addText(menu[0][i].value);
-    //             builder.addText('\n');
-
-    //             if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
-    //                 builder.addTextAlign(builder.ALIGN_LEFT);
-    //                 builder.addTextPosition(20);
-    //                 builder.addText('*').addText(menu[0][i].remark)
-    //                 builder.addText('\n'); 
-    //             }       
-    //         }             
-    //     }
-
-    //     builder.addCut(builder.CUT_FEED);
-    //   // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
-    // }
-
+  
   
     // create print object
     var url1 = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
@@ -216,6 +172,49 @@ function printorders(table,name,surname,time,menu) {
 
  
 }
+
+function openDrawer() { 
+    // open print dialog
+    $('#print').dialog('open');
+       
+    // create print data builder object
+    var builder = new epson.ePOSBuilder();
+    with (builder) {
+
+        // initialize (alphanumeic mode, smoothing)
+        
+        builder.addPulse(builder.DRAWER_1,builder.PULSE_100); 
+    }
+  
+  
+    // create print object
+    var url1 = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
+    var epos2 = new epson.ePOSPrint(url1);
+
+    // register callback function
+    epos2.onreceive = function (res) {
+        // close print dialog
+        $('#print').dialog('close');
+        // print failure
+        if (!res.success) {
+            // show error message
+            $('#receive').dialog('open');
+        }
+    }
+    // register callback function
+    epos2.onerror = function (err) {
+        // close print dialog
+        $('#print').dialog('close');
+        // show error message
+        $('#error').dialog('open');
+    }
+
+    epos2.send(builder.toString());
+    
+
+ 
+}
+
 
 
 

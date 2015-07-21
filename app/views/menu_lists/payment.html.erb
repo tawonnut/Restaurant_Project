@@ -176,25 +176,25 @@
       <div class="modal-body text-center col-md-6 col-md-offset-3">
         <div class="form-group">
           <label>ทอนเงิน :</label> 
-            <input type="text" class = "form-control" name= "" id="money">
+            <input type="text" class = "form-control" id="money">
         </div>
       </div>
        
           <div class="modal-footer">
             <div class="row">
               <div class="col-md-6">
-                <button class ="btn btn-success btn-lg btn-block"onclick="printbills('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @show_drink.to_json%>','<%= @show_dessert.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')"><i class="fa fa-print"></i>&nbsp;พิมพ์ใบเสร็จ </button>
+                <button class="btn btn-success btn-lg btn-block" onclick="printbills('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @show_drink.to_json%>','<%= @show_dessert.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')" ><i class="fa fa-print"></i>&nbsp;พิมพ์ใบเสร็จ </button>
               </div>
 
               <div class="col-md-6">
-                <%= button_tag( :class => "btn btn-danger btn-lg btn-block") do %>
-                <i class="fa fa-ban"></i>&nbsp;ปิดโต๊ะ 
-                <% end %>
+                <%= link_to clear_table_menu_list_path, data: { confirm: 'คุณต้องการเคลียโต๊ะ?'  }, 
+                class: 'btn btn-danger btn-lg btn-block' do %><i class="fa fa-ban" > ปิดโต๊ะ</i>
+                <%end%>
               </div>
             </div>
             <div>&nbsp;</div>
             <div class="row">
-               <div class="col-md-6 col-md-offset-3">
+               <div class="col-md-6 col-md-offset-3" onclick="openDrawer()">
                   <%= button_tag( :class => "btn btn-info btn-lg btn-block") do %>
                   <i class="fa fa-eject"></i>&nbsp;Open Drawer 
                   <% end %>
@@ -203,8 +203,11 @@
           </div>  
 
       
-          
+<script type="text/javascript">
+  $(cash).keypress(function(e) {
+    if(e.which == 13) {
+     console.log('Enterrrrrrrrrrrrrrrrrrrrrrrrrrr');
 
-
-
-
+    }
+});
+</script>
