@@ -186,7 +186,6 @@ function openDrawer() {
         builder.addPulse(builder.DRAWER_1,builder.PULSE_100); 
     }
   
-  
     // create print object
     var url1 = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
     var epos2 = new epson.ePOSPrint(url1);
@@ -209,14 +208,8 @@ function openDrawer() {
         $('#error').dialog('open');
     }
 
-    epos2.send(builder.toString());
-    
-
- 
+    epos2.send(builder.toString());    
 }
-
-
-
 
 function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudessert,total,discount) {
      // open print dialog
@@ -385,8 +378,19 @@ function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudes
 
 
 
-function printbills(restuarant,table,name,surname,time,menu,menudrink,menudessert,total,discount) {
+function printbills() {
      // open print dialog
+     restuarant = $("#restuarant").val();
+     table = $("#table").val();
+     name = $("#name").val();
+     surname = $("#surname").val();
+     time = $("#time").val();
+     menu = $("#menu").val();
+     menudrink = $("#menudrink").val();
+     menudessert = $("#menudessert").val();
+     total = $("#total").val();
+     discount = $("#discount").val();
+
     $('#print').dialog('open');
     
     var menu = JSON.parse("[" + menu + "]");
@@ -533,7 +537,7 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
 
         builder.addPageEnd();
         builder.addCut(builder.CUT_FEED);
-        // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
+        builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
     }
 
     $("#money").val(cash-(total-disbath));

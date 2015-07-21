@@ -179,11 +179,22 @@
             <input type="text" class = "form-control" id="money">
         </div>
       </div>
-       
+          <input type="hidden" value="<%= @table.restuarant.restuarant_name%>" id="restuarant">
+          <input type="hidden" value="<%= @table.table_number%>" id="table"> 
+          <input type="hidden" value="<%= current_user.name %>" id="name">
+          <input type="hidden" value="<%= current_user.surname %>" id="surname">
+          <input type="hidden" value="<%= Time.now %>" id="time"> 
+          <input type="hidden" value="<%= @show_dish.to_json%>" id="menu">
+          <input type="hidden" value="<%= @show_drink.to_json%>" id="menudrink">
+          <input type="hidden" value="<%= @show_dessert.to_json%>" id="menudessert">
+          <input type="hidden" value="<%= @total %>" id="total">
+          <input type="hidden" value="<%= @promotion_discount.to_i %>" id="discount">
+
+
           <div class="modal-footer">
             <div class="row">
               <div class="col-md-6">
-                <button class="btn btn-success btn-lg btn-block" onclick="printbills('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @show_drink.to_json%>','<%= @show_dessert.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')" ><i class="fa fa-print"></i>&nbsp;พิมพ์ใบเสร็จ </button>
+                <button class="btn btn-success btn-lg btn-block" onclick="printbills()" ><i class="fa fa-print"></i>&nbsp;พิมพ์ใบเสร็จ </button>
               </div>
 
               <div class="col-md-6">
@@ -207,7 +218,7 @@
   $(cash).keypress(function(e) {
     if(e.which == 13) {
      console.log('Enterrrrrrrrrrrrrrrrrrrrrrrrrrr');
-
+     printbills();
     }
 });
 </script>
