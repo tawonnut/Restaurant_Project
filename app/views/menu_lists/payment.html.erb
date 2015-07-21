@@ -32,7 +32,7 @@
           <table class="table table-striped" id="show_datal">
             <thead>
             <tr class="info">
-              <th>#</th>
+      
               <th>ชื่ออาหาร</th>
               <th>จำนวน</th>
               <th>ราคา/บาท</th>
@@ -42,7 +42,7 @@
           <tbody>
               <% @show_dish.each_with_index do |a, i| %>
               <tr>
-                <td><%= i + 1 %></td>
+               
                 <td><%=a.menu%></td>
                 <td><%=a.value%></td>
                 <td><%=a.menu_price.to_f %></td>
@@ -52,18 +52,18 @@
                <% i = @show_dish.length %>
                <% @show_dessert.each_with_index do |f| %>
                <tr>
-               <td><%= i + 1 %></td>
+               
                <td><%=f.menu%></td>
                <td><%=f.value%></td>
                <td><%=f.menu_price.to_f %></td>
                <td><%=f.menu_price.to_f * f.value.to_f %></td>
-               <%i=i+1%>
+             
                </tr>
                <%end%>
                 <% i = @show_dish.length + 1 +@show_dessert.length %>
                <% @show_drink.each_with_index do |d| %>
                <tr>
-               <td><%= i + 1 %></td>
+               
                <td><%=d.menu%></td>
                <td><%=d.value%></td>
                <td><%=d.menu_price.to_f%></td>
@@ -146,33 +146,65 @@
     <div class="modal-content">
       <div class="modal-header">
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       <div class="row">
+        
 
-        <h4 class="modal-title" id="myModalLabel">รับเงิน</h4>
+        <div class="text-center">
+         ร้าน : <%= @table.restuarant.restuarant_name %> <br>
+         โต๊ะ : <%= @table.table_number %> <br>
+         แคชเชียร์ : <%= current_user.name%> <%= current_user.surname%> <br>
+         วันที่/เวลา : <%= Time.new %> <br>
+         </div>
 
-     </div>
-      <div class="modal-body">
-  <div class="form-group">
-   <label>จำนวนเงินที่รับ</label>
-    <input type="text" class="form-control" id='cash' name="cash">
- </div>
+     
+      <div class="modal-body col-md-6">
+        <div class="form-group">
+          <label>รับเงิน :</label>
+          <input type="text" class="form-control" id='cash' placeholder="ระบุจำนวนเงินที่รับ" name="cash">
+        </div>
+      </div>
 
   
+      <div class="modal-body col-md-6">
+        <div class="form-group">
+          <label>ยอดชำระ :</label>
+          <input type="text" class="form-control" placeholder="" value="<%=@total - @promotion %>">
+        </div>
+      </div>
+
+    
+      <div class="modal-body text-center col-md-6 col-md-offset-3">
+        <div class="form-group">
+          <label>ทอนเงิน :</label> 
+            <input type="text" class = "form-control" name= "" id="money">
+        </div>
+      </div>
+       
+          <div class="modal-footer">
+            <div class="row">
+              <div class="col-md-6">
+                <button class ="btn btn-success btn-lg btn-block"onclick="printbills('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @show_drink.to_json%>','<%= @show_dessert.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')"><i class="fa fa-print"></i>&nbsp;พิมพ์ใบเสร็จ </button>
+              </div>
+
+              <div class="col-md-6">
+                <%= button_tag( :class => "btn btn-danger btn-lg btn-block") do %>
+                <i class="fa fa-ban"></i>&nbsp;ปิดโต๊ะ 
+                <% end %>
+              </div>
+            </div>
+            <div>&nbsp;</div>
+            <div class="row">
+               <div class="col-md-6 col-md-offset-3">
+                  <%= button_tag( :class => "btn btn-info btn-lg btn-block") do %>
+                  <i class="fa fa-eject"></i>&nbsp;Open Drawer 
+                  <% end %>
+              </div>
+            </div>
+          </div>  
+
+      
+          
 
 
-      <div class="modal-footer" onclick="printbills('<%= @table.restuarant.restuarant_name%>','<%= @table.table_number%>','<%= current_user.name %>','<%= current_user.surname %>','<%= Time.now %>','<%= @show_dish.to_json%>','<%= @show_drink.to_json%>','<%= @show_dessert.to_json%>','<%= @total %>','<%= @promotion_discount.to_i %>')">
-       <%= image_tag("print.jpg",width:'60' ,height:'60') %>
 
-     </div>
 
-     <div class = "modal-footer" "col-sm-3" align ="left">
-      <%= link_to( image_tag("credit1.jpg",width:'60' ,height:'60'),clear_table_menu_list_path,data: { confirm: 'คุณต้องการเคลียโต๊ะ?' }) %>
-    </div> 
-
-     </div>
-
-   </div>
-
-  </div>
-</div>
-
-clear_table_menu_list_path

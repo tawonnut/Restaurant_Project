@@ -259,8 +259,8 @@ function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudes
         builder.addText('ค่าอาหาร/บริการ');
         builder.addText('\n');
         builder.addTextPosition(10);
-        builder.addText('รายการ'),addTextPosition(190);
-        builder.addText('จำนวน').addTextPosition(310);
+        builder.addText('รายการ'),addTextPosition(230);
+        builder.addText('จำนวน').addTextPosition(330);
         builder.addText('ราคา').addTextPosition(435);
         builder.addText('รวม').addText('\n')
         builder.addTextStyle(undefined,undefined,0,undefined);
@@ -270,8 +270,8 @@ function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudes
         // Paper Body
         for (i = 0; i < menu[0].length; i++) { 
             builder.addText(menu[0][i].menu);
-            builder.addTextPosition(200);
-            builder.addText(menu[0][i].value).addTextPosition(320);
+            builder.addTextPosition(250);
+            builder.addText(menu[0][i].value).addTextPosition(340);
             builder.addText(menu[0][i].menu_price).addTextPosition(440);
             builder.addText(parseFloat(menu[0][i].menu_price) * parseFloat(menu[0][i].value ));
             builder.addText('\n');
@@ -285,8 +285,8 @@ function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudes
 
          for (i = 0; i < menudrink[0].length; i++) { 
             builder.addText(menudrink[0][i].menu);
-            builder.addTextPosition(200);
-            builder.addText(menudrink[0][i].value).addTextPosition(320);
+            builder.addTextPosition(250);
+            builder.addText(menudrink[0][i].value).addTextPosition(340);
             builder.addText(menudrink[0][i].menu_price).addTextPosition(440);
             builder.addText(parseFloat(menudrink[0][i].menu_price) * parseFloat(menudrink[0][i].value ));
             builder.addText('\n');
@@ -299,8 +299,8 @@ function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudes
         }
          for (i = 0; i < menudessert[0].length; i++) { 
             builder.addText(menudessert[0][i].menu);
-            builder.addTextPosition(200);
-            builder.addText(menudessert[0][i].value).addTextPosition(320);
+            builder.addTextPosition(250);
+            builder.addText(menudessert[0][i].value).addTextPosition(340);
             builder.addText(menudessert[0][i].menu_price).addTextPosition(440);
             builder.addText(parseFloat(menudessert[0][i].menu_price) * parseFloat(menudessert[0][i].value ));
             builder.addText('\n');
@@ -362,7 +362,7 @@ function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudes
     // create print object
     var url = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
     var epos = new epson.ePOSPrint(url);
-
+    var disbath = (total*discount)/100;
     // register callback function
     epos.onreceive = function (res) {
         // close print dialog
@@ -395,6 +395,7 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
     var menudessert = JSON.parse("[" + menudessert + "]");
     var cash = $('#cash').val();
     submit = cash - total;
+    var disbath = (total*discount)/100;
 
     
 
@@ -428,8 +429,8 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
         builder.addText('ค่าอาหาร/บริการ');
         builder.addText('\n');
         builder.addTextPosition(10);
-        builder.addText('รายการ').addTextPosition(190);
-        builder.addText('จำนวน').addTextPosition(310);
+        builder.addText('รายการ').addTextPosition(230);
+        builder.addText('จำนวน').addTextPosition(330);
         builder.addText('ราคา').addTextPosition(435);
         builder.addText('รวม').addText('\n');
         builder.addTextStyle(undefined,undefined,0,undefined);
@@ -439,8 +440,8 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
         // Var loop
         for (i = 0; i < menu[0].length; i++) { 
             builder.addText(menu[0][i].menu);
-            builder.addTextPosition(200);
-            builder.addText(menu[0][i].value).addTextPosition(320);
+            builder.addTextPosition(250);
+            builder.addText(menu[0][i].value).addTextPosition(350);
             builder.addText(menu[0][i].menu_price).addTextPosition(440);
             builder.addText(parseFloat(menu[0][i].menu_price) * parseFloat(menu[0][i].value ));
             builder.addText('\n');
@@ -454,8 +455,8 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
 
          for (i = 0; i < menudrink[0].length; i++) { 
             builder.addText(menudrink[0][i].menu);
-            builder.addTextPosition(200);
-            builder.addText(menudrink[0][i].value).addTextPosition(320);
+            builder.addTextPosition(250);
+            builder.addText(menudrink[0][i].value).addTextPosition(350);
             builder.addText(menudrink[0][i].menu_price).addTextPosition(440);
             builder.addText(parseFloat(menudrink[0][i].menu_price) * parseFloat(menudrink[0][i].value ));
             builder.addText('\n');
@@ -469,8 +470,8 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
 
         for (i = 0; i < menudessert[0].length; i++) { 
             builder.addText(menudessert[0][i].menu);
-            builder.addTextPosition(200);
-            builder.addText(menudessert[0][i].value).addTextPosition(320);
+            builder.addTextPosition(250);
+            builder.addText(menudessert[0][i].value).addTextPosition(350);
             builder.addText(menudessert[0][i].menu_price).addTextPosition(440);
             builder.addText(parseFloat(menudessert[0][i].menu_price) * parseFloat(menudessert[0][i].value ));
             builder.addText('\n');
@@ -494,7 +495,7 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
         builder.addTextPosition(195);
         builder.addText(discount).addText(' %');
         builder.addTextPosition(400);
-        builder.addText('0 บาท').addText('\n');
+        builder.addText(disbath).addText(' บาท').addText('\n');
         builder.addTextPosition(25);
         builder.addText('SERV.Charge');
         builder.addTextPosition(195);
@@ -512,7 +513,7 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
         builder.addText('รวมสุทธิ');
         builder.addTextPosition(390);
         builder.addTextStyle(undefined,true);
-        builder.addText(total);
+        builder.addText(total-disbath);
         builder.addTextStyle(undefined,0);
         builder.addText(' บาท').addText('\n');
         builder.addFeedUnit(20);
@@ -521,10 +522,10 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
         builder.addText(cash).addText(' บาท').addText('\n');
         builder.addText('ชำระ');
         builder.addTextPosition(390);
-        builder.addText(total).addText(' บาท').addText('\n');
+        builder.addText(total-disbath).addText(' บาท').addText('\n');
         builder.addText('เงินทอน');
         builder.addTextPosition(390);
-        builder.addText(submit).addText(' บาท').addText('\n');
+        builder.addText(cash-(total-disbath)).addText(' บาท').addText('\n');
         builder.addFeedUnit(30);
         builder.addText('Cashier Sign: ').addText('___________________').addText('\n');
         builder.addFeedUnit(30);
@@ -535,6 +536,8 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
         builder.addCut(builder.CUT_FEED);
         // builder.addPulse(builder.DRAWER_1,builder.PULSE_100);
     }
+
+    $("#money").val(cash-(total-disbath));
     //
     // send print data
     //
@@ -561,5 +564,5 @@ function printbills(restuarant,table,name,surname,time,menu,menudrink,menudesser
         $('#error').dialog('open');
     }
     epos.send(builder.toString());
-    window.location.reload();
+    
 }
