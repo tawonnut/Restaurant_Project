@@ -7,7 +7,7 @@ class BillingsController < ApplicationController
     	@report = MenuList.where(restuarant_id: current_user.current_restuarant)
 		date_start = params[:date_start]
 		date_end = params[:date_end]
-		if date_start != nil && date_end !=nil
+		if date_start != nil && date_end != nil
 			@billing = Billing.where(:date.gte => date_start, :date.lte => date_end)
 		else
 			@billing = Billing.where(restuarant_id: current_user.current_restuarant)
@@ -22,7 +22,7 @@ class BillingsController < ApplicationController
 
 	def show
 		@billing = Billing.find(params[:id])
-		@show_menu = MenuList.where(billing_id: @billing.id)
+		@show_menu = MenuList.where(billing_id: @billing.id, cancle: false)
 		@total = @show_menu.map { |i| i.menu_price.to_f * i.value.to_f}.compact.sum
 		@promotion = (@total.to_f * @promotion_discount.to_f)/100
 	end

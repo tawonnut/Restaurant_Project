@@ -1,4 +1,5 @@
 <hr>
+
     <div class="panel panel-primary bigmshoadow" >
         <div class="panel-heading gradient">
        		<div class="col-md-6">
@@ -102,10 +103,10 @@
    <label> เวลาจอง : </label>
    <div class="row">
    <div class="col-sm-9">
-   <%= text_field_tag 'booking_time',Time.now(),readonly: true, id: 'today_date_picked',class: "form-control"%>
+   <%= text_field_tag 'booking_time',Time.now(),class: "form-control"%>
    </div>
    <div class="col-sm-0.1">
-      <button type="button" class="btn btn-danger  " data-target="#today_date_picked">
+      <button type="button" class="btn btn-info  " data-target="#today_date_picked">
         <span class="fa fa-clock-o"></span>
         </button>
         </div>
@@ -123,4 +124,3 @@
 </div>
 
 <%end%>
-

@@ -173,6 +173,134 @@ function printorders(table,name,surname,time,menu) {
  
 }
 
+
+
+
+function printall(table,name,surname,time,menu,menudrink,menudessert) { 
+    // open print dialog
+    $('#print').dialog('open');
+    console.log(menu);
+
+    var menu = JSON.parse("[" + menu + "]");
+    var menudrink = JSON.parse("[" + menudrink + "]");
+    var menudessert = JSON.parse("[" + menudessert + "]");
+
+    // create print data builder object
+    var builder = new epson.ePOSBuilder();
+    with (builder) {
+
+        // initialize (alphanumeic mode, smoothing)
+        addTextLang('en');
+        addTextSmooth(1);
+
+        // paper control for first print
+        // if (layout) {
+        //     addFeedPosition(FEED_NEXT_TOF);
+        // }
+
+        // start page mode
+     
+        builder.addTextAlign(builder.ALIGN_CENTER);
+        builder.addTextStyle(undefined,undefined,1);
+        builder.addText('ใบสั่งอาหาร').addText('\n');
+        builder.addTextStyle(undefined,undefined,0);
+        builder.addText('โต๊ะที่:',' ').addText(table).addText('\n');
+        builder.addText('พนักงาน: ').addText(name).addText(' ').addText(surname).addText('\n');
+        builder.addText('วันที่/เวลา:').addText(' ').addText(time);
+        builder.addText('\n');
+        builder.addText('_________________________________________');
+        builder.addText('\n');
+        builder.addTextStyle(undefined,undefined,1,undefined);
+        builder.addText('รายการอาหาร');
+        builder.addText('\n');
+        builder.addTextPosition(10);
+        builder.addText('รายการ'),addTextPosition(400);
+        builder.addText('จำนวน').addText('\n');
+        builder.addTextStyle(undefined,undefined,0);
+
+        for (i = 0; i < menu[0].length; i++) { 
+            if (menu[0][i].cancle === false) {
+                builder.addTextAlign(builder.ALIGN_LEFT);
+                builder.addText(menu[0][i].menu);
+                builder.addTextPosition(450);
+                builder.addText(menu[0][i].value);
+                builder.addText('\n');
+
+                if ((menu[0][i].remark) != null && (menu[0][i].remark) != "" ) {
+                    builder.addTextAlign(builder.ALIGN_LEFT);
+                    builder.addTextPosition(20);
+                    builder.addText('*').addText(menu[0][i].remark)
+                    builder.addText('\n'); 
+                }       
+            }             
+        }
+
+        for (i = 0; i < menudrink[0].length; i++) { 
+            if (menudrink[0][i].cancle === false) {
+                builder.addTextAlign(builder.ALIGN_LEFT);
+                builder.addText(menudrink[0][i].menu);
+                builder.addTextPosition(450);
+                builder.addText(menudrink[0][i].value);
+                builder.addText('\n');
+
+                if ((menudrink[0][i].remark) != null && (menudrink[0][i].remark) != "" ) {
+                    builder.addTextAlign(builder.ALIGN_LEFT);
+                    builder.addTextPosition(20);
+                    builder.addText('*').addText(menudrink[0][i].remark)
+                    builder.addText('\n'); 
+                }       
+            }             
+        }
+        
+        for (i = 0; i < menudessert[0].length; i++) { 
+            if (menudessert[0][i].cancle === false) {
+                builder.addTextAlign(builder.ALIGN_LEFT);
+                builder.addText(menudessert[0][i].menu);
+                builder.addTextPosition(450);
+                builder.addText(menudessert[0][i].value);
+                builder.addText('\n');
+
+                if ((menudessert[0][i].remark) != null && (menudessert[0][i].remark) != "" ) {
+                    builder.addTextAlign(builder.ALIGN_LEFT);
+                    builder.addTextPosition(20);
+                    builder.addText('*').addText(menudessert[0][i].remark)
+                    builder.addText('\n'); 
+                }       
+            }             
+        }
+
+        builder.addCut(builder.CUT_FEED);
+      
+    }
+  
+    // create print object
+    var url1 = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
+    var epos2 = new epson.ePOSPrint(url1);
+
+    // register callback function
+    epos2.onreceive = function (res) {
+        // close print dialog
+        $('#print').dialog('close');
+        // print failure
+        if (!res.success) {
+            // show error message
+            $('#receive').dialog('open');
+        }
+    }
+    // register callback function
+    epos2.onerror = function (err) {
+        // close print dialog
+        $('#print').dialog('close');
+        // show error message
+        $('#error').dialog('open');
+    }
+
+    epos2.send(builder.toString());
+    
+
+ 
+}
+
 function openDrawer() { 
     // open print dialog
     $('#print').dialog('open');
@@ -373,7 +501,7 @@ function printpayments(restuarant,table,name,surname,time,menu,menudrink,menudes
         $('#error').dialog('open');
     }
     epos.send(builder.toString());
-    // window.location.reload();
+
 }
 
 

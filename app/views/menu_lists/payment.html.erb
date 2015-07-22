@@ -101,27 +101,7 @@
  </div>
 
 
-
-
   
-
- <hr>
- <p><button id="setting" onclick="openDialog()">Settings</button></p>
-    <p>&nbsp;</p>
- 
-  <!-- ui-dialog -->    
-  <div id="dialog" title="Settings">
-        <p>ตั้งค่า IP Printer<br />
-        <input id="ipaddr" type="text"></p>
-        <p>Device ID <br />
-        <input id="devid" type="text"></p>
-        <p>Print timeout (milliseconds)<br />
-        <input id="timeout" type="text"></p>
-        <p><input id="grayscale" type="checkbox"> Print in grayscale<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;(Only for supported models)</p>
-        <p><input id="layout" type="checkbox"> Set the paper layout (Label)<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;(Only for TM-P60II)</p>
-  </div>
 
   <!-- ui-dialog -->
   <div id="print" title="Information">
@@ -160,7 +140,7 @@
       <div class="modal-body col-md-6">
         <div class="form-group">
           <label>รับเงิน :</label>
-          <input type="text" class="form-control" id='cash' placeholder="ระบุจำนวนเงินที่รับ" name="cash">
+          <input type="text" class="form-control" id='cash' placeholder="ระบุจำนวนเงินที่รับ" name="cash" res>
         </div>
       </div>
 
@@ -168,7 +148,7 @@
       <div class="modal-body col-md-6">
         <div class="form-group">
           <label>ยอดชำระ :</label>
-          <input type="text" class="form-control" placeholder="" value="<%=@total - @promotion %>">
+          <input type="text" class="form-control" placeholder="" value="<%=@total - @promotion %>" readonly>
         </div>
       </div>
 
@@ -176,7 +156,7 @@
       <div class="modal-body text-center col-md-6 col-md-offset-3">
         <div class="form-group">
           <label>ทอนเงิน :</label> 
-            <input type="text" class = "form-control" id="money">
+            <input type="text" class = "form-control" id="money" readonly>
         </div>
       </div>
           <input type="hidden" value="<%= @table.restuarant.restuarant_name%>" id="restuarant">

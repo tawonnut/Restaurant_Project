@@ -107,7 +107,7 @@ end
 
   def restuarant_params
     params.require(:restuarant).permit(:restuarant_name , :user_id , :legal_person , :restuarant_tel , :tax_id , :restuarant_address, :restuarant_owner,
-      :province,:county,:district)
+      :province,:county,:district,:branch_id)
   end
 
   

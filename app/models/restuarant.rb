@@ -22,15 +22,16 @@ class Restuarant
    field :restuarant_owner,   type: String
    field :printer_ip,         type: String
    field :printer_name,       type: String
-   field :billing_id, 		   type: Integer
+   field :billing_id, 		    type: Integer
    field :restuarant_address, type: String      
    field :restuarant_tel,     type: String     
    field :restuarant_email,   type: String     
    field :legal_person,       type: String            
    field :tax_id,             type: String
-  field :province,          type: String
-  field :county,            type: String
-  field :district,          type: String   
+   field :province,           type: String
+   field :county,             type: String
+   field :district,           type: String
+   field :branch_id,          type: Integer   
 
 
      validates :restuarant_name,                  presence: {message: "กรุณาระบุชื่อร้าน"},uniqueness: {message: "ชื่อร้านนี้ มีอยู่ในระบบแล้ว"}

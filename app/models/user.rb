@@ -41,7 +41,7 @@ class User
   field :restuarant_id,  type: String 
   field :name,           type: String 
   field :surname,        type: String
-  field :tel,            type: Integer    
+  field :tel,            type: String,  default: 0000000000  
   field :current_restuarant,   type:BSON::ObjectId
   field :super_user,           type: Boolean, default: false
   field :tax_id,               type: Integer
@@ -50,7 +50,7 @@ class User
 
 
    validates :name,                 presence: {message: "กรุณาระบุชื่อ"}  
-   validates :surname,              presence: {message: "กรุณาระบุนามสกุล"}                 
+   validates :surname,              presence: {message: "กรุณาระบุนามสกุล"}               
   
 
 

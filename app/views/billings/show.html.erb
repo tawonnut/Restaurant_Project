@@ -1,11 +1,11 @@
 <center><h4>สรุปยอดสั่งอาหารและเครื่องดื่ม</h4></center>
 <hr>
-<p>
-  <h4>ร้าน : <%= @billing.table.restuarant.restuarant_name %> </h4>
-  <h4>โต๊ะ : <%= @billing.table.table_number %> </h4>                                               
-  <h4>ชื่อพนักงาน :  <%= @billing.user.name%> <%= @billing.user.surname%> </h4>
-  <h4>วันที่/เวลา : <%= @billing.time %></h4>
-</p>
+<div>
+  ร้าน : <%= @billing.table.restuarant.restuarant_name %> <br>
+  โต๊ะ : <%= @billing.table.table_number %>  <br>                                             
+  ชื่อพนักงาน :  <%= @billing.user.name%> <%= @billing.user.surname%> <br>
+  วันที่/เวลา : <%= @billing.time %>
+</div>
 <hr>
     <div class="panel panel-default">
       <div class="panel-heading"><h4>รายการอาหาร<h4></div>

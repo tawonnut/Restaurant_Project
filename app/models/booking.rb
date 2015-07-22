@@ -7,7 +7,7 @@ class Booking
 
   field :booking_name,    type: String
   field :booking_id,      type: String
-  field :booking_time,    type: Time
+  field :booking_time,    type: String
   field :booking_date,    type: Date
   field :booking_person,  type: Integer
   field :booking_tel,     type: String
