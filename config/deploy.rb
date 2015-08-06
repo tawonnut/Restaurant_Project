@@ -1,6 +1,4 @@
 # config valid only for current version of Capistrano
-lock '3.3.5'
-
 set :application, 'restuarant_terebinth'
 set :repo_url, 'git@bitbucket.org:swiftlet/terebinth-pos.git'
 

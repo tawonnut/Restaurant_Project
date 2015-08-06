@@ -15,9 +15,8 @@ role :mongoid, %w{deploy@terebinthpos-staging.swiftlet}
 # This can be used to drop a more detailed server definition into the
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
-server 'terebinthpos-staging.swiftlet', user: 'deploy', roles: %w{web app}, my_property: :my_value
 
-
+#server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
