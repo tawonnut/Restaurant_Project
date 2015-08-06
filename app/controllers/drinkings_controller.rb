@@ -9,7 +9,7 @@ class DrinkingsController < ApplicationController
     @restuarant_user = Restuarant.where(user_id: current_user.id) 
     @restuarant= Restuarant.where(id: current_user.current_restuarant).first
     @dish = Dish.where(restuarant_id: @restuarant.id)
-    @drinking = Drinking.where(restuarant_id: @restuarant.id)
+    @drinking = Drinking.where(restuarant_id: @restuarant.id).order(drinking_price: "aesc")
     @drinkings = Drinking.new
   end
 

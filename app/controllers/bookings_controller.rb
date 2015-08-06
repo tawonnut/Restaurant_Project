@@ -12,11 +12,7 @@ class BookingsController < ApplicationController
     @bookings = Booking.new
   end
 
-  def edit
-    @booking= Booking.find(params[:id])
-  end
-
-	def update
+  def update
         @restuarant= Restuarant.where(id: current_user.current_restuarant).first
         @booking = Booking.new(booking_name: params[:booking_name],booking_time: params[:booking_time],booking_person: params[:booking_person],booking_tel: params[:booking_tel],booking_date: params[:booking_date],restuarant_id: @restuarant.id)
     if @booking.save
@@ -25,6 +21,10 @@ class BookingsController < ApplicationController
     else
       flash[:error] = "กรุณาระบุข้อมูลให้ครบถ้วน"
     end
+  end
+
+  def edit
+    @booking= Booking.find(params[:id])
   end
 
   def update_booking

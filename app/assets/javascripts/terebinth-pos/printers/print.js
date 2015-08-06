@@ -74,7 +74,7 @@
     }
 
     // Settings
-    var ipaddr = '192.168.0.26';
+    var ipaddr = '192.168.1.34';
     var devid = 'local_printer';
     var timeout = '60000';
     var grayscale = false;
@@ -180,6 +180,8 @@ function printall(table,name,surname,time,menu,menudrink,menudessert) {
     // open print dialog
     $('#print').dialog('open');
     console.log(menu);
+    console.log(menudrink);
+    console.log(menudessert);
 
     var menu = JSON.parse("[" + menu + "]");
     var menudrink = JSON.parse("[" + menudrink + "]");

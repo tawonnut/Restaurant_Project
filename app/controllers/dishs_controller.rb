@@ -8,7 +8,7 @@ class DishsController < ApplicationController
     @restuarant_show = Restuarant.where(id: current_user.current_restuarant).first
     @restuarant_user = Restuarant.where(user_id: current_user.id) 
     @restuarant= Restuarant.where(id: current_user.current_restuarant).first
-    @dish = Dish.where(restuarant_id: @restuarant.id)
+    @dish = Dish.where(restuarant_id: @restuarant.id).order(dish_price: "aesc")
     @dishs = Dish.new
   end
 

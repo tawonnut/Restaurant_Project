@@ -25,7 +25,7 @@ listingCtrl = function($scope, $http){
       console.log
     var create_params = {
       menu :          $scope.dish.selected.dish_name,
-      menu_price :     $scope.dish.selected.dish_price,
+      menu_price :    $scope.dish.selected.dish_price,
       remark :        $scope.menu.remark,
       value :         $scope.menu.value,
       menu_type :     "อาหารคาว",
