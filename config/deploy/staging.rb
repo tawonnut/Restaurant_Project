@@ -4,9 +4,10 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w{deploy@example.com}
-role :web, %w{deploy@example.com}
-role :db,  %w{deploy@example.com}
+role :app, %w{deploy@terebinthpos-staging.swiftlet}
+role :web, %w{deploy@terebinthpos-staging.swiftlet}
+role :db,  %w{deploy@terebinthpos-staging.swiftlet}
+role :mongoid, %w{deploy@terebinthpos-staging.swiftlet}
 
 
 # Extended Server Syntax
@@ -43,3 +44,8 @@ server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
+
+set :rails_env, "staging"
+  set :puma_threads, [0,8]
+  set :puma_workers, 4
+  set :puma_bind, (1..puma_workers).map {|i| "unix://#{shared_path}/tmp/sockets/puma-#{i}.sock" }
