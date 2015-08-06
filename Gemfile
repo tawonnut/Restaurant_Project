@@ -61,9 +61,9 @@ group :test do
 
 group :development do
   gem 'capistrano'
-  gem 'capistrano3-puma'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
+  gem 'capistrano3-puma'
 end
 
 end 
