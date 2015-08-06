@@ -64,7 +64,6 @@ group :development do
   gem 'capistrano3-puma'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'rvm-capistrano'
 end
 
 end 
