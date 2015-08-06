@@ -43,15 +43,16 @@ namespace :deploy do
     end
   end
 
-after :publishing, :restart
-  after :restart, :clear_cache do
+after :restart, :clear_cache do
     on roles(:app), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       within release_path do
         execute :rake, 'tmp:cache:clear'
+        execute :rake, 'db:setup'
       end
     end
-    invoke 'mongoid:index'
+   set :stage, :production
+   # execute :rake, 'db:mongoid:create_indexes'
   end
 
 end
