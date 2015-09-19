@@ -46,7 +46,6 @@ class DishsController < ApplicationController
       @dish.destroy
       flash[:notice] = "ลบเมนูเรียบร้อยแล้ว"
       redirect_to dish_path(@restuarant[0].id)
-
   end
 
   def dish_search
