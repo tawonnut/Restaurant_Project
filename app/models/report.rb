@@ -4,5 +4,4 @@ class Report
     belongs_to :restuarant
 
  	field :report, type: Date
-
 end

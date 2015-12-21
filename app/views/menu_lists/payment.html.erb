@@ -137,7 +137,7 @@
          </div>
 
      
-      <div class="modal-body col-md-6">
+      <div class="modal-body col-md-5">
         <div class="form-group">
           <label>รับเงิน :</label>
           <input type="text" class="form-control" id='cash' placeholder="ระบุจำนวนเงินที่รับ" name="cash" res>
@@ -145,7 +145,7 @@
       </div>
 
   
-      <div class="modal-body col-md-6">
+      <div class="modal-body col-md-5">
         <div class="form-group">
           <label>ยอดชำระ :</label>
           <input type="text" class="form-control" placeholder="" value="<%=@total - @promotion %>" readonly>
@@ -173,13 +173,13 @@
 
           <div class="modal-footer">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <button class="btn btn-success btn-lg btn-block" onclick="printbills()" ><i class="fa fa-print"></i>&nbsp;พิมพ์ใบเสร็จ </button>
               </div>
             </div>
             <div>&nbsp;</div>
             <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-12">
                 <%= link_to clear_table_menu_list_path, data: { confirm: 'คุณต้องการเคลียโต๊ะ?'  }, 
                 class: 'btn btn-danger btn-lg btn-block' do %><i class="fa fa-ban" > ปิดโต๊ะ</i>
                 <%end%>
